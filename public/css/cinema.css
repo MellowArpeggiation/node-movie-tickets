@@ -1,0 +1,17 @@
+/* line 1, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+html {
+  overflow-y: scroll; }
+
+/* line 2, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+body {
+  padding-top: 50px; }
+
+/* line 3, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+#todo-list {
+  margin-bottom: 30px; }
+
+/* line 4, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+#todo-form {
+  margin-bottom: 50px; }
+
+/*# sourceMappingURL=cinema.css.map */
