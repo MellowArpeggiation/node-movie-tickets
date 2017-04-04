@@ -1,16 +1,15 @@
 <!doctype html>
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
+<!-- Setup the Angular module  -->
 <html ng-app="scotchTodo">
 <head>
-	<!-- META -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Todo App</title>
+	<title>CinemaJazz</title>
 
-	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<!-- Styling -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
 		html 					{ overflow-y:scroll; }
@@ -19,7 +18,7 @@
 		#todo-form 	 			{ margin-bottom:50px; }
 	</style>
 
-	<!-- SPELLS -->
+	<!-- Scripts -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
@@ -27,13 +26,13 @@
 	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
-<!-- SET THE CONTROLLER -->
+<!-- Set the Angular controller -->
 <body ng-controller="mainController">
 	<div class="container">
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>CinemaJazz</h1>
 		</div>
 
 		<!-- TODO LIST -->
