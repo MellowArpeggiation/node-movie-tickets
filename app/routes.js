@@ -3,8 +3,25 @@ var movie = require('./models/movie');
 
 var http = require('http');
 
-// Visible on GitHub, BUT is server side so in a production environment is not exposed
-var apiToken = 'sjd1HfkjU83ksdsm3802k';
+var apiEndpoints = [
+	{
+		name: 'cinemaworld',
+		host: 'webjetapitest.azurewebsites.net',
+		listPath: '/api/cinemaworld/movies',
+		getPath: '/api/cinemaworld/movie/',
+		port: 80,
+		// Visible on GitHub, BUT is server side so in a production environment is not exposed
+		token: 'sjd1HfkjU83ksdsm3802k'
+	},
+	{
+		name: 'filmworld',
+		host: 'webjetapitest.azurewebsites.net',
+		listPath: '/api/filmworld/movies',
+		getPath: '/api/filmworld/movie/',
+		port: 80,
+		token: 'sjd1HfkjU83ksdsm3802k'
+	}
+];
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
@@ -23,16 +40,43 @@ module.exports = function (app) {
     // api ---------------------------------------------------------------------
 	// get all movies (will hit cache if server fails)
 	app.get('/api/movies', function (req, res) {
-		http.request({
-			method: 'GET',
-			hostname: 'http://webjetapitest.azurewebsites.net',
-			path: '/api/cinemaworld/movies',
-			headers: {
-				'x-access-token': apiToken
-			}
+		var apiResponses = []
+		
+		apiEndpoints.forEach(function (endPoint) {
+			console.log(endPoint.name);
+			
+			var apiReq = http.get({
+				hostname: endPoint.host,
+				path: endPoint.listPath,
+				port: endPoint.port,
+				headers: {
+					'x-access-token': endPoint.token
+				}
+			}, function (apiRes) {
+				var resData;
+				console.log(`started req for ${endPoint.name}`);
+				
+				apiRes.on('data', function (chunk) {
+					console.log(`Body of ${endPoint.name}: ${chunk}`);
+					resData = `${chunk}`;
+				});
+
+				apiRes.on('end', function () {
+					apiResponses.push(resData);
+				});
+			});
+			
+			apiReq.on('error', function(e) {
+				console.log(`ERROR: API server ${endPoint.name} connection failed, fetching from cache`);
+				console.log(`ERROR: ${e}`)
+				
+				
+			});
+			
+			apiReq.end();
 		});
 		
-		
+		//res.send(apiResponses);
 	});
 	
 	// get movie with ID
@@ -42,7 +86,7 @@ module.exports = function (app) {
 		
 		http.request({
 			method: 'GET',
-			hostname: 'http://webjetapitest.azurewebsites.net',
+			hostname: 'webjetapitest.azurewebsites.net',
 			path: pathWithID,
 			headers: {
 				'x-access-token': apiToken

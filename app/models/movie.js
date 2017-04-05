@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var detail = new Schema({
+var detail = new mongoose.Schema({
 	rated: String,
 	released: Date,
 	runtime: String,
@@ -18,6 +18,7 @@ var detail = new Schema({
 });
 
 module.exports = mongoose.model('movie', {
+	dbName: String,
     title: String,
 	year: String,
 	id: String,
@@ -28,7 +29,6 @@ module.exports = mongoose.model('movie', {
 		type: Boolean,
 		default: false
 	},
-	// All values past this point are fetched using the ID, these may or may not have been cached yet
 	
-	
+	movieDetail: detail
 });

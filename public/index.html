@@ -1,71 +1,63 @@
 <!doctype html>
 
 <!-- Setup the Angular module  -->
-<html ng-app="scotchTodo">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<html ng-app="nodeMovieTickets">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>CinemaJazz</title>
+		<title>CinemaJazz</title>
 
-	<!-- Styling -->
-	<link rel="stylesheet" href="css/cinema.css">
+		<!-- Styling -->
+		<link rel="stylesheet" href="css/cinema.css">
 
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
-	<!-- Scripts -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+		<!-- Scripts -->
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 
-	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/todos.js"></script> <!-- load our todo service -->
-	<script src="js/core.js"></script> <!-- load our main application -->
-</head>
-<!-- Set the Angular controller -->
-<body ng-controller="mainController">
-	<div class="container">
+		<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+		<script src="js/services/todos.js"></script> <!-- load our todo service -->
+		<script src="js/services/movies.js"></script> <!-- Load our movie fetching service -->
+		<script src="js/core.js"></script> <!-- load our main application -->
+	</head>
 
-		<!-- HEADER AND TODO COUNT -->
-		<div class="jumbotron text-center">
-			<h1>CinemaJazz</h1>
-		</div>
-
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row justify-content-center">
-			<div class="col-4">
-
-				
-
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
-				</div>
-
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
-
+	<!-- Set the Angular controller -->
+	<body ng-controller="mainController">
+		<div class="container">
+			<div class="jumbotron text-center">
+				<h1>CinemaJazz</h1>
 			</div>
-		</div>
 
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row justify-content-center">
-			<div class="col-8 text-center">
-				<form>
-					<div class="form-group">
+			<!-- Search bar, for live filtering movies -->
+			<div id="todo-form" class="row justify-content-center">
+				<div class="col-8">
+					<form>
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" ng-model="formData.text">
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-secondary" ng-click="createTodo()"><i class="fa fa-search"></i></button>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
 
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="Search" ng-model="formData.text">
+			<!-- TODO LIST -->
+			<div id="todo-list" class="row justify-content-center">
+				<div class="col-4">
+					<!-- LOOP OVER THE TODOS IN $scope.todos -->
+					<div class="checkbox" ng-repeat="todo in todos">
+						<label>
+							<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+						</label>
 					</div>
 
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-				</form>
+					<p class="text-center" ng-show="loading">
+						<span class="fa fa-spinner fa-spin fa-3x"></span>
+					</p>
+				</div>
 			</div>
 		</div>
-
-	</div>
-
-</body>
+	</body>
 </html>
