@@ -17,7 +17,7 @@ module.exports = function (app) {
     // api ---------------------------------------------------------------------
 	// get all movies (will hit cache if server fails)
 	app.get('/api/movies'), function (req, res) {
-		
+		http.get('')
 	});
 	
 	// get movie with ID
