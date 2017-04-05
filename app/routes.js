@@ -53,16 +53,21 @@ module.exports = function (app) {
 					'x-access-token': endPoint.token
 				}
 			}, function (apiRes) {
-				var resData;
+				var resData = [];
 				console.log(`started req for ${endPoint.name}`);
 				
 				apiRes.on('data', function (chunk) {
-					console.log(`Body of ${endPoint.name}: ${chunk}`);
-					resData = `${chunk}`;
+					//console.log(`Body of ${endPoint.name}: ${chunk}`);
+					resData.push(chunk);
 				});
 
 				apiRes.on('end', function () {
-					apiResponses.push(resData);
+					apiResponses.push(resData.join(''));
+					console.log(apiResponses.length);
+					console.log(apiEndpoints.length);
+					if (apiResponses.length == apiEndpoints.length) {
+						res.send(apiResponses);
+					}
 				});
 			});
 			
@@ -70,7 +75,7 @@ module.exports = function (app) {
 				console.log(`ERROR: API server ${endPoint.name} connection failed, fetching from cache`);
 				console.log(`ERROR: ${e}`)
 				
-				
+				apiResponses.push(movie.find({dbName: endPoint.name}))
 			});
 			
 			apiReq.end();
