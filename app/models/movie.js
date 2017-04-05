@@ -1,28 +1,30 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('movie', {
-    Title: {
-        type: String,
-        default: ''
-    },
+    Title: String,
+	Year: String,
+	ID: String,
+	Type: String,
+	Poster: String,
 	
-	Year: {
-		type: String,
-		default: ''
+	DetailCached: {
+		type: Boolean,
+		default: false
 	},
+	// All values past this point are fetched using the ID, these may or may not have been cached yet
 	
-	ID: {
-		type: String,
-		default: ''
-	},
-	
-	Type: {
-		type: String,
-		default: ''
-	},
-	
-	Poster: {
-		type: String,
-		default: ''
-	}
+	Rated: String,
+	Released: Date,
+	Runtime: String,
+	Genre: String,
+	Director: String,
+	Writer: String,
+	Actors: String,
+	Plot: String,
+	Language: String,
+	Country: String,
+	Metascore: Number,
+	Rating: Number,
+	Votes: String,
+	Price: Number
 });

@@ -1,4 +1,5 @@
 var Todo = require('./models/todo');
+var Movie = require('./models/movie');
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
@@ -16,8 +17,8 @@ module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
 	// get all movies (will hit cache if server fails)
-	app.get('/api/movies'), function (req, res) {
-		http.get('')
+	app.get('/api/movies', function (req, res) {
+		
 	});
 	
 	// get movie with ID
