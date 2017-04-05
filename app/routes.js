@@ -1,5 +1,10 @@
 var Todo = require('./models/todo');
-var Movie = require('./models/movie');
+var movie = require('./models/movie');
+
+var http = require('http');
+
+// Visible on GitHub, BUT is server side so in a production environment is not exposed
+var apiToken = 'sjd1HfkjU83ksdsm3802k';
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
@@ -18,12 +23,31 @@ module.exports = function (app) {
     // api ---------------------------------------------------------------------
 	// get all movies (will hit cache if server fails)
 	app.get('/api/movies', function (req, res) {
+		http.request({
+			method: 'GET',
+			hostname: 'http://webjetapitest.azurewebsites.net',
+			path: '/api/cinemaworld/movies',
+			headers: {
+				'x-access-token': apiToken
+			}
+		});
+		
 		
 	});
 	
 	// get movie with ID
 	app.get('/api/movies/:movie_id', function (req, res) {
+		// Lets concatenate the api path with the ID
+		var pathWithID = '/api/cinemaworld/movies' + req.params.movie_id;
 		
+		http.request({
+			method: 'GET',
+			hostname: 'http://webjetapitest.azurewebsites.net',
+			path: pathWithID,
+			headers: {
+				'x-access-token': apiToken
+			}
+		});
 	});
 	
 	
