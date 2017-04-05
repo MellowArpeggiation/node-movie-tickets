@@ -15,6 +15,18 @@ function getTodos(res) {
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
+	// get all movies (will hit cache if server fails)
+	app.get('/api/movies'), function (req, res) {
+		
+	});
+	
+	// get movie with ID
+	app.get('/api/movies/:movie_id', function (req, res) {
+		
+	});
+	
+	
+	
     // get all todos
     app.get('/api/todos', function (req, res) {
         // use mongoose to get all todos in the database
