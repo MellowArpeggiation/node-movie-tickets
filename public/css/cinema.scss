@@ -1,3 +1,7 @@
+/* Lets import the pristine Bootstrap v4, so we can override safely */
+@import "bootstrap/bootstrap";
+@import "bootstrap-overrides";
+
 html {
 	overflow-y: scroll;
 }
