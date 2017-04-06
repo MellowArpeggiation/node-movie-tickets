@@ -35,21 +35,44 @@ function getTodos(res) {
     });
 };
 
+function updateCache(datasets) {
+	datasets.forEach(function (dataPair) {
+		// Remove the existing entries in the DB
+		movie.remove({
+			dbName: dataPair.name
+		}, function (err) {});
+		
+		// Add in each new movie to the database
+		dataPair.data.Movies.forEach(function (item) {
+			movie.create({
+				dbName: dataPair.name,
+				title: item.Title,
+				year: item.Year,
+				id: item.ID,
+				type: item.Type,
+				poster: item.Poster
+			}, function (err) {});
+		})
+	});
+};
+
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
 	// get all movies (will hit cache if server fails)
 	app.get('/api/movies', function (req, res) {
+		// TODO: Avoid writing data back to the DB if fetched from DB
+		// We need to store all the responses outside the scope of the endPoint loop
 		var apiResponses = []
 		
 		apiEndpoints.forEach(function (endPoint) {
-			console.log(endPoint.name);
-			
 			var apiReq = http.get({
 				hostname: endPoint.host,
 				path: endPoint.listPath,
 				port: endPoint.port,
+				timeout: 5000, // Lets be impatient, as we have a cache and can't afford slow responses
 				headers: {
+					// We add the token as a header here to authenticate with the server
 					'x-access-token': endPoint.token
 				}
 			}, function (apiRes) {
@@ -57,16 +80,32 @@ module.exports = function (app) {
 				console.log(`started req for ${endPoint.name}`);
 				
 				apiRes.on('data', function (chunk) {
-					//console.log(`Body of ${endPoint.name}: ${chunk}`);
+					// Collate all the response chunks
 					resData.push(chunk);
 				});
 
 				apiRes.on('end', function () {
-					apiResponses.push(resData.join(''));
-					console.log(apiResponses.length);
-					console.log(apiEndpoints.length);
-					if (apiResponses.length == apiEndpoints.length) {
-						res.send(apiResponses);
+					if (apiRes.statusCode === 200) {
+						try {
+							// Join all the responses and parse as JSON
+							var jsonData = JSON.parse(resData.join(''));
+							
+							apiResponses.push({
+								name: endPoint.name,
+								data: jsonData
+							});
+							
+							if (apiResponses.length == apiEndpoints.length) {
+								// Lets update the cache
+								updateCache(apiResponses);
+								
+								res.send(apiResponses);
+							}
+						} catch (e) {
+							console.log(`ERROR: ${e}`);
+						}
+					} else {
+						console.log(`STATUS: ${apiRes.statusCode}`);
 					}
 				});
 			});
@@ -75,13 +114,20 @@ module.exports = function (app) {
 				console.log(`ERROR: API server ${endPoint.name} connection failed, fetching from cache`);
 				console.log(`ERROR: ${e}`)
 				
-				apiResponses.push(movie.find({dbName: endPoint.name}))
+				apiResponses.push({
+					name: endPoint.name,
+					data: movie.find({dbName: endPoint.name})
+				});
+				
+				if (apiResponses.length == apiEndpoints.length) {
+					updateCache(apiResponses);
+					
+					res.send(apiResponses);
+				}
 			});
 			
 			apiReq.end();
 		});
-		
-		//res.send(apiResponses);
 	});
 	
 	// get movie with ID
