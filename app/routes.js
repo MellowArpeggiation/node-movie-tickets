@@ -35,13 +35,20 @@ function getTodos(res) {
     });
 };
 
+function updateCache(datasets) {
+	
+}
+
 function updateCacheList(datasets) {
 	datasets.forEach(function (dataset) {
+		// Check if this was read from the cache
 		if (!dataset.cache) {
 			// Remove the existing entries in the DB
 			movie.remove({
 				dbName: dataset.name
-			}, function (err) {});
+			}, function (err) {
+				console.log(`ERROR DATABASE: ${err}`);
+			});
 
 			// Add in each new movie to the database
 			dataset.data.Movies.forEach(function (item) {
@@ -72,6 +79,7 @@ function getCacheList(res, apiResponses, endPoint) {
 			apiResponses.push({
 				name: endPoint.name,
 				cache: true,
+				// We wrap the data in a dictionary to match the API
 				data: {
 					"Movies": movies
 				}
@@ -81,6 +89,14 @@ function getCacheList(res, apiResponses, endPoint) {
 		sendApiResponseList(res, apiResponses);
 	});
 };
+
+function sendApiResponse(clientResponse, apiResponses) {
+	if (apiResponses.length == apiEndpoints.length) {
+		updateCache(apiResponses);
+
+		clientResponse.send(apiResponses);
+	}
+}
 
 function sendApiResponseList(clientResponse, apiResponses) {
 	if (apiResponses.length == apiEndpoints.length) {
@@ -117,13 +133,14 @@ module.exports = function (app) {
 				});
 
 				apiRes.on('end', function () {
-					console.log(`API ${endPoint.name} STATUS: ${apiRes.statusCode}`);
+					console.log(`API ${endPoint.listPath} STATUS: ${apiRes.statusCode}`);
 					
 					if (apiRes.statusCode === 200) {
 						try {
 							// Join all the responses and parse as JSON
 							var jsonData = JSON.parse(resData.join(''));
 							
+							// Encapsulate the API response with some of our own server information
 							apiResponses.push({
 								name: endPoint.name,
 								cache: false,
@@ -178,7 +195,36 @@ module.exports = function (app) {
 					'x-access-token': endPoint.token
 				}
 			}, function (apiRes) {
+				var resData = [];
 				
+				apiRes.on('data', function (chunk) {
+					resData.push(chunk);
+				});
+				
+				apiRes.on('end', function () {
+					console.log(`API ${endPoint.listPath} STATUS: ${apiRes.statusCode}`);
+					
+					if (apiRes.statusCode === 200) {
+						try {
+							// Join all the responses and parse as JSON
+							var jsonData = JSON.parse(resData.join(''));
+							
+							// Encapsulate the API response with some of our own server information
+							apiResponses.push({
+								name: endPoint.name,
+								cache: false,
+								data: jsonData
+							});
+							
+							sendApiResponse(res, apiResponses);
+						} catch (e) {
+							console.log(`ERROR JSON: ${e}`);
+						}
+					} else {
+						// If we get a non-success response, lets grab a cached version
+						getCacheList(res, apiResponses, endPoint);
+					}
+				});
 			});
 		}
 	});
