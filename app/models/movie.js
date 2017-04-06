@@ -1,34 +1,34 @@
 var mongoose = require('mongoose');
 
-var detail = new mongoose.Schema({
-	rated: String,
-	released: Date,
-	runtime: String,
-	genre: String,
-	director: String,
-	writer: String,
-	actors: String,
-	plot: String,
-	language: String,
-	country: String,
-	metascore: Number,
-	rating: Number,
-	votes: String,
-	price: Number
+var movieDetail = new mongoose.Schema({
+	Rated: String,
+	Released: Date,
+	Runtime: String,
+	Genre: String,
+	Director: String,
+	Writer: String,
+	Actors: String,
+	Plot: String,
+	Language: String,
+	Country: String,
+	Metascore: Number,
+	Rating: Number,
+	Votes: String,
+	Price: Number
 });
 
 module.exports = mongoose.model('movie', {
 	dbName: String,
-    title: String,
-	year: String,
-	id: String,
-	type: String,
-	poster: String,
+    Title: String,
+	Year: String,
+	ID: String,
+	Type: String,
+	Poster: String,
 	
-	detailCached: {
+	DetailCached: {
 		type: Boolean,
 		default: false
 	},
 	
-	movieDetail: detail
+	Detail: movieDetail
 });
