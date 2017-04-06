@@ -35,25 +35,59 @@ function getTodos(res) {
     });
 };
 
-function updateCache(datasets) {
-	datasets.forEach(function (dataPair) {
-		// Remove the existing entries in the DB
-		movie.remove({
-			dbName: dataPair.name
-		}, function (err) {});
-		
-		// Add in each new movie to the database
-		dataPair.data.Movies.forEach(function (item) {
-			movie.create({
-				dbName: dataPair.name,
-				title: item.Title,
-				year: item.Year,
-				id: item.ID,
-				type: item.Type,
-				poster: item.Poster
+function updateCacheList(datasets) {
+	datasets.forEach(function (dataset) {
+		if (!dataset.cache) {
+			// Remove the existing entries in the DB
+			movie.remove({
+				dbName: dataset.name
 			}, function (err) {});
-		})
+
+			// Add in each new movie to the database
+			dataset.data.Movies.forEach(function (item) {
+				movie.create({
+					dbName: dataset.name,
+					Title: item.Title,
+					Year: item.Year,
+					ID: item.ID,
+					Type: item.Type,
+					Poster: item.Poster
+				}, function (err) {});
+			});
+		}
 	});
+};
+
+function getCacheList(res, apiResponses, endPoint) {
+	movie.find({
+		dbName: endPoint.name
+	}, function (err, movies) {
+		if (err) {
+			apiResponses.push({
+				name: endPoint.name,
+				cache: true,
+				data: null
+			});
+		} else {
+			apiResponses.push({
+				name: endPoint.name,
+				cache: true,
+				data: {
+					"Movies": movies
+				}
+			});
+		}
+		
+		sendApiResponseList(res, apiResponses);
+	});
+};
+
+function sendApiResponseList(clientResponse, apiResponses) {
+	if (apiResponses.length == apiEndpoints.length) {
+		updateCacheList(apiResponses);
+
+		clientResponse.send(apiResponses);
+	}
 };
 
 module.exports = function (app) {
@@ -61,8 +95,7 @@ module.exports = function (app) {
     // api ---------------------------------------------------------------------
 	// get all movies (will hit cache if server fails)
 	app.get('/api/movies', function (req, res) {
-		// TODO: Avoid writing data back to the DB if fetched from DB
-		// We need to store all the responses outside the scope of the endPoint loop
+		// We need to store all the responses outside the scope of the endpoint loop
 		var apiResponses = []
 		
 		apiEndpoints.forEach(function (endPoint) {
@@ -70,14 +103,13 @@ module.exports = function (app) {
 				hostname: endPoint.host,
 				path: endPoint.listPath,
 				port: endPoint.port,
-				timeout: 5000, // Lets be impatient, as we have a cache and can't afford slow responses
+				timeout: 5000,
 				headers: {
 					// We add the token as a header here to authenticate with the server
 					'x-access-token': endPoint.token
 				}
 			}, function (apiRes) {
 				var resData = [];
-				console.log(`started req for ${endPoint.name}`);
 				
 				apiRes.on('data', function (chunk) {
 					// Collate all the response chunks
@@ -85,6 +117,8 @@ module.exports = function (app) {
 				});
 
 				apiRes.on('end', function () {
+					console.log(`API ${endPoint.name} STATUS: ${apiRes.statusCode}`);
+					
 					if (apiRes.statusCode === 200) {
 						try {
 							// Join all the responses and parse as JSON
@@ -92,38 +126,34 @@ module.exports = function (app) {
 							
 							apiResponses.push({
 								name: endPoint.name,
+								cache: false,
 								data: jsonData
 							});
 							
-							if (apiResponses.length == apiEndpoints.length) {
-								// Lets update the cache
-								updateCache(apiResponses);
-								
-								res.send(apiResponses);
-							}
+							sendApiResponseList(res, apiResponses);
 						} catch (e) {
-							console.log(`ERROR: ${e}`);
+							console.log(`ERROR JSON: ${e}`);
 						}
 					} else {
-						console.log(`STATUS: ${apiRes.statusCode}`);
+						// If we get a non-success response, lets grab a cached version
+						getCacheList(res, apiResponses, endPoint);
 					}
 				});
 			});
 			
-			apiReq.on('error', function(e) {
-				console.log(`ERROR: API server ${endPoint.name} connection failed, fetching from cache`);
-				console.log(`ERROR: ${e}`)
-				
-				apiResponses.push({
-					name: endPoint.name,
-					data: movie.find({dbName: endPoint.name})
+			apiReq.on('socket', function (socket) {
+				// Lets be impatient, as we have a cache and can't afford slow responses
+				socket.on('timeout', function () {
+					apiReq.abort();
 				});
+			});
+			
+			apiReq.on('error', function(err) {
+				console.log(`ERROR: API server ${endPoint.name} connection failed`);
+				console.log(`ERROR: ${err}`)
 				
-				if (apiResponses.length == apiEndpoints.length) {
-					updateCache(apiResponses);
-					
-					res.send(apiResponses);
-				}
+				// If the socket closes (as is the case in a timeout), lets grab the cached version
+				getCacheList(res, apiResponses, endPoint);
 			});
 			
 			apiReq.end();
@@ -133,16 +163,24 @@ module.exports = function (app) {
 	// get movie with ID
 	app.get('/api/movies/:movie_id', function (req, res) {
 		// Lets concatenate the api path with the ID
-		var pathWithID = '/api/cinemaworld/movies' + req.params.movie_id;
+		var pathWithID = endPoint.getPath + req.params.movie_id;
 		
-		http.request({
-			method: 'GET',
-			hostname: 'webjetapitest.azurewebsites.net',
-			path: pathWithID,
-			headers: {
-				'x-access-token': apiToken
-			}
-		});
+		var apiResponses = []
+		
+		apiEndpoints.forEach(function (endPoint) {
+			var apiReq = http.get({
+				hostname: endPoint.host,
+				path: pathWithID,
+				port: endPoint.port,
+				timeout: 5000,
+				headers: {
+					// We add the token as a header here to authenticate with the server
+					'x-access-token': endPoint.token
+				}
+			}, function (apiRes) {
+				
+			});
+		}
 	});
 	
 	
