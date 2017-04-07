@@ -1,1 +1,1 @@
-angular.module('nodeMovieTickets', ['todoController', 'todoService']);
+angular.module('nodeMovieTickets', ['movieController', 'movieService']);

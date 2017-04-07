@@ -4,7 +4,7 @@ angular.module('movieService', []).factory('movies', ['$http', function ($http) 
 			return $http.get('/api/movies');
 		},
 		get : function(id) {
-			return $http.get('/api/movies/' + id);
+			return $http.get('/api/movie/' + id);
 		}
 	}
 }]);
