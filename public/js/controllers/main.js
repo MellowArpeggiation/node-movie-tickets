@@ -1,18 +1,16 @@
-angular.module('todoController', [])
+angular.module('movieController', [])
 
 	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
+	.controller('mainController', ['$scope','$http','movies', function($scope, $http, movies) {
 		$scope.formData = {};
 		$scope.loading = true;
 
-		// GET =====================================================================
-		// when landing on the page, get all todos and show them
-		// use the service to get all the todos
-		Todos.get()
-			.success(function(data) {
-				$scope.todos = data;
-				$scope.loading = false;
-			});
+		// LIST =====================================================================
+		// When we first load the page, lets get all the movies
+		movies.list().success(function(data) {
+			$scope.movies = data[0];
+			$scope.loading = false;
+		});
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
