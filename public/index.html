@@ -24,17 +24,21 @@
 
 	<!-- Set the Angular controller -->
 	<body ng-controller="mainController">
-		<div class="container">
-			<div class="jumbotron text-center">
+		<div class="jumbotron text-center">
+			<div class="container">
 				<h1>CinemaJazz</h1>
 			</div>
-
+		</div>
+		
+		<div class="container">
 			<!-- Search bar, for live filtering movies -->
-			<div id="todo-form" class="row justify-content-center">
+			<div class="row justify-content-center mb-3">
 				<div class="col-8">
 					<form>
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search" ng-model="formData.text">
+							<!-- TODO: Remove the button, search should update on key press (as it is a filter) -->
+							<!-- We can't get away with just filtering for very large datasets, but this dataset is small -->
 							<span class="input-group-btn">
 								<button type="submit" class="btn btn-secondary" ng-click="createTodo()"><i class="fa fa-search"></i></button>
 							</span>
@@ -42,10 +46,27 @@
 					</form>
 				</div>
 			</div>
-
+			
+			<div class="row">
+				<div class="col-12">
+					<div class="card-columns">
+						<div class="card" ng-repeat="movie in movies.data.Movies">
+							<img class="card-img-top img-fluid" src="{{ movie.Poster }}">
+							<div class="card-block">
+								<h4>{{movie.Title}}</h4>
+								<p class="card-text">Don't you wish you could see this movie!</p>
+							</div>
+							<div class="card-footer">
+								$20.00
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 			<!-- TODO LIST -->
-			<div id="todo-list" class="row justify-content-center">
-				<div class="col-4">
+			<div class="row justify-content-center">
+				<div class="col-8">
 					<!-- LOOP OVER THE TODOS IN $scope.todos -->
 					<div class="checkbox" ng-repeat="todo in todos">
 						<label>
