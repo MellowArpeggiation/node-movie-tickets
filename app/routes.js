@@ -3,6 +3,10 @@ var movie = require('./models/movie');
 
 var http = require('http');
 
+var apiTimeout = 3000; // 3 second response time allowed, if the API fails, we use the cache
+// While we could continue the fetch in the background and always use the cache, it fails to be as up to date as possible
+// It's a difficult trade-off, we can either be fast and out of date, or current and a little slower in certain situations
+
 var apiEndpoints = [
 	{
 		name: 'cinemaworld',
@@ -47,7 +51,9 @@ function updateCacheList(datasets) {
 			movie.remove({
 				dbName: dataset.name
 			}, function (err) {
-				console.log(`ERROR DATABASE: ${err}`);
+				if (err) {
+					console.log(`ERROR DATABASE: ${err}`);
+				}
 			});
 
 			// Add in each new movie to the database
@@ -91,9 +97,9 @@ function getCacheList(res, apiResponses, endPoint) {
 };
 
 function sendApiResponse(clientResponse, apiResponses) {
+	// Check that we have all possible responses before sending a response to the client
 	if (apiResponses.length == apiEndpoints.length) {
 		updateCache(apiResponses);
-
 		clientResponse.send(apiResponses);
 	}
 }
@@ -101,7 +107,6 @@ function sendApiResponse(clientResponse, apiResponses) {
 function sendApiResponseList(clientResponse, apiResponses) {
 	if (apiResponses.length == apiEndpoints.length) {
 		updateCacheList(apiResponses);
-
 		clientResponse.send(apiResponses);
 	}
 };
@@ -111,6 +116,9 @@ module.exports = function (app) {
     // api ---------------------------------------------------------------------
 	// get all movies (will hit cache if server fails)
 	app.get('/api/movies', function (req, res) {
+		// TODO: Continue the request whilst sending cache data to user in the case of extra long req times
+		
+		
 		// We need to store all the responses outside the scope of the endpoint loop
 		var apiResponses = []
 		
@@ -119,7 +127,7 @@ module.exports = function (app) {
 				hostname: endPoint.host,
 				path: endPoint.listPath,
 				port: endPoint.port,
-				timeout: 5000,
+				timeout: apiTimeout, // Lets be impatient, as we have a cache and can't afford slow responses
 				headers: {
 					// We add the token as a header here to authenticate with the server
 					'x-access-token': endPoint.token
@@ -159,7 +167,6 @@ module.exports = function (app) {
 			});
 			
 			apiReq.on('socket', function (socket) {
-				// Lets be impatient, as we have a cache and can't afford slow responses
 				socket.on('timeout', function () {
 					apiReq.abort();
 				});
@@ -178,7 +185,7 @@ module.exports = function (app) {
 	});
 	
 	// get movie with ID
-	app.get('/api/movies/:movie_id', function (req, res) {
+	app.get('/api/movie/:movie_id', function (req, res) {
 		// Lets concatenate the api path with the ID
 		var pathWithID = endPoint.getPath + req.params.movie_id;
 		
