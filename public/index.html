@@ -51,6 +51,7 @@
 				<div class="col-12">
 					<div class="card-columns">
 						<div class="card" ng-repeat="movie in movies.data.Movies">
+							<!-- TODO: API provides broken images. So we need to verify which of the two is the good one -->
 							<img class="card-img-top img-fluid" src="{{ movie.Poster }}">
 							<div class="card-block">
 								<h4>{{movie.Title}}</h4>
