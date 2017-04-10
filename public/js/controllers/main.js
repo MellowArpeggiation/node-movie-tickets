@@ -92,6 +92,9 @@ angular.module('movieController', [])
 		 */
 		$scope.openDetail = function(id) {
 			console.log(id);
+			movies.get(id).success(function (data) {
+				console.log(data);
+			});
 		};
 		
 		// When we first load the page, lets get all the movies

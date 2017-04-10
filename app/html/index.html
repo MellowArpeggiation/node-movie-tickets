@@ -5,17 +5,17 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
+		
 		<title>CinemaJazz</title>
-
+		
 		<!-- Styling -->
-		<link rel="stylesheet" href="css/cinema.css">
-
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
+		
+		<link rel="stylesheet" href="css/cinema.css">
+		
 		<!-- Scripts -->
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-
+		
 		<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 		<script src="js/services/movies.js"></script> <!-- Load our movie fetching service -->
 		<script src="js/core.js"></script> <!-- load our main application -->
@@ -35,7 +35,7 @@
 				<div class="col-12">
 					<form>
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search" ng-model="filterText">
+							<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
 							<!-- TODO: Remove the button, search should update on key press (as it is a filter) -->
 							<!-- We can't get away with just filtering for very large datasets, but this dataset is small -->
 							<span class="input-group-btn">

@@ -28,7 +28,36 @@ var apiEndpoints = [
 ];
 
 function updateCache(datasets) {
-	
+	datasets.forEach(function (dataset) {
+		// Check if this was read from the cache
+		if (!dataset.cache) {
+			movie.update({
+				ID: dataset.data.ID
+			}, {
+				DetailCached: true,
+				Detail: {
+					Rated:		dataset.data.Rated,
+					Released:	dataset.data.Released,
+					Runtime:	dataset.data.Runtime,
+					Genre:		dataset.data.Genre,
+					Director:	dataset.data.Director,
+					Writer:		dataset.data.Writer,
+					Actors:		dataset.data.Actors,
+					Plot:		dataset.data.Plot,
+					Language:	dataset.data.Language,
+					Country:	dataset.data.Country,
+					Metascore:	dataset.data.Metascore,
+					Rating:		dataset.data.Rating,
+					Votes:		dataset.data.Votes,
+					Price:		dataset.data.Price
+				}
+			}, function (err) {
+				if (err) {
+					console.log(`ERROR DATABASE: ${err}`);
+				}
+			});
+		}
+	});
 }
 
 /**
@@ -40,25 +69,24 @@ function updateCacheList(datasets) {
 	datasets.forEach(function (dataset) {
 		// Check if this was read from the cache
 		if (!dataset.cache) {
-			// Remove the existing entries in the DB
-			movie.remove({
-				dbName: dataset.name
-			}, function (err) {
-				if (err) {
-					console.log(`ERROR DATABASE: ${err}`);
-				}
-			});
-
+			// TODO: Clear non-updated entries (prevent cruft)
+			
 			// Add in each new movie to the database
 			dataset.data.Movies.forEach(function (item) {
-				movie.create({
+				movie.update({
+					ID: item.ID
+				}, {
 					dbName: dataset.name,
 					Title: item.Title,
 					Year: item.Year,
 					ID: item.ID,
 					Type: item.Type,
 					Poster: item.Poster
-				}, function (err) {});
+				}, function (err) {
+					if (err) {
+						console.log(`ERROR DATABASE: ${err}`);
+					}
+				});
 			});
 		}
 	});
@@ -74,7 +102,21 @@ function getCache(res, apiResponses, endPoint, movieID) {
 	movie.find({
 		ID: movieID
 	}, function (err, movie) {
+		if (err) {
+			apiResponses.push({
+				name: endPoint.name,
+				cache: true,
+				data: null
+			});
+		} else {
+			apiResponses.push({
+				name: endPoint.name,
+				cache: true,
+				data: movie
+			});
+		}
 		
+		sendApiResponse(res, apiResponses);
 	})
 };
 
@@ -141,8 +183,7 @@ module.exports = function (app) {
 		
 		
 		// We need to store all the responses outside the scope of the endpoint loop
-		var apiResponses = [],
-			timedOut = false;
+		var apiResponses = [];
 		
 		apiEndpoints.forEach(function (endPoint) {
 			var apiReq = http.get({
@@ -207,12 +248,12 @@ module.exports = function (app) {
 	});
 	
 	app.get('/api/movie/:movie_id', function (req, res) {
-		// Lets concatenate the api path with the ID
-		var pathWithID = endPoint.getPath + req.params.movie_id;
-		
 		var apiResponses = []
 		
 		apiEndpoints.forEach(function (endPoint) {
+			// Lets concatenate the api path with the ID
+			var fullMovieID = endPoint.prefix + req.params.movie_id,
+				pathWithID = endPoint.getPath + fullMovieID;
 			var apiReq = http.get({
 				hostname: endPoint.host,
 				path: pathWithID,
@@ -230,7 +271,7 @@ module.exports = function (app) {
 				});
 				
 				apiRes.on('end', function () {
-					console.log(`API ${endPoint.listPath} STATUS: ${apiRes.statusCode}`);
+					console.log(`API ${pathWithID} STATUS: ${apiRes.statusCode}`);
 					
 					if (apiRes.statusCode === 200) {
 						try {
@@ -250,7 +291,7 @@ module.exports = function (app) {
 						}
 					} else {
 						// If we get a non-success response, lets grab a cached version
-						getCache(res, apiResponses, endPoint);
+						getCache(res, apiResponses, endPoint, fullMovieID);
 					}
 				});
 			});
@@ -266,7 +307,7 @@ module.exports = function (app) {
 				console.log(`ERROR: ${err}`)
 				
 				// If the socket closes (as is the case in a timeout), lets grab the cached version
-				getCache(res, apiResponses, endPoint);
+				getCache(res, apiResponses, endPoint, fullMovieID);
 			});
 			
 			apiReq.end();

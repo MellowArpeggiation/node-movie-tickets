@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var movieDetail = new mongoose.Schema({
 	Rated: String,
-	Released: Date,
+	Released: String,
 	Runtime: String,
 	Genre: String,
 	Director: String,
