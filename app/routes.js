@@ -1,12 +1,10 @@
-var Todo = require('./models/todo');
 var movie = require('./models/movie');
 
 var http = require('http');
 
 var apiTimeout = 3000; // 3 second response time allowed, if the API fails, we use the cache
-// While we could continue the fetch in the background and always use the cache, it fails to be as up to date as possible
-// It's a difficult trade-off, we can either be fast and out of date, or current and a little slower in certain situations
 
+// A generic table of endpoints, allows for trivial extension for APIs in the same format
 var apiEndpoints = [
 	{
 		name: 'cinemaworld',
@@ -27,22 +25,15 @@ var apiEndpoints = [
 	}
 ];
 
-function getTodos(res) {
-    Todo.find(function (err, todos) {
-
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
-        }
-
-        res.json(todos); // return all todos in JSON format
-    });
-};
-
 function updateCache(datasets) {
 	
 }
 
+/**
+ * Updates the cache for movies with list only data (no details)
+ * @param {Array} datasets An array of all the movie data to update, in format
+ *                         ["Movies": {"key": "data"}]
+ */
 function updateCacheList(datasets) {
 	datasets.forEach(function (dataset) {
 		// Check if this was read from the cache
@@ -71,6 +62,12 @@ function updateCacheList(datasets) {
 	});
 };
 
+/**
+ * Grabs a cached version of an API response
+ * @param {message}  res          The http.IncomingMessage object used to respond to the client machine
+ * @param {Array}    apiResponses All the collected API responses so far (whether from cache or not)
+ * @param {object}   endPoint     The current API endpoint details
+ */
 function getCacheList(res, apiResponses, endPoint) {
 	movie.find({
 		dbName: endPoint.name
@@ -113,14 +110,23 @@ function sendApiResponseList(clientResponse, apiResponses) {
 
 module.exports = function (app) {
 
-    // api ---------------------------------------------------------------------
-	// get all movies (will hit cache if server fails)
+    /**
+	 * Application routes
+	 * JSON /api/movies     Get a list of all available movies from API, using cache if fails
+	 * JSON /api/movie/{id} Get information for a specific movie from API, using cache if fails
+	 * HTML /movie/{id}     Return a page showing a specific movies details (detail.html)
+	 * HTML /               Return the default page of the application (index.html)
+	 */
+	
+	
+	// JSON API
 	app.get('/api/movies', function (req, res) {
 		// TODO: Continue the request whilst sending cache data to user in the case of extra long req times
 		
 		
 		// We need to store all the responses outside the scope of the endpoint loop
-		var apiResponses = []
+		var apiResponses = [],
+			timedOut = false;
 		
 		apiEndpoints.forEach(function (endPoint) {
 			var apiReq = http.get({
@@ -184,7 +190,6 @@ module.exports = function (app) {
 		});
 	});
 	
-	// get movie with ID
 	app.get('/api/movie/:movie_id', function (req, res) {
 		// Lets concatenate the api path with the ID
 		var pathWithID = endPoint.getPath + req.params.movie_id;
@@ -196,7 +201,7 @@ module.exports = function (app) {
 				hostname: endPoint.host,
 				path: pathWithID,
 				port: endPoint.port,
-				timeout: 5000,
+				timeout: apiTimeout,
 				headers: {
 					// We add the token as a header here to authenticate with the server
 					'x-access-token': endPoint.token
@@ -237,43 +242,7 @@ module.exports = function (app) {
 	});
 	
 	
-	
-    // get all todos
-    app.get('/api/todos', function (req, res) {
-        // use mongoose to get all todos in the database
-        getTodos(res);
-    });
-
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function (req, res) {
-
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({
-            text: req.body.text,
-            done: false
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            getTodos(res);
-        });
-
-    });
-
-    // delete a todo
-    app.delete('/api/todos/:todo_id', function (req, res) {
-        Todo.remove({
-            _id: req.params.todo_id
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            getTodos(res);
-        });
-    });
-
-    // application -------------------------------------------------------------
+    // Application
 	app.get('/movie/:movie_id', function (req, res) {
 		res.sendFile(__dirname + '/html/detail.html');
 	});

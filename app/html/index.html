@@ -47,6 +47,10 @@
 				</div>
 			</div>
 			
+			<p class="text-center" ng-show="loading">
+				<span class="fa fa-spinner fa-spin fa-3x"></span>
+			</p>
+			
 			<div class="row">
 				<div class="col-12">
 					<div class="card-columns">
@@ -62,22 +66,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			
-			<!-- TODO LIST -->
-			<div class="row justify-content-center">
-				<div class="col-8">
-					<!-- LOOP OVER THE TODOS IN $scope.todos -->
-					<div class="checkbox" ng-repeat="todo in todos">
-						<label>
-							<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-						</label>
-					</div>
-
-					<p class="text-center" ng-show="loading">
-						<span class="fa fa-spinner fa-spin fa-3x"></span>
-					</p>
 				</div>
 			</div>
 		</div>
