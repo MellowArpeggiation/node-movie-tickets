@@ -12,6 +12,7 @@ var apiEndpoints = [
 		listPath: '/api/cinemaworld/movies',
 		getPath: '/api/cinemaworld/movie/',
 		port: 80,
+		prefix: 'cw',
 		// Visible on GitHub, BUT is server side so in a production environment is not exposed
 		token: 'sjd1HfkjU83ksdsm3802k'
 	},
@@ -21,6 +22,7 @@ var apiEndpoints = [
 		listPath: '/api/filmworld/movies',
 		getPath: '/api/filmworld/movie/',
 		port: 80,
+		prefix: 'fw',
 		token: 'sjd1HfkjU83ksdsm3802k'
 	}
 ];
@@ -63,7 +65,21 @@ function updateCacheList(datasets) {
 };
 
 /**
- * Grabs a cached version of an API response
+ * Grabs a cached version of an API get movie_id response
+ * @param {message}  res          The http.IncomingMessage object used to respond to the client machine
+ * @param {Array}    apiResponses All the collected API responses so far (whether from cache or not)
+ * @param {object}   endPoint     The current API endpoint details
+ */
+function getCache(res, apiResponses, endPoint, movieID) {
+	movie.find({
+		ID: movieID
+	}, function (err, movie) {
+		
+	})
+};
+
+/**
+ * Grabs a cached version of an API list response
  * @param {message}  res          The http.IncomingMessage object used to respond to the client machine
  * @param {Array}    apiResponses All the collected API responses so far (whether from cache or not)
  * @param {object}   endPoint     The current API endpoint details
@@ -234,10 +250,26 @@ module.exports = function (app) {
 						}
 					} else {
 						// If we get a non-success response, lets grab a cached version
-						getCacheList(res, apiResponses, endPoint);
+						getCache(res, apiResponses, endPoint);
 					}
 				});
 			});
+			
+			apiReq.on('socket', function (socket) {
+				socket.on('timeout', function () {
+					apiReq.abort();
+				});
+			});
+			
+			apiReq.on('error', function(err) {
+				console.log(`ERROR: API server ${endPoint.name} connection failed`);
+				console.log(`ERROR: ${err}`)
+				
+				// If the socket closes (as is the case in a timeout), lets grab the cached version
+				getCache(res, apiResponses, endPoint);
+			});
+			
+			apiReq.end();
 		});
 	});
 	
