@@ -98,8 +98,7 @@ angular.module('movieController', [])
 			$location.path('/movie/' + id);
 			$scope.loading = true;
 			movies.get(id).success(function (data) {
-				
-				console.log(data);
+				$scope.focusMovie = data;
 				
 				$scope.loading = false;
 			});
@@ -112,7 +111,7 @@ angular.module('movieController', [])
 		if ($location.path() !== '') {
 			var path = $location.path();
 			// Lets open detail view by grabbing just the ID at the end of the URL
-			//$scope.openDetail(path.substring(path.lastIndexOf('/') + 1));
+			$scope.openDetail(path.substring(path.lastIndexOf('/') + 1));
 		}
 
 	}]);
