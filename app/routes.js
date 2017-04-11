@@ -82,6 +82,9 @@ function updateCache(type, datasets) {
 							ID: item.ID,
 							Type: item.Type,
 							Poster: item.Poster
+						}, {
+							// If item doesn't exist, lets add a new one
+							upsert: true
 						}, function (err) {
 							if (err) {
 								console.log(`ERROR DATABASE: ${err}`);
@@ -92,7 +95,7 @@ function updateCache(type, datasets) {
 			};
 			
 			// Invoke the function object with the cache update type
-			updateCacheType[type];
+			updateCacheType[type]();
 		}
 	});
 }
@@ -321,7 +324,7 @@ module.exports = function (app) {
 	
     // Application
 	app.get('/movie/:movie_id', function (req, res) {
-		res.sendFile(__dirname + '/html/detail.html');
+		res.sendFile(__dirname + '/html/index.html');
 	});
 	
     app.get('/', function (req, res) {
