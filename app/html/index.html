@@ -28,6 +28,7 @@
 		<div class="jumbotron text-center">
 			<div class="container">
 				<h1>CinemaJazz</h1>
+				<h2 ng-show="focused">{{focusMovie.Title}}</h2>
 			</div>
 		</div>
 		
@@ -52,7 +53,7 @@
 				<span class="fa fa-spinner fa-spin fa-3x"></span>
 			</p>
 			
-			<div class="row">
+			<div class="row" ng-hide="focused">
 				<div class="col-12">
 					<div class="card-columns">
 						<div class="card u-pointer" ng-repeat="movie in visibleMovies" ng-click="openDetail(movie.ID)">
@@ -67,6 +68,12 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			
+			<div class="row" ng-show="focused">
+				<div class="col-12">
+					<button class="btn btn-primary" ng-click="closeDetail()">Close</button>
 				</div>
 			</div>
 		</div>
