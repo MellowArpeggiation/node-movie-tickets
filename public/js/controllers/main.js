@@ -6,14 +6,15 @@ angular.module('movieController', [])
 	// Function definition and entry point for the controller
 	.controller('mainController', ['$scope', '$http', '$location', 'movies', function($scope, $http, $location, movies) {
 		$scope.loading = true;
+		$scope.focused = false;
 		
 		/**
 		 * Returns a list of all movies
 		 */
 		$scope.getMovies = function() {
-			movies.list().success(function(data) {
+			movies.list().success(function(response) {
 				$scope.movies = []; // Hold the array outside the scope first, to prevent unnecessary updates
-				data.forEach(function (item) {
+				response.forEach(function (item) {
 					// data contains a single object with a single key - Movies
 					item.data.Movies.forEach(function (movie) {
 						
@@ -35,7 +36,6 @@ angular.module('movieController', [])
 							
 							// Images in response are broken (fw and cw get swapped in URL, poorly sized), lets grab new ones from IMDB
 							movies.getIMDB(movie.ID).success(function (data) {
-								console.log(data)
 								movie.Poster = data.Poster;
 							});
 							
@@ -97,12 +97,20 @@ angular.module('movieController', [])
 		$scope.openDetail = function(id) {
 			$location.path('/movie/' + id);
 			$scope.loading = true;
-			movies.get(id).success(function (data) {
-				$scope.focusMovie = data;
+			movies.get(id).success(function (response) {
+				// Lets grab the first response information for now
+				// TODO: Get information from whichever source didn't return from a cache if possible
+				$scope.focusMovie = response[0].data;
+				$scope.focused = true;
 				
 				$scope.loading = false;
 			});
 		};
+		
+		$scope.closeDetail = function() {
+			$location.path('');
+			$scope.focused = false;
+		}
 		
 		// When we first load the page, lets get all the movies
 		$scope.getMovies();
