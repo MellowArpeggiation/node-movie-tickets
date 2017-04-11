@@ -27,144 +27,147 @@ var apiEndpoints = [
 	}
 ];
 
-function updateCache(datasets) {
+/**
+ * Updates the cache with details for a particular movie
+ * @param {string} type     The type of request being made, supports 'list' and 'get'
+ * @param {Array}  datasets An array of all API requests, either for a single movie + details or basic view of all
+ *                          Format for list of all movies is the form {"Movies": [{"key": "data"}]}
+ */
+function updateCache(type, datasets) {
 	datasets.forEach(function (dataset) {
 		// Check if this was read from the cache
 		if (!dataset.cache) {
-			movie.update({
-				ID: dataset.data.ID
-			}, {
-				DetailCached: true,
-				Detail: {
-					Rated:		dataset.data.Rated,
-					Released:	dataset.data.Released,
-					Runtime:	dataset.data.Runtime,
-					Genre:		dataset.data.Genre,
-					Director:	dataset.data.Director,
-					Writer:		dataset.data.Writer,
-					Actors:		dataset.data.Actors,
-					Plot:		dataset.data.Plot,
-					Language:	dataset.data.Language,
-					Country:	dataset.data.Country,
-					Metascore:	dataset.data.Metascore,
-					Rating:		dataset.data.Rating,
-					Votes:		dataset.data.Votes,
-					Price:		dataset.data.Price
+			var updateCacheType = {
+				// Updating a single movie with details
+				'get': function () {
+					movie.update({
+						ID: dataset.data.ID
+					}, {
+						DetailCached: true,
+						Detail: {
+							Rated:		dataset.data.Rated,
+							Released:	dataset.data.Released,
+							Runtime:	dataset.data.Runtime,
+							Genre:		dataset.data.Genre,
+							Director:	dataset.data.Director,
+							Writer:		dataset.data.Writer,
+							Actors:		dataset.data.Actors,
+							Plot:		dataset.data.Plot,
+							Language:	dataset.data.Language,
+							Country:	dataset.data.Country,
+							Metascore:	dataset.data.Metascore,
+							Rating:		dataset.data.Rating,
+							Votes:		dataset.data.Votes,
+							Price:		dataset.data.Price
+						}
+					}, function (err) {
+						if (err) {
+							console.log(`ERROR DATABASE: ${err}`);
+						}
+					});
+				},
+				
+				// Updating the entire list, clears entries not present in request
+				'list': function () {
+					// TODO: Clear non-updated entries (prevent cruft)
+			
+					// Add in each new movie to the database
+					dataset.data.Movies.forEach(function (item) {
+						movie.update({
+							ID: item.ID
+						}, {
+							dbName: dataset.name,
+							Title: item.Title,
+							Year: item.Year,
+							ID: item.ID,
+							Type: item.Type,
+							Poster: item.Poster
+						}, function (err) {
+							if (err) {
+								console.log(`ERROR DATABASE: ${err}`);
+							}
+						});
+					});
 				}
-			}, function (err) {
-				if (err) {
-					console.log(`ERROR DATABASE: ${err}`);
-				}
-			});
+			};
+			
+			// Invoke the function object with the cache update type
+			updateCacheType[type];
 		}
 	});
 }
 
 /**
- * Updates the cache for movies with list only data (no details)
- * @param {Array} datasets An array of all the movie data to update, in format
- *                         ["Movies": {"key": "data"}]
+ * Grabs a cached version of an API request
+ * If movieID is defined, return data for that, otherwise, return all data
+ * @param {message}  clientResponse The http.IncomingMessage object used to respond to the client machine
+ * @param {Array}    apiResponses   All the collected API responses so far (whether from cache or not)
+ * @param {object}   endPoint       The current API endpoint details
+ * @param {int}      movieID        The ID of the movie we need to fetch
  */
-function updateCacheList(datasets) {
-	datasets.forEach(function (dataset) {
-		// Check if this was read from the cache
-		if (!dataset.cache) {
-			// TODO: Clear non-updated entries (prevent cruft)
-			
-			// Add in each new movie to the database
-			dataset.data.Movies.forEach(function (item) {
-				movie.update({
-					ID: item.ID
-				}, {
-					dbName: dataset.name,
-					Title: item.Title,
-					Year: item.Year,
-					ID: item.ID,
-					Type: item.Type,
-					Poster: item.Poster
-				}, function (err) {
-					if (err) {
-						console.log(`ERROR DATABASE: ${err}`);
+function getCache(clientResponse, apiResponses, endPoint, movieID) {
+	if (movieID !== undefined) {
+		movie.find({
+			ID: movieID
+		}, function (err, movie) {
+			if (err) {
+				console.log(`ERROR DATABASE: ${err}`);
+				apiResponses.push({
+					name: endPoint.name,
+					cache: true,
+					data: null
+				});
+			} else {
+				apiResponses.push({
+					name: endPoint.name,
+					cache: true,
+					data: movie
+				});
+			}
+
+			sendApiResponse('get', clientResponse, apiResponses);
+		});
+	} else {
+		movie.find({
+			dbName: endPoint.name
+		}, function (err, movies) {
+			if (err) {
+				console.log(`ERROR DATABASE: ${err}`);
+				apiResponses.push({
+					name: endPoint.name,
+					cache: true,
+					data: null
+				});
+			} else {
+				apiResponses.push({
+					name: endPoint.name,
+					cache: true,
+					// We wrap the data in a dictionary to match the API
+					data: {
+						"Movies": movies
 					}
 				});
-			});
-		}
-	});
+			}
+
+			sendApiResponse('list', clientResponse, apiResponses);
+		});
+	}
 };
 
 /**
- * Grabs a cached version of an API get movie_id response
- * @param {message}  res          The http.IncomingMessage object used to respond to the client machine
- * @param {Array}    apiResponses All the collected API responses so far (whether from cache or not)
- * @param {object}   endPoint     The current API endpoint details
+ * Checks whether all endpoints have returned data (whether from cache or not),
+ * then sends the response as a JSON object back to the web application
+ * @param {string}   type           API response type, supports 'list' and 'get'
+ * @param {message}  clientResponse The http.IncomingMessage object used to respond to the client machine
+ * @param {Array}    apiResponses   All the collected API responses so far (whether from cache or not)
  */
-function getCache(res, apiResponses, endPoint, movieID) {
-	movie.find({
-		ID: movieID
-	}, function (err, movie) {
-		if (err) {
-			apiResponses.push({
-				name: endPoint.name,
-				cache: true,
-				data: null
-			});
-		} else {
-			apiResponses.push({
-				name: endPoint.name,
-				cache: true,
-				data: movie
-			});
-		}
-		
-		sendApiResponse(res, apiResponses);
-	})
-};
-
-/**
- * Grabs a cached version of an API list response
- * @param {message}  res          The http.IncomingMessage object used to respond to the client machine
- * @param {Array}    apiResponses All the collected API responses so far (whether from cache or not)
- * @param {object}   endPoint     The current API endpoint details
- */
-function getCacheList(res, apiResponses, endPoint) {
-	movie.find({
-		dbName: endPoint.name
-	}, function (err, movies) {
-		if (err) {
-			apiResponses.push({
-				name: endPoint.name,
-				cache: true,
-				data: null
-			});
-		} else {
-			apiResponses.push({
-				name: endPoint.name,
-				cache: true,
-				// We wrap the data in a dictionary to match the API
-				data: {
-					"Movies": movies
-				}
-			});
-		}
-		
-		sendApiResponseList(res, apiResponses);
-	});
-};
-
-function sendApiResponse(clientResponse, apiResponses) {
+function sendApiResponse(type, clientResponse, apiResponses) {
 	// Check that we have all possible responses before sending a response to the client
 	if (apiResponses.length == apiEndpoints.length) {
-		updateCache(apiResponses);
+		updateCache(type, apiResponses);
 		clientResponse.send(apiResponses);
 	}
 }
-
-function sendApiResponseList(clientResponse, apiResponses) {
-	if (apiResponses.length == apiEndpoints.length) {
-		updateCacheList(apiResponses);
-		clientResponse.send(apiResponses);
-	}
-};
 
 module.exports = function (app) {
 
@@ -176,8 +179,8 @@ module.exports = function (app) {
 	 * HTML /               Return the default page of the application (index.html)
 	 */
 	
-	
 	// JSON API
+	// Get list of movies
 	app.get('/api/movies', function (req, res) {
 		// TODO: Continue the request whilst sending cache data to user in the case of extra long req times
 		
@@ -218,13 +221,13 @@ module.exports = function (app) {
 								data: jsonData
 							});
 							
-							sendApiResponseList(res, apiResponses);
+							sendApiResponse('list', res, apiResponses);
 						} catch (e) {
 							console.log(`ERROR JSON: ${e}`);
 						}
 					} else {
 						// If we get a non-success response, lets grab a cached version
-						getCacheList(res, apiResponses, endPoint);
+						getCache(res, apiResponses, endPoint);
 					}
 				});
 			});
@@ -240,13 +243,14 @@ module.exports = function (app) {
 				console.log(`ERROR: ${err}`)
 				
 				// If the socket closes (as is the case in a timeout), lets grab the cached version
-				getCacheList(res, apiResponses, endPoint);
+				getCache(res, apiResponses, endPoint);
 			});
 			
 			apiReq.end();
 		});
 	});
 	
+	// Get movie by ID
 	app.get('/api/movie/:movie_id', function (req, res) {
 		var apiResponses = []
 		
@@ -285,7 +289,7 @@ module.exports = function (app) {
 								data: jsonData
 							});
 							
-							sendApiResponse(res, apiResponses);
+							sendApiResponse('get', res, apiResponses);
 						} catch (e) {
 							console.log(`ERROR JSON: ${e}`);
 						}
