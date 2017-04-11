@@ -106,7 +106,7 @@ function updateCache(type, datasets) {
  * @param {message}  clientResponse The http.IncomingMessage object used to respond to the client machine
  * @param {Array}    apiResponses   All the collected API responses so far (whether from cache or not)
  * @param {object}   endPoint       The current API endpoint details
- * @param {int}      movieID        The ID of the movie we need to fetch
+ * @param {int}      movieID        [optional] The ID of the movie we need to fetch
  */
 function getCache(clientResponse, apiResponses, endPoint, movieID) {
 	if (movieID !== undefined) {
@@ -186,6 +186,8 @@ module.exports = function (app) {
 	// Get list of movies
 	app.get('/api/movies', function (req, res) {
 		// TODO: Continue the request whilst sending cache data to user in the case of extra long req times
+		
+		// TODO: Refactor to be more generic, in the same style as the above refactored functions
 		
 		
 		// We need to store all the responses outside the scope of the endpoint loop
