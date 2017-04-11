@@ -1,5 +1,10 @@
 angular.module('movieController', [])
-	.controller('mainController', ['$scope','$http','movies', function($scope, $http, movies) {
+	// Configuration for the controller
+	.config(function ($locationProvider) {
+		$locationProvider.html5Mode(true);
+	})
+	// Function definition and entry point for the controller
+	.controller('mainController', ['$scope', '$http', '$location', 'movies', function($scope, $http, $location, movies) {
 		$scope.loading = true;
 		
 		/**
@@ -21,24 +26,25 @@ angular.module('movieController', [])
 						});
 						
 						if (listedMovie) {
-							// If already listed, add the source to the movie
+							// If already listed, add the source to the existing object
 							listedMovie.fromSource.push(item.name);
-							if (item.name == "cinemaworld") {
-								// Images in response are broken (fw and cw get swapped in URL, poorly sized), lets grab new ones from IMDB
-								// For now, we will take the cinemaworld API image, since it works
-								// Since we do this with the poster, we will also use the cinemaworld ID for detail requests (minus prefix)
-								listedMovie.Poster = movie.Poster;
-							}
 						} else {
 							// If this is the first instance, set the ID as generic, add the source and push to the movie list
 							movie.ID = movie.ID.slice(2);
 							movie.fromSource = [item.name];
+							
+							// Images in response are broken (fw and cw get swapped in URL, poorly sized), lets grab new ones from IMDB
+							movies.getIMDB(movie.ID).success(function (data) {
+								console.log(data)
+								movie.Poster = data.Poster;
+							});
+							
 							$scope.movies.push(movie);
 						}
 					})
 				});
 				
-				// Sort all movies alphabetically
+				// Sort all movies alphabetically by Title
 				$scope.movies.sort(function (a, b) {
 					var aTitle = a.Title.toLowerCase();
 					var bTitle = b.Title.toLowerCase();
@@ -89,13 +95,24 @@ angular.module('movieController', [])
 		 * @param {string} id The ID of the movie being fetched
 		 */
 		$scope.openDetail = function(id) {
-			console.log(id);
+			$location.path('/movie/' + id);
+			$scope.loading = true;
 			movies.get(id).success(function (data) {
+				
 				console.log(data);
+				
+				$scope.loading = false;
 			});
 		};
 		
 		// When we first load the page, lets get all the movies
 		$scope.getMovies();
+		
+		// And then we check if a movie has already been specified in the URL
+		if ($location.path() !== '') {
+			var path = $location.path();
+			// Lets open detail view by grabbing just the ID at the end of the URL
+			//$scope.openDetail(path.substring(path.lastIndexOf('/') + 1));
+		}
 
 	}]);
