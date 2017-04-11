@@ -1,6 +1,4 @@
 angular.module('movieController', [])
-
-	// inject the Todo service factory into our controller
 	.controller('mainController', ['$scope','$http','movies', function($scope, $http, movies) {
 		$scope.loading = true;
 		
