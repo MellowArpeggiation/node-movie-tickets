@@ -16,30 +16,38 @@ body {
 	cursor: pointer;
 }
 
+.affix {
+	position: sticky;
+	top: 20px;
+}
+
 .loader {
 	// Pop the loader in the bottom right corner
 	position: fixed;
-	bottom: 0;
-	right: 0;
+	top: 50%;
+	left: 50%;
+	
+	transform: translate(-50%, -50%);
+	background-color: fade-out($gray-light, 0.5);
+	border-radius: 50%;
 	
 	padding: 1rem;
 	
 	// Fix layering
 	z-index: 1050;
 	
-	animation: spin 0.5s steps(4) infinite;
+	
 	
 	.loading-spinner {
-		border: 1rem solid $gray-dark;
-		border-top: 1rem solid $brand-primary;
+		border: 0.2rem solid $gray-lighter;
+		border-top: 0.2rem solid $brand-primary;
 		
-		border-radius: 0;
+		border-radius: 50%;
 		width: 4rem;
 		height: 4rem;
 		
+		animation: spin 0.5s linear infinite;
 	}
-	
-	
 }
 
 .header {
@@ -51,9 +59,8 @@ body {
 		position: relative;
 		padding: 6rem 0;
 		
-		
-//		font-size: 7vw;
-		font-family: 'Press Start 2P', cursive;
+		font-family: 'Philosopher', cursive;
+		font-size: 8vw;
 		
 		// Clipping
 		-webkit-text-fill-color: rgba(0, 0, 255, 0);
