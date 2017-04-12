@@ -16,9 +16,13 @@ $input-border-radius:    $border-radius;
 $input-border-radius-lg: $border-radius-lg;
 $input-border-radius-sm: $border-radius-sm;*/
 
-$brand-primary: rgb(0, 230, 51);
-$btn-primary-bg: $brand-primary;
+
+// Colours
+$brand-primary:      rgb(119, 0, 92);
+$btn-primary-bg:     $brand-primary;
 $input-border-focus: $brand-primary;
+$link-color:         $brand-primary;
+$link-hover-color:   darken($link-color, 15%);
 
 // Buttons
 // Darken borders for depress effect
