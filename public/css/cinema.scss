@@ -2,30 +2,105 @@
 @import "bootstrap/bootstrap";
 @import "bootstrap-overrides";
 
+body {
+	overflow-x: hidden;
+}
+
+.footer {
+	padding: 4rem 0;
+    margin-top: 4rem;
+    background-color: #f7f7f7;
+}
+
 .u-pointer {
 	cursor: pointer;
 }
 
 .loader {
+	// Pop the loader in the bottom right corner
 	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	bottom: 0;
+	right: 0;
 	
-	background-color: fade-out($gray-light, 0.5);
 	padding: 1rem;
-	border-radius: 50%;
 	
 	// Fix layering
 	z-index: 1050;
 	
+	animation: spin 0.5s steps(4) infinite;
+	
 	.loading-spinner {
-		border: 0.2rem solid $gray-lighter; /* Light grey */
-		border-top: 0.2rem solid $brand-primary; /* Blue */
-		border-radius: 50%;
-		width: 3rem;
-		height: 3rem;
-		animation: spin 1s linear infinite;
+		border: 1rem solid $gray-dark;
+		border-top: 1rem solid $brand-primary;
+		
+		border-radius: 0;
+		width: 4rem;
+		height: 4rem;
+		
+	}
+	
+	
+}
+
+.header {
+	background-color: transparent;
+	
+	margin-bottom: 3rem;
+	
+	.header-title {
+		position: relative;
+		padding: 6rem 0;
+		
+		
+//		font-size: 7vw;
+		font-family: 'Press Start 2P', cursive;
+		
+		// Clipping
+		-webkit-text-fill-color: rgba(0, 0, 255, 0);
+		-webkit-background-clip: text;
+
+		// what will show through the text
+		background-image: url("/img/black-green.jpg");
+		
+		
+		background-attachment: fixed;
+		background-size: cover;
+
+		// fallback text color
+		color: red;
+		
+		
+		&:before,
+		&:after {
+			position: absolute;
+			content: '';
+		}
+
+		/* Background */
+		&:before {
+			z-index: -2;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background-image: inherit;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+
+		/* Text Background */
+		&:after {
+			position: absolute;
+			z-index: -1;
+			top: 1.5rem;
+			right: 1.5rem;
+			bottom: 1.5rem;
+			left: 1.5rem;
+			//background-image: url("/img/black-invert.jpg");
+			background-attachment: fixed;
+			background-size: cover;
+			background-color: $body-bg;
+		}
 	}
 }
 
