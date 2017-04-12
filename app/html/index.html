@@ -49,10 +49,6 @@
 				</div>
 			</div>
 			
-			<p class="text-center" ng-show="loading">
-				<span class="fa fa-spinner fa-spin fa-3x"></span>
-			</p>
-			
 			<div class="row" ng-hide="focused">
 				<div class="col-12">
 					<div class="card-columns">
@@ -76,6 +72,10 @@
 					<button class="btn btn-primary" ng-click="closeDetail()">Close</button>
 				</div>
 			</div>
+		</div>
+		
+		<div class="loader" ng-show="loading">
+			<div class="loading-spinner"></div>
 		</div>
 	</body>
 </html>
