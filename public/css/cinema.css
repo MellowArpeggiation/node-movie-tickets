@@ -7654,7 +7654,7 @@ body {
   .header .header-title {
     position: relative;
     padding: 6rem 0;
-    font-family: 'Philosopher','Catamaran', 'Press Start 2P', cursive;
+    font-family: 'Philosopher', cursive;
     font-size: 8vw;
     -webkit-text-fill-color: rgba(0, 0, 255, 0);
     -webkit-background-clip: text;
