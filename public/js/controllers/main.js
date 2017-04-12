@@ -5,6 +5,8 @@ angular.module('movieController', [])
 	})
 	// Function definition and entry point for the controller
 	.controller('mainController', ['$scope', '$http', '$location', 'movies', function($scope, $http, $location, movies) {
+		$scope.appName = "MovieJazz";
+		
 		$scope.loading = true;
 		$scope.focused = false;
 		
