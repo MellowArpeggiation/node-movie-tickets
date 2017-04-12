@@ -5,6 +5,15 @@
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+/*$border-radius:        0;
+$border-radius-lg:     0;
+$border-radius-sm:     0;
+$btn-border-radius:      $border-radius;
+$btn-border-radius-lg:   $border-radius-lg;
+$btn-border-radius-sm:   $border-radius-sm;
+$input-border-radius:    $border-radius;
+$input-border-radius-lg: $border-radius-lg;
+$input-border-radius-sm: $border-radius-sm;*/
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /* line 13, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_normalize.scss */
 html {
@@ -664,7 +673,6 @@ mark,
   padding: 0.25rem;
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 0.25rem;
   transition: all 0.2s ease-in-out;
   max-width: 100%;
   height: auto; }
@@ -695,8 +703,7 @@ code {
   padding: 0.2rem 0.4rem;
   font-size: 90%;
   color: #bd4147;
-  background-color: #f7f7f9;
-  border-radius: 0.25rem; }
+  background-color: #f7f7f9; }
   /* line 18, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_code.scss */
   a > code {
     padding: 0;
@@ -708,8 +715,7 @@ kbd {
   padding: 0.2rem 0.4rem;
   font-size: 90%;
   color: #fff;
-  background-color: #292b2c;
-  border-radius: 0.2rem; }
+  background-color: #292b2c; }
   /* line 34, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_code.scss */
   kbd kbd {
     padding: 0;
@@ -1950,7 +1956,7 @@ pre {
   background-image: none;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
+  border-radius: 0;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
   /* line 35, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_forms.scss */
   .form-control::-ms-expand {
@@ -1964,7 +1970,7 @@ pre {
     outline: none; }
   /* line 44, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_forms.scss */
   .form-control::placeholder {
-    color: #636c72;
+    color: #ccc;
     opacity: 1; }
   /* line 55, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_forms.scss */
   .form-control:disabled, .form-control[readonly] {
@@ -2035,8 +2041,7 @@ select.form-control:focus::-ms-value {
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  border-radius: 0.2rem; }
+  font-size: 0.875rem; }
 
 /* line 166, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_forms.scss */
 select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.form-control:not([size]):not([multiple]),
@@ -2049,8 +2054,7 @@ select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.for
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
   padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-  border-radius: 0.3rem; }
+  font-size: 1.25rem; }
 
 /* line 178, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_forms.scss */
 select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.form-control:not([size]):not([multiple]),
@@ -2263,8 +2267,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   border: 1px solid transparent;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  border-radius: 0.25rem;
-  transition: all 0.2s ease-in-out; }
+  transition: initial; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn:focus, .btn:hover {
     text-decoration: none; }
@@ -2289,51 +2292,51 @@ fieldset[disabled] a.btn {
 .btn-primary {
   color: #fff;
   background-color: #0275d8;
-  border-color: #0275d8; }
+  border-color: #0267bf; }
   /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-primary:hover {
     color: #fff;
     background-color: #025aa5;
-    border-color: #01549b; }
+    border-color: #014682; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary:focus, .btn-primary.focus {
-    box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.5); }
+    box-shadow: 0 0 0 2px rgba(2, 103, 191, 0.5); }
   /* line 32, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary.disabled, .btn-primary:disabled {
     background-color: #0275d8;
-    border-color: #0275d8; }
+    border-color: #0267bf; }
   /* line 38, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary:active, .btn-primary.active,
   .show > .btn-primary.dropdown-toggle {
     color: #fff;
     background-color: #025aa5;
     background-image: none;
-    border-color: #01549b; }
+    border-color: #014682; }
 
 /* line 58, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-secondary {
   color: #292b2c;
-  background-color: #fff;
-  border-color: #ccc; }
+  background-color: #eceeef;
+  border-color: #dee2e3; }
   /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-secondary:hover {
     color: #292b2c;
-    background-color: #e6e6e6;
-    border-color: #adadad; }
+    background-color: #d0d5d8;
+    border-color: #bdc4c7; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-secondary:focus, .btn-secondary.focus {
-    box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5); }
+    box-shadow: 0 0 0 2px rgba(222, 226, 227, 0.5); }
   /* line 32, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-secondary.disabled, .btn-secondary:disabled {
-    background-color: #fff;
-    border-color: #ccc; }
+    background-color: #eceeef;
+    border-color: #dee2e3; }
   /* line 38, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-secondary:active, .btn-secondary.active,
   .show > .btn-secondary.dropdown-toggle {
     color: #292b2c;
-    background-color: #e6e6e6;
+    background-color: #d0d5d8;
     background-image: none;
-    border-color: #adadad; }
+    border-color: #bdc4c7; }
 
 /* line 61, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-info {
@@ -2364,76 +2367,76 @@ fieldset[disabled] a.btn {
 .btn-success {
   color: #fff;
   background-color: #5cb85c;
-  border-color: #5cb85c; }
+  border-color: #4cae4c; }
   /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-success:hover {
     color: #fff;
     background-color: #449d44;
-    border-color: #419641; }
+    border-color: #398439; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-success:focus, .btn-success.focus {
-    box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5); }
+    box-shadow: 0 0 0 2px rgba(76, 174, 76, 0.5); }
   /* line 32, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-success.disabled, .btn-success:disabled {
     background-color: #5cb85c;
-    border-color: #5cb85c; }
+    border-color: #4cae4c; }
   /* line 38, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-success:active, .btn-success.active,
   .show > .btn-success.dropdown-toggle {
     color: #fff;
     background-color: #449d44;
     background-image: none;
-    border-color: #419641; }
+    border-color: #398439; }
 
 /* line 67, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-warning {
   color: #fff;
   background-color: #f0ad4e;
-  border-color: #f0ad4e; }
+  border-color: #eea236; }
   /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-warning:hover {
     color: #fff;
     background-color: #ec971f;
-    border-color: #eb9316; }
+    border-color: #d58512; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-warning:focus, .btn-warning.focus {
-    box-shadow: 0 0 0 2px rgba(240, 173, 78, 0.5); }
+    box-shadow: 0 0 0 2px rgba(238, 162, 54, 0.5); }
   /* line 32, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-warning.disabled, .btn-warning:disabled {
     background-color: #f0ad4e;
-    border-color: #f0ad4e; }
+    border-color: #eea236; }
   /* line 38, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-warning:active, .btn-warning.active,
   .show > .btn-warning.dropdown-toggle {
     color: #fff;
     background-color: #ec971f;
     background-image: none;
-    border-color: #eb9316; }
+    border-color: #d58512; }
 
 /* line 70, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-danger {
   color: #fff;
   background-color: #d9534f;
-  border-color: #d9534f; }
+  border-color: #d43f3a; }
   /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-danger:hover {
     color: #fff;
     background-color: #c9302c;
-    border-color: #c12e2a; }
+    border-color: #ac2925; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-danger:focus, .btn-danger.focus {
-    box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.5); }
+    box-shadow: 0 0 0 2px rgba(212, 63, 58, 0.5); }
   /* line 32, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-danger.disabled, .btn-danger:disabled {
     background-color: #d9534f;
-    border-color: #d9534f; }
+    border-color: #d43f3a; }
   /* line 38, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-danger:active, .btn-danger.active,
   .show > .btn-danger.dropdown-toggle {
     color: #fff;
     background-color: #c9302c;
     background-image: none;
-    border-color: #c12e2a; }
+    border-color: #ac2925; }
 
 /* line 75, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-outline-primary {
@@ -2462,28 +2465,28 @@ fieldset[disabled] a.btn {
 
 /* line 78, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-outline-secondary {
-  color: #ccc;
+  color: #dee2e3;
   background-image: none;
   background-color: transparent;
-  border-color: #ccc; }
+  border-color: #dee2e3; }
   /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-outline-secondary:hover {
     color: #fff;
-    background-color: #ccc;
-    border-color: #ccc; }
+    background-color: #dee2e3;
+    border-color: #dee2e3; }
   /* line 61, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-secondary:focus, .btn-outline-secondary.focus {
-    box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5); }
+    box-shadow: 0 0 0 2px rgba(222, 226, 227, 0.5); }
   /* line 66, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
-    color: #ccc;
+    color: #dee2e3;
     background-color: transparent; }
   /* line 72, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-secondary:active, .btn-outline-secondary.active,
   .show > .btn-outline-secondary.dropdown-toggle {
     color: #fff;
-    background-color: #ccc;
-    border-color: #ccc; }
+    background-color: #dee2e3;
+    border-color: #dee2e3; }
 
 /* line 81, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-outline-info {
@@ -2614,14 +2617,12 @@ fieldset[disabled] a.btn {
 /* line 139, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-lg, .btn-group-lg > .btn {
   padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-  border-radius: 0.3rem; }
+  font-size: 1.25rem; }
 
 /* line 143, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  border-radius: 0.2rem; }
+  font-size: 0.875rem; }
 
 /* line 153, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-block {
@@ -2711,8 +2712,7 @@ tbody.collapse.show {
   list-style: none;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem; }
+  border: 1px solid rgba(0, 0, 0, 0.15); }
 
 /* line 59, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_dropdown.scss */
 .dropdown-divider {
@@ -2838,16 +2838,6 @@ tbody.collapse.show {
 /* line 50, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
 .btn-group > .btn:first-child {
   margin-left: 0; }
-  /* line 53, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
-  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0; }
-
-/* line 58, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
-.btn-group > .btn:last-child:not(:first-child),
-.btn-group > .dropdown-toggle:not(:first-child) {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0; }
 
 /* line 64, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
 .btn-group > .btn-group {
@@ -2856,17 +2846,6 @@ tbody.collapse.show {
 /* line 67, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {
   border-radius: 0; }
-
-/* line 71, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,
-.btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0; }
-
-/* line 76, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
-.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0; }
 
 /* line 81, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
 .btn-group .dropdown-toggle:active,
@@ -2913,30 +2892,9 @@ tbody.collapse.show {
 .btn-group-vertical > .btn:not(:first-child):not(:last-child) {
   border-radius: 0; }
 
-/* line 159, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
-.btn-group-vertical > .btn:first-child:not(:last-child) {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0; }
-
-/* line 162, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
-.btn-group-vertical > .btn:last-child:not(:first-child) {
-  border-top-right-radius: 0;
-  border-top-left-radius: 0; }
-
 /* line 166, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {
   border-radius: 0; }
-
-/* line 170, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
-.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child,
-.btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0; }
-
-/* line 175, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
-.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child {
-  border-top-right-radius: 0;
-  border-top-left-radius: 0; }
 
 /* line 195, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_button-group.scss */
 [data-toggle="buttons"] > .btn input[type="radio"],
@@ -2970,11 +2928,6 @@ tbody.collapse.show {
   display: flex;
   flex-direction: column;
   justify-content: center; }
-  /* line 36, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
-  .input-group-addon:not(:first-child):not(:last-child),
-  .input-group-btn:not(:first-child):not(:last-child),
-  .input-group .form-control:not(:first-child):not(:last-child) {
-    border-radius: 0; }
 
 /* line 41, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
 .input-group-addon,
@@ -2992,52 +2945,27 @@ tbody.collapse.show {
   color: #464a4c;
   text-align: center;
   background-color: #eceeef;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem; }
+  border: 1px solid rgba(0, 0, 0, 0.15); }
   /* line 82, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
   .input-group-addon.form-control-sm,
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn > .input-group-addon.btn {
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    border-radius: 0.2rem; }
+    font-size: 0.875rem; }
   /* line 87, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
   .input-group-addon.form-control-lg,
   .input-group-lg > .input-group-addon,
   .input-group-lg > .input-group-btn > .input-group-addon.btn {
     padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
-    border-radius: 0.3rem; }
+    font-size: 1.25rem; }
   /* line 95, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
   .input-group-addon input[type="radio"],
   .input-group-addon input[type="checkbox"] {
     margin-top: 0; }
 
-/* line 107, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
-.input-group .form-control:not(:last-child),
-.input-group-addon:not(:last-child),
-.input-group-btn:not(:last-child) > .btn,
-.input-group-btn:not(:last-child) > .btn-group > .btn,
-.input-group-btn:not(:last-child) > .dropdown-toggle,
-.input-group-btn:not(:first-child) > .btn:not(:last-child):not(.dropdown-toggle),
-.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .btn {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0; }
-
 /* line 116, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
 .input-group-addon:not(:last-child) {
   border-right: 0; }
-
-/* line 119, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
-.input-group .form-control:not(:first-child),
-.input-group-addon:not(:first-child),
-.input-group-btn:not(:first-child) > .btn,
-.input-group-btn:not(:first-child) > .btn-group > .btn,
-.input-group-btn:not(:first-child) > .dropdown-toggle,
-.input-group-btn:not(:last-child) > .btn:not(:first-child),
-.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0; }
 
 /* line 128, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_input-group.scss */
 .form-control + .input-group-addon:not(:first-child) {
@@ -3123,10 +3051,6 @@ tbody.collapse.show {
   background-position: center center;
   background-size: 50% 50%; }
 
-/* line 81, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_custom-forms.scss */
-.custom-checkbox .custom-control-indicator {
-  border-radius: 0.25rem; }
-
 /* line 85, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_custom-forms.scss */
 .custom-checkbox .custom-control-input:checked ~ .custom-control-indicator {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E"); }
@@ -3167,7 +3091,6 @@ tbody.collapse.show {
   background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
   background-size: 8px 10px;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
   -moz-appearance: none;
   -webkit-appearance: none; }
   /* line 153, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_custom-forms.scss */
@@ -3225,8 +3148,7 @@ tbody.collapse.show {
   pointer-events: none;
   user-select: none;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem; }
+  border: 1px solid rgba(0, 0, 0, 0.15); }
   /* line 237, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_custom-forms.scss */
   .custom-file-control:lang(en)::after {
     content: "Choose file..."; }
@@ -3243,8 +3165,7 @@ tbody.collapse.show {
     line-height: 1.5;
     color: #464a4c;
     background-color: #eceeef;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 0 0.25rem 0.25rem 0; }
+    border: 1px solid rgba(0, 0, 0, 0.15); }
   /* line 259, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_custom-forms.scss */
   .custom-file-control:lang(en)::before {
     content: "Browse"; }
@@ -3276,9 +3197,7 @@ tbody.collapse.show {
     margin-bottom: -1px; }
   /* line 40, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_nav.scss */
   .nav-tabs .nav-link {
-    border: 1px solid transparent;
-    border-top-right-radius: 0.25rem;
-    border-top-left-radius: 0.25rem; }
+    border: 1px solid transparent; }
     /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
     .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
       border-color: #eceeef #eceeef #ddd; }
@@ -3295,13 +3214,7 @@ tbody.collapse.show {
     border-color: #ddd #ddd #fff; }
   /* line 62, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_nav.scss */
   .nav-tabs .dropdown-menu {
-    margin-top: -1px;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0; }
-
-/* line 76, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_nav.scss */
-.nav-pills .nav-link {
-  border-radius: 0.25rem; }
+    margin-top: -1px; }
 
 /* line 80, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_nav.scss */
 .nav-pills .nav-link.active,
@@ -3373,8 +3286,7 @@ tbody.collapse.show {
   font-size: 1.25rem;
   line-height: 1;
   background: transparent;
-  border: 1px solid transparent;
-  border-radius: 0.25rem; }
+  border: 1px solid transparent; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .navbar-toggler:focus, .navbar-toggler:hover {
     text-decoration: none; }
@@ -3660,8 +3572,7 @@ tbody.collapse.show {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem; }
+  border: 1px solid rgba(0, 0, 0, 0.125); }
 
 /* line 14, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-block {
@@ -3689,34 +3600,18 @@ tbody.collapse.show {
 .card-link + .card-link {
   margin-left: 1.25rem; }
 
-/* line 46, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-.card > .list-group:first-child .list-group-item:first-child {
-  border-top-right-radius: 0.25rem;
-  border-top-left-radius: 0.25rem; }
-
-/* line 52, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-.card > .list-group:last-child .list-group-item:last-child {
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem; }
-
 /* line 63, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: #f7f7f9;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
-  /* line 69, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-  .card-header:first-child {
-    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0; }
 
 /* line 74, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-footer {
   padding: 0.75rem 1.25rem;
   background-color: #f7f7f9;
   border-top: 1px solid rgba(0, 0, 0, 0.125); }
-  /* line 79, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-  .card-footer:last-child {
-    border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px); }
 
 /* line 89, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-header-tabs {
@@ -3783,7 +3678,7 @@ tbody.collapse.show {
 /* line 126, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-outline-secondary {
   background-color: transparent;
-  border-color: #ccc; }
+  border-color: #dee2e3; }
 
 /* line 129, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-outline-info {
@@ -3835,10 +3730,6 @@ tbody.collapse.show {
   margin-bottom: 0;
   border-left: 0; }
 
-/* line 161, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-.card-img {
-  border-radius: calc(0.25rem - 1px); }
-
 /* line 165, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-img-overlay {
   position: absolute;
@@ -3847,16 +3738,6 @@ tbody.collapse.show {
   bottom: 0;
   left: 0;
   padding: 1.25rem; }
-
-/* line 177, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-.card-img-top {
-  border-top-right-radius: calc(0.25rem - 1px);
-  border-top-left-radius: calc(0.25rem - 1px); }
-
-/* line 180, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-.card-img-bottom {
-  border-bottom-right-radius: calc(0.25rem - 1px);
-  border-bottom-left-radius: calc(0.25rem - 1px); }
 
 @media (min-width: 576px) {
   /* line 188, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
@@ -3886,34 +3767,7 @@ tbody.collapse.show {
       /* line 219, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
       .card-group .card + .card {
         margin-left: 0;
-        border-left: 0; }
-      /* line 226, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-      .card-group .card:first-child {
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0; }
-        /* line 229, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-        .card-group .card:first-child .card-img-top {
-          border-top-right-radius: 0; }
-        /* line 232, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-        .card-group .card:first-child .card-img-bottom {
-          border-bottom-right-radius: 0; }
-      /* line 236, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-      .card-group .card:last-child {
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0; }
-        /* line 239, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-        .card-group .card:last-child .card-img-top {
-          border-top-left-radius: 0; }
-        /* line 242, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-        .card-group .card:last-child .card-img-bottom {
-          border-bottom-left-radius: 0; }
-      /* line 247, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-      .card-group .card:not(:first-child):not(:last-child) {
-        border-radius: 0; }
-        /* line 250, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
-        .card-group .card:not(:first-child):not(:last-child) .card-img-top,
-        .card-group .card:not(:first-child):not(:last-child) .card-img-bottom {
-          border-radius: 0; } }
+        border-left: 0; } }
 
 @media (min-width: 576px) {
   /* line 266, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
@@ -3931,8 +3785,7 @@ tbody.collapse.show {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #eceeef;
-  border-radius: 0.25rem; }
+  background-color: #eceeef; }
   /* line 2, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_clearfix.scss */
   .breadcrumb::after {
     display: block;
@@ -3963,19 +3816,11 @@ tbody.collapse.show {
 .pagination {
   display: flex;
   padding-left: 0;
-  list-style: none;
-  border-radius: 0.25rem; }
+  list-style: none; }
 
 /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_pagination.scss */
 .page-item:first-child .page-link {
-  margin-left: 0;
-  border-bottom-left-radius: 0.25rem;
-  border-top-left-radius: 0.25rem; }
-
-/* line 17, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_pagination.scss */
-.page-item:last-child .page-link {
-  border-bottom-right-radius: 0.25rem;
-  border-top-right-radius: 0.25rem; }
+  margin-left: 0; }
 
 /* line 22, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_pagination.scss */
 .page-item.active .page-link {
@@ -4014,30 +3859,10 @@ tbody.collapse.show {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem; }
 
-/* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_pagination.scss */
-.pagination-lg .page-item:first-child .page-link {
-  border-bottom-left-radius: 0.3rem;
-  border-top-left-radius: 0.3rem; }
-
-/* line 16, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_pagination.scss */
-.pagination-lg .page-item:last-child .page-link {
-  border-bottom-right-radius: 0.3rem;
-  border-top-right-radius: 0.3rem; }
-
 /* line 4, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_pagination.scss */
 .pagination-sm .page-link {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem; }
-
-/* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_pagination.scss */
-.pagination-sm .page-item:first-child .page-link {
-  border-bottom-left-radius: 0.2rem;
-  border-top-left-radius: 0.2rem; }
-
-/* line 16, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_pagination.scss */
-.pagination-sm .page-item:last-child .page-link {
-  border-bottom-right-radius: 0.2rem;
-  border-top-right-radius: 0.2rem; }
 
 /* line 6, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_badge.scss */
 .badge {
@@ -4049,8 +3874,7 @@ tbody.collapse.show {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: 0.25rem; }
+  vertical-align: baseline; }
   /* line 19, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_badge.scss */
   .badge:empty {
     display: none; }
@@ -4069,8 +3893,7 @@ a.badge:focus, a.badge:hover {
 /* line 45, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_badge.scss */
 .badge-pill {
   padding-right: 0.6em;
-  padding-left: 0.6em;
-  border-radius: 10rem; }
+  padding-left: 0.6em; }
 
 /* line 55, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_badge.scss */
 .badge-default {
@@ -4118,8 +3941,7 @@ a.badge:focus, a.badge:hover {
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: #eceeef;
-  border-radius: 0.3rem; }
+  background-color: #eceeef; }
   @media (min-width: 576px) {
     /* line 1, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_jumbotron.scss */
     .jumbotron {
@@ -4132,15 +3954,13 @@ a.badge:focus, a.badge:hover {
 /* line 16, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_jumbotron.scss */
 .jumbotron-fluid {
   padding-right: 0;
-  padding-left: 0;
-  border-radius: 0; }
+  padding-left: 0; }
 
 /* line 5, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_alert.scss */
 .alert {
   padding: 0.75rem 1.25rem;
   margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem; }
+  border: 1px solid transparent; }
 
 /* line 13, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_alert.scss */
 .alert-heading {
@@ -4219,8 +4039,7 @@ a.badge:focus, a.badge:hover {
   font-size: 0.75rem;
   line-height: 1rem;
   text-align: center;
-  background-color: #eceeef;
-  border-radius: 0.25rem; }
+  background-color: #eceeef; }
 
 /* line 17, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_progress.scss */
 .progress-bar {
@@ -4281,15 +4100,9 @@ a.badge:focus, a.badge:hover {
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125); }
-  /* line 58, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_list-group.scss */
-  .list-group-item:first-child {
-    border-top-right-radius: 0.25rem;
-    border-top-left-radius: 0.25rem; }
   /* line 62, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_list-group.scss */
   .list-group-item:last-child {
-    margin-bottom: 0;
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem; }
+    margin-bottom: 0; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .list-group-item:focus, .list-group-item:hover {
     text-decoration: none; }
@@ -4544,7 +4357,6 @@ button.close {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
   outline: 0; }
 
 /* line 63, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_modal.scss */
@@ -4698,8 +4510,7 @@ button.close {
   padding: 3px 8px;
   color: #fff;
   text-align: center;
-  background-color: #000;
-  border-radius: 0.25rem; }
+  background-color: #000; }
   /* line 83, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_tooltip.scss */
   .tooltip-inner::before {
     position: absolute;
@@ -4735,8 +4546,7 @@ button.close {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem; }
+  border: 1px solid rgba(0, 0, 0, 0.2); }
   /* line 24, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_popover.scss */
   .popover.popover-top, .popover.bs-tether-element-attached-bottom {
     margin-top: -10px; }
@@ -4822,9 +4632,7 @@ button.close {
   margin-bottom: 0;
   font-size: 1rem;
   background-color: #f7f7f7;
-  border-bottom: 1px solid #ebebeb;
-  border-top-right-radius: calc(0.3rem - 1px);
-  border-top-left-radius: calc(0.3rem - 1px); }
+  border-bottom: 1px solid #ebebeb; }
   /* line 140, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_popover.scss */
   .popover-title:empty {
     display: none; }
@@ -5121,30 +4929,6 @@ a.bg-inverse:focus, a.bg-inverse:hover {
 /* line 9, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/utilities/_borders.scss */
 .border-left-0 {
   border-left: 0 !important; }
-
-/* line 15, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/utilities/_borders.scss */
-.rounded {
-  border-radius: 0.25rem; }
-
-/* line 18, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/utilities/_borders.scss */
-.rounded-top {
-  border-top-right-radius: 0.25rem;
-  border-top-left-radius: 0.25rem; }
-
-/* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/utilities/_borders.scss */
-.rounded-right {
-  border-bottom-right-radius: 0.25rem;
-  border-top-right-radius: 0.25rem; }
-
-/* line 24, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/utilities/_borders.scss */
-.rounded-bottom {
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem; }
-
-/* line 27, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/utilities/_borders.scss */
-.rounded-left {
-  border-bottom-left-radius: 0.25rem;
-  border-top-left-radius: 0.25rem; }
 
 /* line 31, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/utilities/_borders.scss */
 .rounded-circle {
@@ -7791,20 +7575,68 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   .hidden-print {
     display: none !important; } }
 
-/* line 1, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+/* line 3, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
 .btn {
-  cursor: pointer; }
+  cursor: pointer;
+  border-width: 0 1px 4px 1px; }
+  /* line 8, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+  .btn:hover {
+    margin-top: 2px;
+    border-bottom-width: 2px; }
+  /* line 14, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+  .btn:active {
+    margin-top: 4px;
+    border-bottom-width: 0; }
+  /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+  .input-group-btn .btn {
+    margin-top: 0; }
+    /* line 24, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+    .input-group-btn .btn:hover {
+      padding-top: calc(0.5rem + 2px); }
+    /* line 28, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+    .input-group-btn .btn:active {
+      padding-top: calc(0.5rem + 4px); }
+
+/* line 34, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+.form-control {
+  border-width: 0 0 1px 0; }
+  /* line 37, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+  .form-control:focus {
+    border-bottom-width: 4px;
+    padding-bottom: calc(0.5rem - 3px); }
+  /* line 42, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+  .form-control::placeholder {
+    color: #ccc; }
 
 /* line 5, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-html {
-  overflow-y: scroll; }
-
-/* line 9, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-body {
-  padding-top: 50px; }
-
-/* line 13, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .u-pointer {
   cursor: pointer; }
+
+/* line 9, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(99, 108, 114, 0.5);
+  padding: 1rem;
+  border-radius: 50%;
+  z-index: 1050; }
+  /* line 22, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+  .loader .loading-spinner {
+    border: 0.2rem solid #eceeef;
+    /* Light grey */
+    border-top: 0.2rem solid #0275d8;
+    /* Blue */
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    animation: spin 1s linear infinite; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 
 /*# sourceMappingURL=cinema.css.map */
