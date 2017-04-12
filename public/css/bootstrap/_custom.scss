@@ -2,3 +2,32 @@
 //
 // Copy variables from `_variables.scss` to this file to override default values
 // without modifying source files.
+
+// Borders
+// Square off borders, I have an idea...
+$enable-rounded: false;
+/*$border-radius:        0;
+$border-radius-lg:     0;
+$border-radius-sm:     0;
+$btn-border-radius:      $border-radius;
+$btn-border-radius-lg:   $border-radius-lg;
+$btn-border-radius-sm:   $border-radius-sm;
+$input-border-radius:    $border-radius;
+$input-border-radius-lg: $border-radius-lg;
+$input-border-radius-sm: $border-radius-sm;*/
+
+// Buttons
+// Darken borders for depress effect
+$btn-primary-border: darken($btn-primary-bg, 5%);
+$btn-success-border: darken($btn-success-bg, 5%);
+$btn-warning-border: darken($btn-warning-bg, 5%);
+$btn-danger-border:  darken($btn-danger-bg, 5%);
+
+$btn-secondary-bg: $gray-lighter;
+$btn-secondary-border: darken($gray-lighter, 5%);
+
+// Remove animations from button
+$btn-transition: initial;
+
+// Forms
+$input-color-placeholder: #ccc;

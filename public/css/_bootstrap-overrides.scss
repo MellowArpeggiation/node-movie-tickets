@@ -1,3 +1,45 @@
+$btn-depth: 4; // Multiplier of bottom border width
+
 .btn {
 	cursor: pointer;
+	
+	border-width: 0 $border-width ($border-width * $btn-depth) $border-width;
+	
+	&:hover {
+		// Depress the button a little
+		margin-top: ($btn-depth * 0.5px);
+		border-bottom-width: ($btn-depth * 0.5px);
+	}
+	
+	&:active {
+		// Depress all the way
+		margin-top: ($btn-depth * 1px);
+		border-bottom-width: 0;
+	}
+	
+	// Input group buttons need to be changed to work with the new super clickable buttons
+	.input-group-btn & {
+		margin-top: 0;
+		
+		&:hover {
+			padding-top: calc(#{$btn-padding-y} + #{($btn-depth * 0.5px)});
+		}
+		
+		&:active {
+			padding-top: calc(#{$btn-padding-y} + #{($btn-depth * 1px)});
+		}
+	}
+}
+
+.form-control {
+	border-width: 0 0 $border-width 0;
+	
+	&:focus {
+		border-bottom-width: ($btn-depth * 1px);
+		padding-bottom: calc(#{$input-padding-y} - #{($btn-depth * 1px) - $border-width});
+	}
+	
+	&::placeholder {
+		color: $input-color-placeholder;
+	}
 }
