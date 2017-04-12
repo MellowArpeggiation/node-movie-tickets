@@ -34,7 +34,7 @@
 		
 		<div class="container">
 			<!-- Search bar, for live filtering movies -->
-			<div class="row justify-content-center mb-3">
+			<div class="row justify-content-center mb-3" ng-hide="focused">
 				<div class="col-12">
 					<form>
 						<div class="input-group">
@@ -69,7 +69,12 @@
 			
 			<div class="row" ng-show="focused">
 				<div class="col-12">
-					<button class="btn btn-primary" ng-click="closeDetail()">Close</button>
+					<div class="card">
+						<div class="card-block">
+							<p class="card-text">{{focusMovie.Plot}}</p>
+							<button class="btn btn-primary" ng-click="closeDetail()">Close</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
