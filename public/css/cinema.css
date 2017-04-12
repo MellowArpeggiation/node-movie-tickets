@@ -401,11 +401,11 @@ blockquote {
 
 /* line 163, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_reboot.scss */
 a {
-  color: #0275d8;
+  color: #77005c;
   text-decoration: none; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   a:focus, a:hover {
-    color: #014c8c;
+    color: #2b0021;
     text-decoration: underline; }
 
 /* line 179, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_reboot.scss */
@@ -1966,7 +1966,7 @@ pre {
   .form-control:focus {
     color: #464a4c;
     background-color: #fff;
-    border-color: #00e633;
+    border-color: #77005c;
     outline: none; }
   /* line 44, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_forms.scss */
   .form-control::placeholder {
@@ -2291,27 +2291,27 @@ fieldset[disabled] a.btn {
 /* line 55, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-primary {
   color: #fff;
-  background-color: #00e633;
-  border-color: #00cd2d; }
+  background-color: #77005c;
+  border-color: #5e0048; }
   /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-primary:hover {
     color: #fff;
-    background-color: #00b328;
-    border-color: #008f20; }
+    background-color: #440035;
+    border-color: #200019; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary:focus, .btn-primary.focus {
-    box-shadow: 0 0 0 2px rgba(0, 205, 45, 0.5); }
+    box-shadow: 0 0 0 2px rgba(94, 0, 72, 0.5); }
   /* line 32, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary.disabled, .btn-primary:disabled {
-    background-color: #00e633;
-    border-color: #00cd2d; }
+    background-color: #77005c;
+    border-color: #5e0048; }
   /* line 38, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary:active, .btn-primary.active,
   .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #00b328;
+    background-color: #440035;
     background-image: none;
-    border-color: #008f20; }
+    border-color: #200019; }
 
 /* line 58, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-secondary {
@@ -2440,28 +2440,28 @@ fieldset[disabled] a.btn {
 
 /* line 75, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-outline-primary {
-  color: #00e633;
+  color: #77005c;
   background-image: none;
   background-color: transparent;
-  border-color: #00e633; }
+  border-color: #77005c; }
   /* line 11, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-outline-primary:hover {
     color: #fff;
-    background-color: #00e633;
-    border-color: #00e633; }
+    background-color: #77005c;
+    border-color: #77005c; }
   /* line 61, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-primary:focus, .btn-outline-primary.focus {
-    box-shadow: 0 0 0 2px rgba(0, 230, 51, 0.5); }
+    box-shadow: 0 0 0 2px rgba(119, 0, 92, 0.5); }
   /* line 66, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-primary.disabled, .btn-outline-primary:disabled {
-    color: #00e633;
+    color: #77005c;
     background-color: transparent; }
   /* line 72, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-primary:active, .btn-outline-primary.active,
   .show > .btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #00e633;
-    border-color: #00e633; }
+    background-color: #77005c;
+    border-color: #77005c; }
 
 /* line 78, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-outline-secondary {
@@ -2591,7 +2591,7 @@ fieldset[disabled] a.btn {
 /* line 100, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-link {
   font-weight: normal;
-  color: #0275d8;
+  color: #77005c;
   border-radius: 0; }
   /* line 105, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
   .btn-link, .btn-link:active, .btn-link.active, .btn-link:disabled {
@@ -2604,7 +2604,7 @@ fieldset[disabled] a.btn {
     border-color: transparent; }
   /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-link:focus, .btn-link:hover {
-    color: #014c8c;
+    color: #2b0021;
     text-decoration: underline;
     background-color: transparent; }
   /* line 125, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_buttons.scss */
@@ -3627,8 +3627,8 @@ tbody.collapse.show {
 
 /* line 106, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-primary {
-  background-color: #00e633;
-  border-color: #00e633; }
+  background-color: #77005c;
+  border-color: #77005c; }
   /* line 7, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_cards.scss */
   .card-primary .card-header,
   .card-primary .card-footer {
@@ -3673,7 +3673,7 @@ tbody.collapse.show {
 /* line 123, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-outline-primary {
   background-color: transparent;
-  border-color: #00e633; }
+  border-color: #77005c; }
 
 /* line 126, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-outline-secondary {
@@ -4864,11 +4864,11 @@ button.close {
 
 /* line 4, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_background-variant.scss */
 .bg-primary {
-  background-color: #00e633 !important; }
+  background-color: #77005c !important; }
 
 /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
 a.bg-primary:focus, a.bg-primary:hover {
-  background-color: #00b328 !important; }
+  background-color: #440035 !important; }
 
 /* line 4, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_background-variant.scss */
 .bg-success {
@@ -7440,11 +7440,11 @@ a.text-muted:focus, a.text-muted:hover {
 
 /* line 4, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_text-emphasis.scss */
 .text-primary {
-  color: #00e633 !important; }
+  color: #77005c !important; }
 
 /* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
 a.text-primary:focus, a.text-primary:hover {
-  color: #00b328 !important; }
+  color: #440035 !important; }
 
 /* line 4, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/bootstrap/mixins/_text-emphasis.scss */
 .text-success {
@@ -7623,43 +7623,52 @@ body {
   cursor: pointer; }
 
 /* line 19, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+.affix {
+  position: sticky;
+  top: 20px; }
+
+/* line 24, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .loader {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(99, 108, 114, 0.5);
+  border-radius: 50%;
   padding: 1rem;
-  z-index: 1050;
-  animation: spin 0.5s steps(4) infinite; }
-  /* line 32, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+  z-index: 1050; }
+  /* line 41, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
   .loader .loading-spinner {
-    border: 1rem solid #292b2c;
-    border-top: 1rem solid #00e633;
-    border-radius: 0;
+    border: 0.2rem solid #eceeef;
+    border-top: 0.2rem solid #77005c;
+    border-radius: 50%;
     width: 4rem;
-    height: 4rem; }
+    height: 4rem;
+    animation: spin 0.5s linear infinite; }
 
-/* line 45, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+/* line 53, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .header {
   background-color: transparent;
   margin-bottom: 3rem; }
-  /* line 50, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+  /* line 58, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
   .header .header-title {
     position: relative;
     padding: 6rem 0;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Philosopher','Catamaran', 'Press Start 2P', cursive;
+    font-size: 8vw;
     -webkit-text-fill-color: rgba(0, 0, 255, 0);
     -webkit-background-clip: text;
-    background-image: url("/img/black-green.jpg");
+    background-image: url("/img/title-background.jpg");
     background-attachment: fixed;
     background-size: cover;
     color: red;
     /* Background */
     /* Text Background */ }
-    /* line 73, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    /* line 80, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
     .header .header-title:before, .header .header-title:after {
       position: absolute;
       content: ''; }
-    /* line 80, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    /* line 87, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
     .header .header-title:before {
       z-index: -2;
       top: 0;
@@ -7669,14 +7678,15 @@ body {
       background-image: inherit;
       background-attachment: fixed;
       background-size: cover; }
-    /* line 92, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    /* line 99, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
     .header .header-title:after {
       position: absolute;
       z-index: -1;
-      top: 1.5rem;
-      right: 1.5rem;
-      bottom: 1.5rem;
-      left: 1.5rem;
+      top: 1rem;
+      right: 6rem;
+      bottom: 1rem;
+      left: 6rem;
+      background-image: url("/img/title-background-invert2.jpg");
       background-attachment: fixed;
       background-size: cover;
       background-color: #fff; }
