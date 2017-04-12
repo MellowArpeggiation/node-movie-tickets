@@ -70,7 +70,7 @@ angular.module('movieController', [])
 		 * @param {string} filter The string to filter movies on
 		 */
 		$scope.filterMovies = function(filter) {
-			if (filter == "") {
+			if (!filter) {
 				// If the filter field is empty, return all the movies
 				$scope.visibleMovies = $scope.movies;
 				return;
@@ -107,6 +107,9 @@ angular.module('movieController', [])
 			});
 		};
 		
+		/**
+		 * Closes the detail view of a movie
+		 */
 		$scope.closeDetail = function() {
 			$location.path('');
 			$scope.focused = false;
@@ -116,7 +119,7 @@ angular.module('movieController', [])
 		$scope.getMovies();
 		
 		// And then we check if a movie has already been specified in the URL
-		if ($location.path() !== '') {
+		if ($location.path().includes("/movie")) {
 			var path = $location.path();
 			// Lets open detail view by grabbing just the ID at the end of the URL
 			$scope.openDetail(path.substring(path.lastIndexOf('/') + 1));
