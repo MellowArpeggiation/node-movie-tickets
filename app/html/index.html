@@ -15,6 +15,9 @@
 		
 		<link rel="stylesheet" href="css/cinema.css">
 		
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+		
 		<!-- Scripts -->
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 		
@@ -25,43 +28,43 @@
 
 	<!-- Set the Angular controller -->
 	<body ng-controller="mainController">
-		<div class="jumbotron text-center">
-			<div class="container">
-				<h1>CinemaJazz</h1>
-				<h2 ng-show="focused">{{focusMovie.Title}}</h2>
-			</div>
+		<div class="header text-center">
+			<h1 class="header-title">MOVIE~1.JAZZ</h1>
+			<h2 ng-show="focused">{{focusMovie.Title}}</h2>
 		</div>
 		
 		<div class="container">
 			<!-- Search bar, for live filtering movies -->
-			<div class="row justify-content-center mb-3" ng-hide="focused">
+			<div class="row justify-content-center">
 				<div class="col-12">
-					<form>
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
-							<!-- TODO: Remove the button, search should update on key press (as it is a filter) -->
-							<!-- We can't get away with just filtering for very large datasets, but this dataset is small -->
-							<span class="input-group-btn">
-								<button type="submit" class="btn btn-secondary" ng-click="filterMovies(filterText)"><i class="fa fa-search"></i></button>
-							</span>
-						</div>
-					</form>
+					
 				</div>
 			</div>
 			
-			<div class="row" ng-hide="focused">
-				<div class="col-12">
-					<div class="card-columns">
-						<div class="card u-pointer" ng-repeat="movie in visibleMovies" ng-click="openDetail(movie.ID)">
-							<img class="card-img-top img-fluid w-100" ng-src="{{movie.Poster}}">
-							<div class="card-block">
-								<h4>{{movie.Title}}</h4>
-								<p class="card-text">{{movie.Year}}</p>
+			<div class="row">
+				<div class="col-md-4">
+					<form>
+						<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
+					</form>
+					<br>
+					<p>Find the movies you want to watch, for the lowest prices, that's MovieJazz</p>
+				</div>
+				<div class="col-md-8">
+					<div class="card u-pointer" ng-repeat="movie in visibleMovies" ng-click="openDetail(movie.ID)">
+						<div class="card-block">
+							<div class="row">
+								<div class="col-4">
+									<img class="img-fluid w-100" ng-src="{{movie.Poster}}">
+								</div>
+								<div class="col-8">
+									<h4>{{movie.Title}}</h4>
+									<p class="card-text">{{movie.Year}}</p>
+								</div>
 							</div>
-							<div class="card-footer">
-								Now Showing at
-								<div ng-repeat="locations in movie.fromSource">{{locations}} </div>
-							</div>
+						</div>
+						<div class="card-footer">
+							Now Showing at
+							<div ng-repeat="locations in movie.fromSource">{{locations}} </div>
 						</div>
 					</div>
 				</div>
@@ -78,6 +81,36 @@
 				</div>
 			</div>
 		</div>
+		
+		<footer class="footer text-muted">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>MovieJazz</h4>
+						<p>App is cool</p>
+						<p>Developed by George Paton</p>
+					</div>
+					<div class="col-sm-3">
+						<h4>Connect</h4>
+					</div>
+					<div class="col-sm-3">
+						<h4>Tags</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-auto">
+						<a href="/" id="home">Home</a>
+						<a href="/about">About</a>
+						<a href="/advertising">Advertising</a>
+						<a href="/FAQ">FAQ</a>
+						<a href="/contact">Contact</a> 
+					</div>
+					<div class="col-sm-auto text-right">
+						Copyright © <a href="http://thedsgnblog.com/">George Paton 2017</a>
+					</div>
+				</div>
+			</div>
+		</footer>
 		
 		<div class="loader" ng-show="loading">
 			<div class="loading-spinner"></div>
