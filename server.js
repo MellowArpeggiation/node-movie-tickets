@@ -1,3 +1,9 @@
+/**
+ * Environment variables
+ * @param {int}    PORT   Define a non-standard port {default: 80}
+ * @param {string} DBTYPE Choose the DB connection   {values: [localUrl, remoteUrl], default: localUrl}
+ */
+
 // set up ======================================================================
 var express = require('express');
 var app = express(); 						// create our app w/ express
