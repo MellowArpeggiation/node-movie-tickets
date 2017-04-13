@@ -72,7 +72,7 @@ body {
 		
 		
 		background-attachment: fixed;
-		background-size: cover;
+		background-size: 100%;
 
 		// fallback text color
 		color: red;
@@ -93,7 +93,7 @@ body {
 			left: 0;
 			background-image: inherit;
 			background-attachment: fixed;
-			background-size: cover;
+			background-size: 100%;
 		}
 
 		/* Text Background */
@@ -106,7 +106,7 @@ body {
 			left: 6rem;
 			background-image: url("/img/title-background-invert.jpg");
 			background-attachment: fixed;
-			background-size: cover;
+			background-size: 100%;
 			background-color: $body-bg;
 		}
 	}
