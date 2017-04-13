@@ -10,6 +10,7 @@ body {
 	padding: 4rem 0;
     margin-top: 4rem;
     background-color: #f7f7f7;
+	background-image: url("/img/title-background-invert.jpg");
 }
 
 .u-pointer {
@@ -103,7 +104,7 @@ body {
 			right: 6rem;
 			bottom: 1rem;
 			left: 6rem;
-			background-image: url("/img/title-background-invert2.jpg");
+			background-image: url("/img/title-background-invert.jpg");
 			background-attachment: fixed;
 			background-size: cover;
 			background-color: $body-bg;

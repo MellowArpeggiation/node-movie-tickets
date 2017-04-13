@@ -7616,18 +7616,19 @@ body {
 .footer {
   padding: 4rem 0;
   margin-top: 4rem;
-  background-color: #f7f7f7; }
+  background-color: #f7f7f7;
+  background-image: url("/img/title-background-invert.jpg"); }
 
-/* line 15, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+/* line 16, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .u-pointer {
   cursor: pointer; }
 
-/* line 19, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+/* line 20, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .affix {
   position: sticky;
   top: 20px; }
 
-/* line 24, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+/* line 25, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .loader {
   position: fixed;
   top: 50%;
@@ -7637,7 +7638,7 @@ body {
   border-radius: 50%;
   padding: 1rem;
   z-index: 1050; }
-  /* line 41, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+  /* line 42, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
   .loader .loading-spinner {
     border: 0.2rem solid #eceeef;
     border-top: 0.2rem solid #77005c;
@@ -7646,11 +7647,11 @@ body {
     height: 4rem;
     animation: spin 0.5s linear infinite; }
 
-/* line 53, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+/* line 54, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .header {
   background-color: transparent;
   margin-bottom: 3rem; }
-  /* line 58, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+  /* line 59, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
   .header .header-title {
     position: relative;
     padding: 6rem 0;
@@ -7664,11 +7665,11 @@ body {
     color: red;
     /* Background */
     /* Text Background */ }
-    /* line 80, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    /* line 81, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
     .header .header-title:before, .header .header-title:after {
       position: absolute;
       content: ''; }
-    /* line 87, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    /* line 88, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
     .header .header-title:before {
       z-index: -2;
       top: 0;
@@ -7678,7 +7679,7 @@ body {
       background-image: inherit;
       background-attachment: fixed;
       background-size: cover; }
-    /* line 99, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    /* line 100, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
     .header .header-title:after {
       position: absolute;
       z-index: -1;
@@ -7686,7 +7687,7 @@ body {
       right: 6rem;
       bottom: 1rem;
       left: 6rem;
-      background-image: url("/img/title-background-invert2.jpg");
+      background-image: url("/img/title-background-invert.jpg");
       background-attachment: fixed;
       background-size: cover;
       background-color: #fff; }
