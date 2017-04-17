@@ -4,7 +4,7 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 		$locationProvider.html5Mode(true);
 	})
 	// Function definition and entry point for the controller
-	.controller('mainController', ['$scope', '$http', '$location', 'movies', function($scope, $http, $location, movies) {
+	.controller('mainController', ['$scope', '$http', '$location', '$window', 'movies', function($scope, $http, $location, $window, movies) {
 		// Translate API endpoint names into user friendly ones
 		$scope.apiDetails = {
 			'cinemaworld': {
@@ -24,13 +24,16 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 		$scope.focused = false;
 		$scope.filtered = false;
 		
+		$scope.openTab = 'prices';
+		$scope.selectedBooking = false;
+		
 		/**
 		 * Returns a list of all movies
 		 */
 		$scope.getMovies = function () {
 			$scope.loading++;
 			movies.list().then(function (response) {
-				$scope.movies = []; // Hold the array outside the scope first, to prevent unnecessary updates
+				$scope.movies = [];
 				response.data.forEach(function (item) {
 					// data contains a single object with a single key - Movies
 					item.data.Movies.forEach(function (movie) {
@@ -128,11 +131,48 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 		 * @param {string} id The ID of the movie being fetched
 		 */
 		$scope.openDetail = function (id) {
+			$scope.focused = false;
+			$scope.focusMovie = undefined;
 			$scope.loading++;
 			movies.get(id).then(function (response) {
-				// Lets grab the first response information for now
-				// TODO: Get information from whichever source didn't return from a cache if possible
-				$scope.focusMovie = response.data[0].data;
+				response.data.forEach(function (item) {
+					if (item.data !== null) { // Check that the API has a response for this ID
+						if ($scope.focusMovie === undefined) { // If this is the first item
+							$scope.focusMovie = item.data;
+							
+							$scope.focusMovie.Price = [{
+								location: item.name,
+								price: item.data.Price
+							}];
+							
+							// Chop off the first two letters of ID, so all match
+							$scope.focusMovie.ID = $scope.focusMovie.ID.slice(2);
+							
+							var metascore = parseInt($scope.focusMovie.Metascore);
+							if (metascore > 60) {
+								$scope.focusMovie.MetaColor = 'score-outstanding';
+							} else if (metascore > 39) {
+								$scope.focusMovie.MetaColor = 'score-average';
+							} else {
+								$scope.focusMovie.MetaColor = 'score-unfavorable';
+							}
+							
+						} else {
+							$scope.focusMovie.Price.push({
+								location: item.name,
+								price: item.data.Price
+							});
+						}
+					}
+				});
+				
+				// Sort by lowest to highest price
+				$scope.focusMovie.Price.sort(function (a, b) {
+					aNum = parseFloat(a.price);
+					bNum = parseFloat(b.price);
+					return aNum - bNum;
+				});
+				
 				$scope.focused = true;
 				
 				$scope.loading--;
@@ -152,6 +192,7 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 				$scope.openDetail(path.substring(path.lastIndexOf('/') + 1));
 			} else {
 				$scope.focused = false;
+				$scope.selectedBooking = false;
 			}
 		});
 		
@@ -161,6 +202,15 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 		 */
 		$scope.setPath = function (newPath) {
 			$location.path(newPath);
+		}
+		
+		$scope.gotoPath = function (newPath) {
+			$location.path(newPath);
+			$window.location.href = newPath;
+		}
+		
+		$scope.selectBooking = function (location) {
+			$scope.selectedBooking = location;
 		}
 		
 		// When we first load the page, lets get all the movies
