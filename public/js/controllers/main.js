@@ -1,15 +1,28 @@
-angular.module('movieController', [])
+angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 	// Configuration for the controller
 	.config(function ($locationProvider) {
 		$locationProvider.html5Mode(true);
 	})
 	// Function definition and entry point for the controller
 	.controller('mainController', ['$scope', '$http', '$location', 'movies', function($scope, $http, $location, movies) {
+		// Translate API endpoint names into user friendly ones
+		$scope.apiDetails = {
+			'cinemaworld': {
+				friendlyName: "<i class='fa fa-fw fa-video-camera'></i> Cinema World",
+				filtered: true
+			},
+			'filmworld': {
+				friendlyName: "<i class='fa fa-fw fa-film'></i> Film World",
+				filtered: true
+			}
+		}
+		
 		$scope.appName = "MovieJazz";
 		
 		// Keep a count of all loading sources, display if non-zero
 		$scope.loading = 0;
 		$scope.focused = false;
+		$scope.filtered = false;
 		
 		/**
 		 * Returns a list of all movies
@@ -77,8 +90,11 @@ angular.module('movieController', [])
 			if (!filter) {
 				// If the filter field is empty, return all the movies
 				$scope.visibleMovies = $scope.movies;
+				$scope.filtered = false;
 				return;
 			}
+			
+			$scope.filtered = true;
 			
 			filter = filter.toLowerCase(); // Lets make everything case insensitive
 			
@@ -87,7 +103,20 @@ angular.module('movieController', [])
 			
 			$scope.movies.forEach(function (movie) {
 				if (movie.Title.toLowerCase().includes(filter)) {
-					filteredMovies.push(movie);
+					var atLeastOne = false;
+					
+					// Hide movies that don't match the filtered set of sources
+					for (var i = 0; i < movie.fromSource.length; i++) {
+						var source = movie.fromSource[i];
+						if ($scope.apiDetails[source].filtered) {
+							atLeastOne = true;
+						}
+					}
+					
+					if (atLeastOne) {
+						filteredMovies.push(movie);
+					}
+					
 				}
 			});
 			
@@ -116,7 +145,6 @@ angular.module('movieController', [])
 		 * History changes work perfectly in this case, as if they are part of the application
 		 */
 		$scope.$on('$locationChangeSuccess', function () {
-			console.log($location.path());
 			// Lets check if a movie has already been specified in the URL
 			if ($location.path().includes("/movie")) {
 				var path = $location.path();
