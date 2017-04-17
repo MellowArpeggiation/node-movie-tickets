@@ -5,10 +5,47 @@
 $title-bg-img: url("/img/title-background.jpg");
 $title-bg-img-invert: url("/img/title-background-invert.jpg");
 
-
-
 body {
 	overflow-x: hidden;
+}
+
+h2, .h2,
+h3, .h3,
+h4, .h4 {
+	font-weight: 300;
+	
+	.mj-footer & {
+		font-weight: 500;
+	}
+}
+
+.mj-description-list {
+	dt {
+		font-size: 0.8rem;
+	}
+}
+
+.mj-metascore {
+	width: 3rem;
+	height: 3rem;
+	text-align: center;
+	padding: auto;
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: white;
+	
+	/* These colours are taken directly from Metacritic */
+	&.score-outstanding {
+		background-color: #6c3;
+	}
+	
+	&.score-average {
+		background-color: #fc3;
+	}
+	
+	&.score-unfavorable {
+		background-color: #f00;
+	}
 }
 
 .u-pointer {
@@ -18,16 +55,33 @@ body {
 .u-slide-down {
 	opacity: 1;
 	
-	
 	&.ng-hide {
 		opacity: 0;
+		-webkit-transition: 0.5s opacity;
 		transition: 0.5s opacity;
 	}
 }
 
-.affix {
+.mj-btn-block {
+	width: 100%;
+}
+
+.mj-best-price {
+	position: relative;
+	&:after {
+		position: absolute;
+		color: $brand-danger;
+		font-weight: bold;
+		content: 'Best Value!';
+		transform: rotate(30deg);
+		right: 0;
+	}
+}
+
+.mj-affix {
+	position: -webkit-sticky;
 	position: sticky;
-	top: 20px;
+	top: 1rem;
 }
 
 .mj-footer {
@@ -43,7 +97,9 @@ body {
 	top: 50%;
 	left: 50%;
 	
-	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	
 	background-color: fade-out($gray-light, 0.5);
 	border-radius: 50%;
 	
@@ -62,7 +118,8 @@ body {
 		width: 4rem;
 		height: 4rem;
 		
-		animation: spin 0.5s linear infinite;
+		-webkit-animation: spin 0.5s linear infinite;
+		        animation: spin 0.5s linear infinite;
 	}
 }
 
@@ -159,7 +216,12 @@ body {
 	}
 }
 
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
