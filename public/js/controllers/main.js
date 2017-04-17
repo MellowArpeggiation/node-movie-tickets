@@ -7,16 +7,18 @@ angular.module('movieController', [])
 	.controller('mainController', ['$scope', '$http', '$location', 'movies', function($scope, $http, $location, movies) {
 		$scope.appName = "MovieJazz";
 		
-		$scope.loading = true;
+		// Keep a count of all loading sources, display if non-zero
+		$scope.loading = 0;
 		$scope.focused = false;
 		
 		/**
 		 * Returns a list of all movies
 		 */
-		$scope.getMovies = function() {
-			movies.list().success(function(response) {
+		$scope.getMovies = function () {
+			$scope.loading++;
+			movies.list().then(function (response) {
 				$scope.movies = []; // Hold the array outside the scope first, to prevent unnecessary updates
-				response.forEach(function (item) {
+				response.data.forEach(function (item) {
 					// data contains a single object with a single key - Movies
 					item.data.Movies.forEach(function (movie) {
 						
@@ -63,7 +65,7 @@ angular.module('movieController', [])
 				$scope.visibleMovies = $scope.movies;
 				
 				// Hide the loading spinner
-				$scope.loading = false;
+				$scope.loading--;
 			});
 		}
 
@@ -71,7 +73,7 @@ angular.module('movieController', [])
 		 * Returns a list of movies filtered by a string, to enable quick searching
 		 * @param {string} filter The string to filter movies on
 		 */
-		$scope.filterMovies = function(filter) {
+		$scope.filterMovies = function (filter) {
 			if (!filter) {
 				// If the filter field is empty, return all the movies
 				$scope.visibleMovies = $scope.movies;
@@ -96,35 +98,44 @@ angular.module('movieController', [])
 		 * Open a detail view for a movie, with pricing and other detail information
 		 * @param {string} id The ID of the movie being fetched
 		 */
-		$scope.openDetail = function(id) {
-			$location.path('/movie/' + id);
-			$scope.loading = true;
-			movies.get(id).success(function (response) {
+		$scope.openDetail = function (id) {
+			$scope.loading++;
+			movies.get(id).then(function (response) {
 				// Lets grab the first response information for now
 				// TODO: Get information from whichever source didn't return from a cache if possible
-				$scope.focusMovie = response[0].data;
+				$scope.focusMovie = response.data[0].data;
 				$scope.focused = true;
 				
-				$scope.loading = false;
+				$scope.loading--;
 			});
 		};
 		
 		/**
-		 * Closes the detail view of a movie
+		 * Capture all changes to URL, includes first page load
+		 * We handle application state changes this way so we can handle anything the browser throws at us
+		 * History changes work perfectly in this case, as if they are part of the application
 		 */
-		$scope.closeDetail = function() {
-			$location.path('');
-			$scope.focused = false;
+		$scope.$on('$locationChangeSuccess', function () {
+			console.log($location.path());
+			// Lets check if a movie has already been specified in the URL
+			if ($location.path().includes("/movie")) {
+				var path = $location.path();
+				// Lets open detail view by grabbing just the ID at the end of the URL
+				$scope.openDetail(path.substring(path.lastIndexOf('/') + 1));
+			} else {
+				$scope.focused = false;
+			}
+		});
+		
+		/**
+		 * Set the current path the application is on, will fire $locationChangeSuccess
+		 * @param {string} newPath The new path to set to
+		 */
+		$scope.setPath = function (newPath) {
+			$location.path(newPath);
 		}
 		
 		// When we first load the page, lets get all the movies
+		// All movies are always visible, regardless of application state
 		$scope.getMovies();
-		
-		// And then we check if a movie has already been specified in the URL
-		if ($location.path().includes("/movie")) {
-			var path = $location.path();
-			// Lets open detail view by grabbing just the ID at the end of the URL
-			$scope.openDetail(path.substring(path.lastIndexOf('/') + 1));
-		}
-
 	}]);
