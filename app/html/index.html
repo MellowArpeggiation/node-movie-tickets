@@ -29,7 +29,7 @@
 	<!-- Set the Angular controller -->
 	<body ng-controller="mainController">
 		<div class="mj-header text-center">
-			<span class="mj-header-after"></span>
+			<span class="mj-header-background"></span>
 			<div class="container">
 				
 				<h1 class="mj-header-title">
@@ -48,10 +48,15 @@
 						<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
 					</form>
 					<br>
-					<p>Find the movies you want to watch, for the lowest prices, that's MovieJazz</p>
+					<div class="card" ng-show="focused">
+						<div class="card-block">
+							<p class="card-text">{{focusMovie.Plot}}</p>
+							<button class="btn btn-primary" ng-click="setPath('')">Close</button>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-8">
-					<div class="card u-pointer" ng-repeat="movie in visibleMovies" ng-click="openDetail(movie.ID)">
+					<div class="card u-pointer border-top-0 border-left-0 border-right-0" ng-repeat="movie in visibleMovies" ng-click="setPath('/movie/' + movie.ID)">
 						<div class="card-block">
 							<div class="row">
 								<div class="col-4">
@@ -64,17 +69,6 @@
 									<div ng-repeat="locations in movie.fromSource">{{locations}} </div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="row" ng-show="focused">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-block">
-							<p class="card-text">{{focusMovie.Plot}}</p>
-							<button class="btn btn-primary" ng-click="closeDetail()">Close</button>
 						</div>
 					</div>
 				</div>
