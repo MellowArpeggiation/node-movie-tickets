@@ -11,10 +11,10 @@ var movieDetail = new mongoose.Schema({
 	Plot: String,
 	Language: String,
 	Country: String,
-	Metascore: Number,
-	Rating: Number,
+	Metascore: String,
+	Rating: String,
 	Votes: String,
-	Price: Number
+	Price: String
 });
 
 module.exports = mongoose.model('movie', {
