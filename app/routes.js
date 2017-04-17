@@ -1,6 +1,7 @@
 var movie = require('./models/movie');
 
 var http = require('http');
+var extend = require('node.extend');
 
 var apiTimeout = 3000; // 3 second response time allowed, if the API fails, we use the cache
 
@@ -110,7 +111,7 @@ function updateCache(type, datasets) {
  */
 function getCache(clientResponse, apiResponses, endPoint, movieID) {
 	if (movieID !== undefined) {
-		movie.find({
+		movie.findOne({
 			ID: movieID
 		},
 		// Projection options, select only relevant elements
@@ -123,11 +124,25 @@ function getCache(clientResponse, apiResponses, endPoint, movieID) {
 					cache: true,
 					data: null
 				});
-			} else {
+			} else if (movie == null) {
+				// Handle an empty response (movie not present at this endpoint)
 				apiResponses.push({
 					name: endPoint.name,
 					cache: true,
-					data: movie
+					data: null
+				});
+			} else {
+				// Use node.extend to join the subdictionary to its parent
+				var returnMovie = movie;
+				if (movie.DetailCached) {
+					var returnMovie = extend(true, movie, movie.Detail).toObject();
+					returnMovie.Detail = undefined;
+				}
+				
+				apiResponses.push({
+					name: endPoint.name,
+					cache: true,
+					data: returnMovie
 				});
 			}
 
