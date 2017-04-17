@@ -20,6 +20,8 @@
 		
 		<!-- Scripts -->
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
 		
 		<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 		<script src="js/services/movies.js"></script> <!-- Load our movie fetching service -->
@@ -44,10 +46,23 @@
 			<div class="row">
 				<div class="col-md-4 affix">
 					<form>
-						<!-- Search bar, for live filtering movies -->
-						<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
+						<div class="form-group row">
+							<div class="col-12">
+								<!-- Search bar, for live filtering movies -->
+								<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
+							</div>
+						</div>
+						<fieldset class="form-group row u-slide-down" ng-show="filtered">
+							<div class="col-12">
+								<div class="form-check" ng-repeat="api in apiDetails">
+									<label class="form-check-label">
+										<input class="form-check-input" type="checkbox" ng-model="api.filtered" ng-change="filterMovies(filterText)">
+										<span ng-bind-html="api.friendlyName"></span>
+									</label>
+								</div>
+							</div>
+						</fieldset>
 					</form>
-					<br>
 					<div class="card" ng-show="focused">
 						<div class="card-block">
 							<p class="card-text">{{focusMovie.Plot}}</p>
@@ -66,7 +81,9 @@
 									<h4 class="card-title">{{movie.Title}}</h4>
 									<p class="card-text">{{movie.Year}}</p>
 									Now Showing at
-									<div ng-repeat="locations in movie.fromSource">{{locations}} </div>
+									<div ng-repeat="location in movie.fromSource">
+										<span ng-bind-html="apiDetails[location].friendlyName"></span>
+									</div>
 								</div>
 							</div>
 						</div>
