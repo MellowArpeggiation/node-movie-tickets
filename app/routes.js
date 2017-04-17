@@ -112,7 +112,10 @@ function getCache(clientResponse, apiResponses, endPoint, movieID) {
 	if (movieID !== undefined) {
 		movie.find({
 			ID: movieID
-		}, function (err, movie) {
+		},
+		// Projection options, select only relevant elements
+		"dbName Title Year ID Type Poster DetailCached Detail"
+		, function (err, movie) {
 			if (err) {
 				console.log(`ERROR DATABASE: ${err}`);
 				apiResponses.push({
@@ -133,7 +136,10 @@ function getCache(clientResponse, apiResponses, endPoint, movieID) {
 	} else {
 		movie.find({
 			dbName: endPoint.name
-		}, function (err, movies) {
+		},
+		// Projection options, select only relevant elements
+		"dbName Title Year ID Type DetailCached Poster"
+		, function (err, movies) {
 			if (err) {
 				console.log(`ERROR DATABASE: ${err}`);
 				apiResponses.push({
