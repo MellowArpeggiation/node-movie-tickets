@@ -44,46 +44,161 @@
 		<div class="container">
 			
 			<div class="row">
-				<div class="col-md-4 affix">
-					<form>
-						<div class="form-group row">
-							<div class="col-12">
-								<!-- Search bar, for live filtering movies -->
-								<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
-							</div>
-						</div>
-						<fieldset class="form-group row u-slide-down" ng-show="filtered">
-							<div class="col-12">
-								<div class="form-check" ng-repeat="api in apiDetails">
-									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" ng-model="api.filtered" ng-change="filterMovies(filterText)">
-										<span ng-bind-html="api.friendlyName"></span>
-									</label>
+				<div class="col-lg-4">
+					<div class="mj-affix">
+						<form>
+							<div class="form-group row">
+								<div class="col-12">
+									<!-- Search bar, for live filtering movies -->
+									<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
 								</div>
 							</div>
-						</fieldset>
-					</form>
-					<div class="card" ng-show="focused">
-						<div class="card-block">
-							<p class="card-text">{{focusMovie.Plot}}</p>
-							<button class="btn btn-primary" ng-click="setPath('')">Close</button>
+							<fieldset class="form-group row u-slide-down" ng-show="filtered">
+								<div class="col-12">
+									<div class="form-check" ng-repeat="api in apiDetails">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox" ng-model="api.filtered" ng-change="filterMovies(filterText)">
+											<span ng-bind-html="api.friendlyName"></span>
+										</label>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+						<div class="card" ng-show="focused">
+							<div class="card-header">
+								<button class="close pull-right"
+										aria-label="Close"
+										ng-click="setPath('')">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<ul class="nav nav-tabs card-header-tabs">
+									<li class="nav-item">
+										<a class="nav-link active"
+										   ng-class="openTab == 'prices' ? 'active' : ''"
+										   ng-click="openTab = 'prices'"
+										   href="">Prices</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link"
+										   ng-class="openTab == 'details' ? 'active' : ''"
+										   ng-click="openTab = 'details'"
+										   href="">Details</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link"
+										   ng-class="openTab == 'plot' ? 'active' : ''"
+										   ng-click="openTab = 'plot'"
+										   href="">Plot</a>
+									</li>
+								</ul>
+							</div>
+							<div class="card-block"
+								 ng-class="openTab != 'prices' ? 'hidden-xs-up' : ''">
+								<h4 class="card-title">{{focusMovie.Title}}</h4>
+								
+								<table class="table table-hover">
+									<tbody>
+										<tr class="u-pointer"
+											ng-repeat="price in focusMovie.Price"
+											ng-class="{'mj-best-price': $first, 'table-info': selectedBooking == price.location}"
+											ng-click="selectBooking(price.location)">
+											<td ng-bind-html="apiDetails[price.location].friendlyName"></td>
+											<td>${{price.price}}</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<button class="btn btn-primary mj-btn-block"
+										ng-click="gotoPath('/book/' + selectedBooking + '/' + focusMovie.ID)"
+										ng-disabled="!selectedBooking">Book</button>
+							</div>
+							<div class="card-block"
+								 ng-class="openTab != 'details' ? 'hidden-xs-up' : ''">
+								<h4 class="card-title">{{focusMovie.Title}}</h4>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Released</dt>
+									<dd>{{focusMovie.Released}}</dd>
+								</dl>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Country</dt>
+									<dd>{{focusMovie.Country}}</dd>
+								</dl>
+								<hr>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Rating</dt>
+									<dd>{{focusMovie.Rated}}</dd>
+								</dl>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Genres</dt>
+									<dd>{{focusMovie.Genre}}</dd>
+								</dl>
+								<hr>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Cast</dt>
+									<dd>{{focusMovie.Actors}}</dd>
+								</dl>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Directors</dt>
+									<dd>{{focusMovie.Director}}</dd>
+								</dl>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Writers</dt>
+									<dd>{{focusMovie.Writer}}</dd>
+								</dl>
+							</div>
+							<div class="card-block"
+								 ng-class="openTab != 'plot' ? 'hidden-xs-up' : ''">
+								<h4 class="card-title">{{focusMovie.Title}}</h4>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Plot</dt>
+									<dd>{{focusMovie.Plot}}</dd>
+								</dl>
+								<hr>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Languages</dt>
+									<dd>{{focusMovie.Language}}</dd>
+								</dl>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Runtime</dt>
+									<dd>{{focusMovie.Runtime}}</dd>
+								</dl>
+								<hr>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted mb-2">Metascore</dt>
+									<dd>
+										<div class="mj-metascore" ng-class="focusMovie.MetaColor">
+											{{focusMovie.Metascore}}
+										</div>
+									</dd>
+								</dl>
+								<dl class="mj-description-list card-text">
+									<dt class="text-muted">Rating</dt>
+									<dd>{{focusMovie.Rating}}/10 from {{focusMovie.Votes}} votes</dd>
+								</dl>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-8">
-					<div class="card u-pointer border-top-0 border-left-0 border-right-0" ng-repeat="movie in visibleMovies" ng-click="setPath('/movie/' + movie.ID)">
+				<div class="col-lg-8"
+					 ng-class="focused ? 'hidden-md-down' : ''">
+					<div class="card u-pointer border-top-0 border-left-0 border-right-0"
+						 ng-repeat="movie in visibleMovies"
+						 ng-click="setPath('/movie/' + movie.ID)">
 						<div class="card-block">
 							<div class="row">
 								<div class="col-4">
 									<img class="img-fluid w-100" ng-src="{{movie.Poster}}">
 								</div>
 								<div class="col-8">
-									<h4 class="card-title">{{movie.Title}}</h4>
-									<p class="card-text">{{movie.Year}}</p>
-									Now Showing at
-									<div ng-repeat="location in movie.fromSource">
-										<span ng-bind-html="apiDetails[location].friendlyName"></span>
-									</div>
+									<h2 class="card-title">{{movie.Title}}</h2>
+									<h6 class="card-subtitle">{{movie.Year}}</h6>
+									<br>
+									<p class="card-text">Now Showing at:</p>
+									<blockquote class="blockquote">
+										<div ng-repeat="location in movie.fromSource">
+											<span ng-bind-html="apiDetails[location].friendlyName"></span>
+										</div>
+									</blockquote>
 								</div>
 							</div>
 						</div>
@@ -97,23 +212,14 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>MovieJazz</h4>
-						<p>App is cool</p>
+						<p>Find the movies you want at the lowest prices</p>
 						<p>Developed by George Paton</p>
-					</div>
-					<div class="col-sm-3">
-						<h4>Connect</h4>
-					</div>
-					<div class="col-sm-3">
-						<h4>Tags</h4>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<a href="/" id="home">Home</a>
+						<a href="/" id="home">Home</a> |
 						<a href="/about">About</a>
-						<a href="/advertising">Advertising</a>
-						<a href="/FAQ">FAQ</a>
-						<a href="/contact">Contact</a> 
 					</div>
 					<div class="col-sm-6 text-right">
 						Copyright © <a href="http://arpeggi.at/">George Paton 2017</a>
