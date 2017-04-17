@@ -1,5 +1,27 @@
 $btn-depth: 4; // Multiplier of bottom border width
 
+// Set the button hover state color to match regular color (to emphasize movement over color)
+@mixin button-hover($color, $background, $border) {
+	$active-background: darken($background, 5%);
+	$active-border: darken($border, 5%);
+	
+	&:hover,
+	&.hover {
+		color: $color;
+		background-color: $background;
+		border-color: $border;
+	}
+	
+	&:active,
+	&.active,
+	.show > &.dropdown-toggle {
+		color: $color;
+		background-color: $active-background;
+		border-color: $active-border;
+	}
+}
+
+
 .btn {
 	cursor: pointer;
 	
@@ -29,6 +51,25 @@ $btn-depth: 4; // Multiplier of bottom border width
 			padding-top: calc(#{$btn-padding-y} + #{($btn-depth * 1px)});
 		}
 	}
+}
+
+.btn-primary {
+	@include button-hover($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+.btn-secondary {
+	@include button-hover($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+.btn-info {
+	@include button-hover($btn-info-color, $btn-info-bg, $btn-info-border);
+}
+.btn-success {
+	@include button-hover($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+.btn-warning {
+	@include button-hover($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+}
+.btn-danger {
+	@include button-hover($btn-danger-color, $btn-danger-bg, $btn-danger-border);
 }
 
 .form-control {

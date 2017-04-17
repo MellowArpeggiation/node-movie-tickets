@@ -57,6 +57,7 @@ body {
 }
 
 .mj-header {
+	position: relative;
 	background-color: transparent;
 	z-index: -3;
 	margin-bottom: 3rem;
@@ -66,7 +67,26 @@ body {
 		padding: 6rem 0;
 		
 		font-family: 'Philosopher', cursive;
-		font-size: 8vw;
+		
+		// Default is XS
+		font-size: 3rem;
+		
+		@include media-breakpoint-up(sm) {
+			font-size: 5rem;
+		}
+		
+		@include media-breakpoint-up(md) {
+			font-size: 6.5rem;
+		}
+		
+		@include media-breakpoint-up(lg) {
+			font-size: 8rem;
+		}
+		
+		@include media-breakpoint-up(xl) {
+			font-size: 10rem;
+		}
+		
 		
 		// Clipping
 		-webkit-text-fill-color: rgba(0, 0, 255, 0);
@@ -74,8 +94,6 @@ body {
 
 		// what will show through the text
 		background-image: $title-bg-img;
-		
-		
 		background-attachment: fixed;
 		background-size: 100%;
 
@@ -103,7 +121,6 @@ body {
 
 		/* Text Background */
 		&:after {
-			position: absolute;
 			z-index: -1;
 			top: 1rem;
 			right: 0;
@@ -116,6 +133,19 @@ body {
 		}
 		
 		
+	}
+	
+	.mj-header-background {
+		position: absolute;
+		z-index: -3;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		
+		background-image: $title-bg-img;
+		background-attachment: fixed;
+		background-size: 100%;
 	}
 }
 
