@@ -52,6 +52,7 @@
 									<!-- Search bar, for live filtering movies -->
 									<input type="text" class="form-control" placeholder="Search" ng-model="filterText" ng-change="filterMovies(filterText)">
 								</div>
+								<div class="mb-1 hidden-sm-up">&nbsp;</div>
 							</div>
 							<fieldset class="form-group row u-slide-down" ng-show="filtered">
 								<div class="col-12">
@@ -186,10 +187,12 @@
 						 ng-click="setPath('/movie/' + movie.ID)">
 						<div class="card-block">
 							<div class="row">
-								<div class="col-4">
+								<div class="col-sm-4">
 									<img class="img-fluid w-100" ng-src="{{movie.Poster}}">
 								</div>
-								<div class="col-8">
+								<!-- Element for spacing on mobile only -->
+								<div class="mb-1 hidden-sm-up">&nbsp;</div>
+								<div class="col-sm-8">
 									<h2 class="card-title">{{movie.Title}}</h2>
 									<h6 class="card-subtitle">{{movie.Year}}</h6>
 									<br>
