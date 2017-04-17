@@ -350,6 +350,10 @@ module.exports = function (app) {
 		res.sendFile(__dirname + '/html/index.html');
 	});
 	
+	app.get('/book/:provider_name/:movie_id', function (req, res) {
+		res.sendFile(__dirname + '/html/book.html');
+	})
+	
     app.get('/', function (req, res) {
         res.sendFile(__dirname + '/html/index.html');
     });
