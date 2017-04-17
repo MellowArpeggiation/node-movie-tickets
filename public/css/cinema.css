@@ -7608,28 +7608,28 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   .form-control::placeholder {
     color: #ccc; }
 
-/* line 5, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+/* line 10, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 body {
   overflow-x: hidden; }
 
-/* line 9, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-.footer {
+/* line 14, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+.mj-footer {
   padding: 4rem 0;
   margin-top: 4rem;
   background-color: #f7f7f7;
   background-image: url("/img/title-background-invert.jpg"); }
 
-/* line 16, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+/* line 21, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .u-pointer {
   cursor: pointer; }
 
-/* line 20, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+/* line 25, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
 .affix {
   position: sticky;
   top: 20px; }
 
-/* line 25, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-.loader {
+/* line 30, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+.mj-loader {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -7638,8 +7638,8 @@ body {
   border-radius: 50%;
   padding: 1rem;
   z-index: 1050; }
-  /* line 42, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-  .loader .loading-spinner {
+  /* line 47, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+  .mj-loader .mj-spinner {
     border: 0.2rem solid #eceeef;
     border-top: 0.2rem solid #77005c;
     border-radius: 50%;
@@ -7647,12 +7647,13 @@ body {
     height: 4rem;
     animation: spin 0.5s linear infinite; }
 
-/* line 54, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-.header {
+/* line 59, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+.mj-header {
   background-color: transparent;
+  z-index: -3;
   margin-bottom: 3rem; }
-  /* line 59, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-  .header .header-title {
+  /* line 64, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+  .mj-header .mj-header-title {
     position: relative;
     padding: 6rem 0;
     font-family: 'Philosopher', cursive;
@@ -7665,12 +7666,12 @@ body {
     color: red;
     /* Background */
     /* Text Background */ }
-    /* line 81, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-    .header .header-title:before, .header .header-title:after {
+    /* line 86, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    .mj-header .mj-header-title:before, .mj-header .mj-header-title:after {
       position: absolute;
       content: ''; }
-    /* line 88, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-    .header .header-title:before {
+    /* line 93, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    .mj-header .mj-header-title:before {
       z-index: -2;
       top: 0;
       right: 0;
@@ -7679,14 +7680,14 @@ body {
       background-image: inherit;
       background-attachment: fixed;
       background-size: 100%; }
-    /* line 100, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
-    .header .header-title:after {
+    /* line 105, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
+    .mj-header .mj-header-title:after {
       position: absolute;
       z-index: -1;
       top: 1rem;
-      right: 6rem;
+      right: 0;
       bottom: 1rem;
-      left: 6rem;
+      left: 0;
       background-image: url("/img/title-background-invert.jpg");
       background-attachment: fixed;
       background-size: 100%;

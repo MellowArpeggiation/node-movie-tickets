@@ -2,15 +2,20 @@
 @import "bootstrap/bootstrap";
 @import "bootstrap-overrides";
 
+$title-bg-img: url("/img/title-background.jpg");
+$title-bg-img-invert: url("/img/title-background-invert.jpg");
+
+
+
 body {
 	overflow-x: hidden;
 }
 
-.footer {
+.mj-footer {
 	padding: 4rem 0;
     margin-top: 4rem;
     background-color: #f7f7f7;
-	background-image: url("/img/title-background-invert.jpg");
+	background-image: $title-bg-img-invert;
 }
 
 .u-pointer {
@@ -22,7 +27,7 @@ body {
 	top: 20px;
 }
 
-.loader {
+.mj-loader {
 	// Pop the loader in the bottom right corner
 	position: fixed;
 	top: 50%;
@@ -39,7 +44,7 @@ body {
 	
 	
 	
-	.loading-spinner {
+	.mj-spinner {
 		border: 0.2rem solid $gray-lighter;
 		border-top: 0.2rem solid $brand-primary;
 		
@@ -51,12 +56,12 @@ body {
 	}
 }
 
-.header {
+.mj-header {
 	background-color: transparent;
-	
+	z-index: -3;
 	margin-bottom: 3rem;
 	
-	.header-title {
+	.mj-header-title {
 		position: relative;
 		padding: 6rem 0;
 		
@@ -68,7 +73,7 @@ body {
 		-webkit-background-clip: text;
 
 		// what will show through the text
-		background-image: url("/img/title-background.jpg");
+		background-image: $title-bg-img;
 		
 		
 		background-attachment: fixed;
@@ -101,14 +106,16 @@ body {
 			position: absolute;
 			z-index: -1;
 			top: 1rem;
-			right: 6rem;
+			right: 0;
 			bottom: 1rem;
-			left: 6rem;
-			background-image: url("/img/title-background-invert.jpg");
+			left: 0;
+			background-image: $title-bg-img-invert;
 			background-attachment: fixed;
 			background-size: 100%;
 			background-color: $body-bg;
 		}
+		
+		
 	}
 }
 
