@@ -401,11 +401,11 @@ blockquote {
 
 /* line 163, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_reboot.scss */
 a {
-  color: #77005c;
+  color: #990a5a;
   text-decoration: none; }
   /* line 21, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   a:focus, a:hover {
-    color: #2b0021;
+    color: #510530;
     text-decoration: underline; }
 
 /* line 179, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_reboot.scss */
@@ -1966,7 +1966,7 @@ pre {
   .form-control:focus {
     color: #464a4c;
     background-color: #fff;
-    border-color: #77005c;
+    border-color: #990a5a;
     outline: none; }
   /* line 44, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_forms.scss */
   .form-control::placeholder {
@@ -2291,27 +2291,27 @@ fieldset[disabled] a.btn {
 /* line 55, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-primary {
   color: #fff;
-  background-color: #77005c;
-  border-color: #5e0048; }
+  background-color: #990a5a;
+  border-color: #81084c; }
   /* line 11, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-primary:hover {
     color: #fff;
-    background-color: #440035;
-    border-color: #200019; }
+    background-color: #69073e;
+    border-color: #48052a; }
   /* line 21, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary:focus, .btn-primary.focus {
-    box-shadow: 0 0 0 2px rgba(94, 0, 72, 0.5); }
+    box-shadow: 0 0 0 2px rgba(129, 8, 76, 0.5); }
   /* line 32, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary.disabled, .btn-primary:disabled {
-    background-color: #77005c;
-    border-color: #5e0048; }
+    background-color: #990a5a;
+    border-color: #81084c; }
   /* line 38, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-primary:active, .btn-primary.active,
   .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #440035;
+    background-color: #69073e;
     background-image: none;
-    border-color: #200019; }
+    border-color: #48052a; }
 
 /* line 58, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-secondary {
@@ -2440,28 +2440,28 @@ fieldset[disabled] a.btn {
 
 /* line 75, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-outline-primary {
-  color: #77005c;
+  color: #990a5a;
   background-image: none;
   background-color: transparent;
-  border-color: #77005c; }
+  border-color: #990a5a; }
   /* line 11, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-outline-primary:hover {
     color: #fff;
-    background-color: #77005c;
-    border-color: #77005c; }
+    background-color: #990a5a;
+    border-color: #990a5a; }
   /* line 61, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-primary:focus, .btn-outline-primary.focus {
-    box-shadow: 0 0 0 2px rgba(119, 0, 92, 0.5); }
+    box-shadow: 0 0 0 2px rgba(153, 10, 90, 0.5); }
   /* line 66, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-primary.disabled, .btn-outline-primary:disabled {
-    color: #77005c;
+    color: #990a5a;
     background-color: transparent; }
   /* line 72, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_buttons.scss */
   .btn-outline-primary:active, .btn-outline-primary.active,
   .show > .btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #77005c;
-    border-color: #77005c; }
+    background-color: #990a5a;
+    border-color: #990a5a; }
 
 /* line 78, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-outline-secondary {
@@ -2591,7 +2591,7 @@ fieldset[disabled] a.btn {
 /* line 100, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_buttons.scss */
 .btn-link {
   font-weight: normal;
-  color: #77005c;
+  color: #990a5a;
   border-radius: 0; }
   /* line 105, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_buttons.scss */
   .btn-link, .btn-link:active, .btn-link.active, .btn-link:disabled {
@@ -2604,7 +2604,7 @@ fieldset[disabled] a.btn {
     border-color: transparent; }
   /* line 21, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
   .btn-link:focus, .btn-link:hover {
-    color: #2b0021;
+    color: #510530;
     text-decoration: underline;
     background-color: transparent; }
   /* line 125, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_buttons.scss */
@@ -3627,8 +3627,8 @@ tbody.collapse.show {
 
 /* line 106, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-primary {
-  background-color: #77005c;
-  border-color: #77005c; }
+  background-color: #990a5a;
+  border-color: #990a5a; }
   /* line 7, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_cards.scss */
   .card-primary .card-header,
   .card-primary .card-footer {
@@ -3673,7 +3673,7 @@ tbody.collapse.show {
 /* line 123, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-outline-primary {
   background-color: transparent;
-  border-color: #77005c; }
+  border-color: #990a5a; }
 
 /* line 126, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/_card.scss */
 .card-outline-secondary {
@@ -4864,11 +4864,11 @@ button.close {
 
 /* line 4, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_background-variant.scss */
 .bg-primary {
-  background-color: #77005c !important; }
+  background-color: #990a5a !important; }
 
 /* line 21, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
 a.bg-primary:focus, a.bg-primary:hover {
-  background-color: #440035 !important; }
+  background-color: #69073e !important; }
 
 /* line 4, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_background-variant.scss */
 .bg-success {
@@ -7440,11 +7440,11 @@ a.text-muted:focus, a.text-muted:hover {
 
 /* line 4, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_text-emphasis.scss */
 .text-primary {
-  color: #77005c !important; }
+  color: #990a5a !important; }
 
 /* line 21, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_hover.scss */
 a.text-primary:focus, a.text-primary:hover {
-  color: #440035 !important; }
+  color: #69073e !important; }
 
 /* line 4, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/bootstrap/mixins/_text-emphasis.scss */
 .text-success {
@@ -7600,15 +7600,15 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 /* line 8, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
 .btn-primary:hover, .btn-primary.hover {
   color: #fff;
-  background-color: #77005c;
-  border-color: #5e0048; }
+  background-color: #990a5a;
+  border-color: #81084c; }
 
 /* line 15, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
 .btn-primary:active, .btn-primary.active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #5e0048;
-  border-color: #440035; }
+  background-color: #81084c;
+  border-color: #69073e; }
 
 /* line 8, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
 .btn-secondary:hover, .btn-secondary.hover {
@@ -7686,27 +7686,89 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   .form-control::placeholder {
     color: #ccc; }
 
+/* Checkbox styling */
+/* line 91, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+input[type="checkbox"] {
+  position: relative !important;
+  border: none;
+  margin-bottom: -4px;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0;
+  line-height: normal; }
+  /* line 103, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+  input[type="checkbox"]:checked {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none; }
+    /* line 108, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+    input[type="checkbox"]:checked:after {
+      background-color: #990a5a;
+      border-color: #990a5a; }
+    /* line 113, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+    input[type="checkbox"]:checked:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 6px;
+      display: table;
+      width: 6px;
+      height: 12px;
+      border: 2px solid #fff;
+      border-top-width: 0;
+      border-left-width: 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg); }
+  /* line 131, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+  input[type="checkbox"]:after {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin-top: -2px;
+    margin-right: 8px;
+    border: 2px solid #636c72;
+    border-radius: 2px;
+    -webkit-transition: 240ms;
+    -o-transition: 240ms;
+    transition: 240ms; }
+  /* line 145, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/_bootstrap-overrides.scss */
+  input[type="checkbox"]:focus {
+    outline: 0; }
+
 /* line 10, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
 body {
   overflow-x: hidden; }
 
 /* line 14, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+.u-pointer {
+  cursor: pointer; }
+
+/* line 18, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+.u-slide-down {
+  opacity: 1; }
+  /* line 22, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+  .u-slide-down.ng-hide {
+    opacity: 0;
+    transition: 0.5s opacity; }
+
+/* line 28, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+.affix {
+  position: sticky;
+  top: 20px; }
+
+/* line 33, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
 .mj-footer {
   padding: 4rem 0;
   margin-top: 4rem;
   background-color: #f7f7f7;
   background-image: url("/img/title-background-invert.jpg"); }
 
-/* line 21, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
-.u-pointer {
-  cursor: pointer; }
-
-/* line 25, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
-.affix {
-  position: sticky;
-  top: 20px; }
-
-/* line 30, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+/* line 40, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
 .mj-loader {
   position: fixed;
   top: 50%;
@@ -7716,22 +7778,22 @@ body {
   border-radius: 50%;
   padding: 1rem;
   z-index: 1050; }
-  /* line 47, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+  /* line 57, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
   .mj-loader .mj-spinner {
     border: 0.2rem solid #eceeef;
-    border-top: 0.2rem solid #77005c;
+    border-top: 0.2rem solid #990a5a;
     border-radius: 50%;
     width: 4rem;
     height: 4rem;
     animation: spin 0.5s linear infinite; }
 
-/* line 59, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+/* line 69, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
 .mj-header {
   position: relative;
   background-color: transparent;
   z-index: -3;
   margin-bottom: 3rem; }
-  /* line 65, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+  /* line 75, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
   .mj-header .mj-header-title {
     position: relative;
     padding: 6rem 0;
@@ -7746,26 +7808,26 @@ body {
     /* Background */
     /* Text Background */ }
     @media (min-width: 576px) {
-      /* line 65, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+      /* line 75, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
       .mj-header .mj-header-title {
         font-size: 5rem; } }
     @media (min-width: 768px) {
-      /* line 65, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+      /* line 75, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
       .mj-header .mj-header-title {
         font-size: 6.5rem; } }
     @media (min-width: 992px) {
-      /* line 65, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+      /* line 75, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
       .mj-header .mj-header-title {
         font-size: 8rem; } }
     @media (min-width: 1200px) {
-      /* line 65, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+      /* line 75, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
       .mj-header .mj-header-title {
         font-size: 10rem; } }
-    /* line 104, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+    /* line 114, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
     .mj-header .mj-header-title:before, .mj-header .mj-header-title:after {
       position: absolute;
       content: ''; }
-    /* line 111, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+    /* line 121, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
     .mj-header .mj-header-title:before {
       z-index: -2;
       top: 0;
@@ -7775,7 +7837,7 @@ body {
       background-image: inherit;
       background-attachment: fixed;
       background-size: 100%; }
-    /* line 123, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+    /* line 133, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
     .mj-header .mj-header-title:after {
       z-index: -1;
       top: 1rem;
@@ -7786,7 +7848,7 @@ body {
       background-attachment: fixed;
       background-size: 100%;
       background-color: #fff; }
-  /* line 138, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
+  /* line 148, ../../Users/George/Documents/GitHub/node-movie-tickets/public/css/cinema.scss */
   .mj-header .mj-header-background {
     position: absolute;
     z-index: -3;

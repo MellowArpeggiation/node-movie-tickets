@@ -11,20 +11,30 @@ body {
 	overflow-x: hidden;
 }
 
-.mj-footer {
-	padding: 4rem 0;
-    margin-top: 4rem;
-    background-color: #f7f7f7;
-	background-image: $title-bg-img-invert;
-}
-
 .u-pointer {
 	cursor: pointer;
+}
+
+.u-slide-down {
+	opacity: 1;
+	
+	
+	&.ng-hide {
+		opacity: 0;
+		transition: 0.5s opacity;
+	}
 }
 
 .affix {
 	position: sticky;
 	top: 20px;
+}
+
+.mj-footer {
+	padding: 4rem 0;
+    margin-top: 4rem;
+    background-color: #f7f7f7;
+	background-image: $title-bg-img-invert;
 }
 
 .mj-loader {
