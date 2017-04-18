@@ -232,6 +232,15 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 			$scope.selectedBooking = location;
 		};
 		
+		/**
+		 * Quick function for setting selected tab, will recalculate sticky height for polyfill
+		 * @param {[[Type]]} tab [[Description]]
+		 */
+		$scope.setTab = function (tab) {
+			$scope.openTab = tab;
+			Stickyfill.rebuild();
+		};
+		
 		// When we first load the page, lets get all the movies
 		// All movies are always visible, regardless of application state
 		$scope.getMovies();
