@@ -74,7 +74,7 @@ h4, .h4 {
 	top: 1rem;
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(lg) {
 	.mj-card-block {
 		overflow-y: auto;
 		max-height: calc(100vh - 10rem);
