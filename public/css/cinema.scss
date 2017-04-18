@@ -72,11 +72,13 @@ h4, .h4 {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 1rem;
-//	max-height: calc(100vh - 2rem);
 }
 
-.mj-card-block {
-//	overflow-y: scroll;
+@include media-breakpoint-up(md) {
+	.mj-card-block {
+		overflow-y: scroll;
+		max-height: calc(100vh - 10rem);
+	}
 }
 
 .mj-footer {
