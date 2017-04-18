@@ -76,7 +76,7 @@ h4, .h4 {
 
 @include media-breakpoint-up(md) {
 	.mj-card-block {
-		overflow-y: scroll;
+		overflow-y: auto;
 		max-height: calc(100vh - 10rem);
 	}
 }

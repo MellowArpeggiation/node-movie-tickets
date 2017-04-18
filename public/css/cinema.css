@@ -7804,7 +7804,7 @@ h4, .h4 {
 @media (min-width: 768px) {
   /* line 78, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
   .mj-card-block {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: calc(100vh - 10rem); } }
 
 /* line 84, /Users/georgepaton/Documents/Developer/workspace/node-movie-tickets/public/css/cinema.scss */
