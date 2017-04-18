@@ -28,6 +28,17 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 		$scope.selectedBooking = false;
 		
 		/**
+		 * Run all JS based polyfills, like position: sticky;
+		 */
+		$scope.polyfill = function () {
+			var stickyElements = document.getElementsByClassName('mj-affix');
+			
+			for (var i = 0; i < stickyElements.length; i++) {
+				Stickyfill.add(stickyElements[i]);
+			}
+		};
+		
+		/**
 		 * Returns a list of all movies
 		 */
 		$scope.getMovies = function () {
@@ -83,7 +94,7 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 				// Hide the loading spinner
 				$scope.loading--;
 			});
-		}
+		};
 
 		/**
 		 * Returns a list of movies filtered by a string, to enable quick searching
@@ -202,18 +213,29 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 		 */
 		$scope.setPath = function (newPath) {
 			$location.path(newPath);
-		}
+		};
 		
+		/**
+		 * Set the current path of the application and reload as new location
+		 * @param {string} newPath The path to navigate to
+		 */
 		$scope.gotoPath = function (newPath) {
 			$location.path(newPath);
 			$window.location.href = newPath;
-		}
+		};
 		
+		/**
+		 * Quick booking selection function, for HTML brevity
+		 * @param {string} location Which API endpoint has been selected for booking
+		 */
 		$scope.selectBooking = function (location) {
 			$scope.selectedBooking = location;
-		}
+		};
 		
 		// When we first load the page, lets get all the movies
 		// All movies are always visible, regardless of application state
 		$scope.getMovies();
+		
+		// Setup all polyfills on page
+		$scope.polyfill();
 	}]);
