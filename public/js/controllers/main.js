@@ -5,7 +5,9 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 	})
 	// Function definition and entry point for the controller
 	.controller('mainController', ['$scope', '$http', '$location', '$window', 'movies', function($scope, $http, $location, $window, movies) {
+		
 		// Translate API endpoint names into user friendly ones
+		// Also stores whether the endpoint has been filtered out or not
 		$scope.apiDetails = {
 			'cinemaworld': {
 				friendlyName: "<i class='fa fa-fw fa-video-camera'></i> Cinema World",
@@ -24,6 +26,7 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 		$scope.focused = false;
 		$scope.filtered = false;
 		
+		// Keep track of the selected tab and booking source
 		$scope.openTab = 'prices';
 		$scope.selectedBooking = false;
 		

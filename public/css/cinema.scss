@@ -1,14 +1,23 @@
-/* Lets import the pristine Bootstrap v4, so we can override safely */
+// Imports
+// Lets import the pristine Bootstrap v4, so we can override safely
 @import "bootstrap/bootstrap";
 @import "bootstrap-overrides";
 
+
+
+// Variables ================
 $title-bg-img: url("/img/title-background.jpg");
 $title-bg-img-invert: url("/img/title-background-invert.jpg");
 
+
+
+// Element overrides ================
+// In the case of an old browser freaking out, lets ensure no horizontal scroll bars ever appear
 body {
 	overflow-x: hidden;
 }
 
+// Thin fonts for headers
 h2, .h2,
 h3, .h3,
 h4, .h4 {
@@ -19,12 +28,19 @@ h4, .h4 {
 	}
 }
 
+
+
+// Custom Classes ================
+// Reduce font-size of description list labels, to emphasize content
 .mj-description-list {
 	dt {
 		font-size: 0.8rem;
 	}
 }
 
+/**
+ * Metascore look and feel
+ */
 .mj-metascore {
 	width: 3rem;
 	height: 3rem;
@@ -48,14 +64,17 @@ h4, .h4 {
 	}
 }
 
+// Utility class to ensure clickable objects have a pointer
 .u-pointer {
 	cursor: pointer;
 }
 
+// Custom block class which doesn't interfere with clicky feel buttons
 .mj-btn-block {
 	width: 100%;
 }
 
+// Callout applied to first price (always lowest)
 .mj-best-price {
 	position: relative;
 	&:after {
@@ -68,12 +87,14 @@ h4, .h4 {
 	}
 }
 
+// Affix, has polyfill attached in main.js
 .mj-affix {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 1rem;
 }
 
+// Ensure the cards don't exceed screen height when in an affix
 @include media-breakpoint-up(lg) {
 	.mj-card-block {
 		overflow-y: auto;
@@ -88,6 +109,7 @@ h4, .h4 {
 	background-image: $title-bg-img-invert;
 }
 
+// Loading spinner
 .mj-loader {
 	// Pop the loader in the bottom right corner
 	position: fixed;
@@ -120,6 +142,7 @@ h4, .h4 {
 	}
 }
 
+// Pretty looking header, uses background-clip (Experimental! Has fallback)
 .mj-header {
 	position: relative;
 	background-color: transparent;
@@ -171,7 +194,7 @@ h4, .h4 {
 			content: '';
 		}
 
-		/* Background */
+		// Background
 		&:before {
 			z-index: -2;
 			top: 0;
@@ -183,7 +206,7 @@ h4, .h4 {
 			background-size: 100%;
 		}
 
-		/* Text Background */
+		// Text Background
 		&:after {
 			z-index: -1;
 			top: 1rem;
@@ -195,10 +218,9 @@ h4, .h4 {
 			background-size: 100%;
 			background-color: $body-bg;
 		}
-		
-		
 	}
 	
+	// Sits in the container, and extends the background to the edges of the window
 	.mj-header-background {
 		position: absolute;
 		z-index: -3;
@@ -213,6 +235,10 @@ h4, .h4 {
 	}
 }
 
+
+
+// Animations ================
+// Spins the loader
 @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
