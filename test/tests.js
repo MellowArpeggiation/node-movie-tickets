@@ -1,5 +1,9 @@
-var assert = require('chai').assert;
-var http   = require('http');
+var chai = require('chai'),
+	http = require('http');
+
+var assert = chai.assert,
+	should = chai.should(),
+	expect = chai.expect;
 
 process.env.DBTYPE  = 'remoteUrl';
 process.env.PORT    = 8080;
@@ -22,7 +26,7 @@ describe('Web Server', function () {
 });
 
 describe('API Server', function () {
-	this.timeout(5000);
+	this.timeout(5000); // If the server takes longer than 5 seconds, we failed
 	
 	describe('/api/movies - List Movies', function () {
 		var listData;
@@ -37,17 +41,37 @@ describe('API Server', function () {
 				
 				res.on('end', function () {
 					listData = JSON.parse(data.join(''));
-					
 					done();
 				});
 			});
 		});
 		
-		it('should return a JSON object');
+		it('should return an array of JSON objects', function () {
+			expect(listData).to.be.a('array');
+			listData.forEach(function (data) {
+				expect(data).to.be.a('object');
+			});
+		});
 		
-		it('JSON should contain Title');
-		it('JSON should contain Year');
-		it('JSON should contain Providers');
+		it('JSON should contain Titles', function () {
+			listData.forEach(function (data) {
+				data.data.Movies.forEach(function (movie) {
+					expect(movie.Title).to.be.a('string');
+				});
+			});
+		});
+		it('JSON should contain Years', function () {
+			listData.forEach(function (data) {
+				data.data.Movies.forEach(function (movie) {
+					expect(movie.Year).to.be.a('string');
+				});
+			});
+		});
+		it('JSON should contain Providers', function () {
+			listData.forEach(function (data) {
+				expect(data.name).to.be.a('string');
+			});
+		});
 	});
 	
 	describe('/api/movies/movie_id - Get Movie', function () {
@@ -69,13 +93,44 @@ describe('API Server', function () {
 			});
 		});
 		
-		it('should return a JSON object', function () {
-			//assert.isObject(getData);
+		it('should return an array of JSON objects', function () {
+			expect(getData).to.be.a('array');
+			getData.forEach(function (data) {
+				expect(data).to.be.a('object');
+			});
 		});
 		
-		it('JSON should contain Title');
-		it('JSON should contain Year');
-		it('JSON should contain Providers');
-		it('JSON should contain Movie details');
+		it('JSON should contain Title', function () {
+			getData.forEach(function (data) {
+				// Some providers don't have the movie we check
+				if (data.data !== null) {
+					expect(data.data.Title).to.be.a('string');
+				}
+			});
+		});
+		it('JSON should contain Year', function () {
+			getData.forEach(function (data) {
+				if (data.data !== null) {
+					expect(data.data.Year).to.be.a('string');
+				}
+			});
+		});
+		it('JSON should contain Providers', function () {
+			getData.forEach(function (data) {
+				expect(data.name).to.be.a('string');
+			});
+		});
+		it('JSON should contain Movie details', function () {
+			getData.forEach(function (data) {
+				if (data.data !== null) {
+					expect(data.data.Rated).to.be.a('string');
+					expect(data.data.Runtime).to.be.a('string');
+					expect(data.data.Genre).to.be.a('string');
+					expect(data.data.Price).to.be.a('string');
+					expect(data.data.Plot).to.be.a('string');
+					expect(data.data.Director).to.be.a('string');
+				}
+			});
+		});
 	});
 });
