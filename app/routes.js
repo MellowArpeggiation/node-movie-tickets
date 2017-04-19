@@ -365,6 +365,10 @@ module.exports = function (app) {
 	})
 	
     app.get('/', function (req, res) {
-        res.sendFile(__dirname + '/html/index.html');
+		res.sendFile(__dirname + '/html/index.html');
     });
+	
+	app.get('/about', function (req, res) {
+		res.sendFile(__dirname + '/html/about.html')
+	});
 };
