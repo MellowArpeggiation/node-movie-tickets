@@ -29,6 +29,16 @@ var apiEndpoints = [
 ];
 
 /**
+ * Logs to console IF not in unit testing mode
+ * @param {object} msg Anything that console.log can consume
+ */
+function log(msg) {
+	if (process.env.NODE_ENV !== 'test') {
+		console.log(msg);
+	}
+}
+
+/**
  * Updates the cache with details for a particular movie
  * @param {string} type     The type of request being made, supports 'list' and 'get'
  * @param {Array}  datasets An array of all API requests, either for a single movie + details or basic view of all
@@ -63,7 +73,7 @@ function updateCache(type, datasets) {
 						}
 					}, function (err) {
 						if (err) {
-							console.log(`ERROR DATABASE: ${err}`);
+							log(`ERROR DATABASE: ${err}`);
 						}
 					});
 				},
@@ -88,7 +98,7 @@ function updateCache(type, datasets) {
 							upsert: true
 						}, function (err) {
 							if (err) {
-								console.log(`ERROR DATABASE: ${err}`);
+								log(`ERROR DATABASE: ${err}`);
 							}
 						});
 					});
@@ -118,7 +128,7 @@ function getCache(clientResponse, apiResponses, endPoint, movieID) {
 		"dbName Title Year ID Type Poster DetailCached Detail"
 		, function (err, movie) {
 			if (err) {
-				console.log(`ERROR DATABASE: ${err}`);
+				log(`ERROR DATABASE: ${err}`);
 				apiResponses.push({
 					name: endPoint.name,
 					cache: true,
@@ -156,7 +166,7 @@ function getCache(clientResponse, apiResponses, endPoint, movieID) {
 		"dbName Title Year ID Type DetailCached Poster"
 		, function (err, movies) {
 			if (err) {
-				console.log(`ERROR DATABASE: ${err}`);
+				log(`ERROR DATABASE: ${err}`);
 				apiResponses.push({
 					name: endPoint.name,
 					cache: true,
@@ -233,7 +243,7 @@ module.exports = function (app) {
 				});
 
 				apiRes.on('end', function () {
-					console.log(`API ${endPoint.listPath} STATUS: ${apiRes.statusCode}`);
+					log(`API ${endPoint.listPath} STATUS: ${apiRes.statusCode}`);
 					
 					if (apiRes.statusCode === 200) {
 						try {
@@ -249,7 +259,7 @@ module.exports = function (app) {
 							
 							sendApiResponse('list', res, apiResponses);
 						} catch (e) {
-							console.log(`ERROR JSON: ${e}`);
+							log(`ERROR JSON: ${e}`);
 						}
 					} else {
 						// If we get a non-success response, lets grab a cached version
@@ -265,8 +275,8 @@ module.exports = function (app) {
 			});
 			
 			apiReq.on('error', function(err) {
-				console.log(`ERROR: API server ${endPoint.name} connection failed`);
-				console.log(`ERROR: ${err}`)
+				log(`ERROR: API server ${endPoint.name} connection failed`);
+				log(`ERROR: ${err}`)
 				
 				// If the socket closes (as is the case in a timeout), lets grab the cached version
 				getCache(res, apiResponses, endPoint);
@@ -301,7 +311,7 @@ module.exports = function (app) {
 				});
 				
 				apiRes.on('end', function () {
-					console.log(`API ${pathWithID} STATUS: ${apiRes.statusCode}`);
+					log(`API ${pathWithID} STATUS: ${apiRes.statusCode}`);
 					
 					if (apiRes.statusCode === 200) {
 						try {
@@ -317,7 +327,7 @@ module.exports = function (app) {
 							
 							sendApiResponse('get', res, apiResponses);
 						} catch (e) {
-							console.log(`ERROR JSON: ${e}`);
+							log(`ERROR JSON: ${e}`);
 						}
 					} else {
 						// If we get a non-success response, lets grab a cached version
@@ -333,8 +343,8 @@ module.exports = function (app) {
 			});
 			
 			apiReq.on('error', function(err) {
-				console.log(`ERROR: API server ${endPoint.name} connection failed`);
-				console.log(`ERROR: ${err}`)
+				log(`ERROR: API server ${endPoint.name} connection failed`);
+				log(`ERROR: ${err}`)
 				
 				// If the socket closes (as is the case in a timeout), lets grab the cached version
 				getCache(res, apiResponses, endPoint, fullMovieID);
