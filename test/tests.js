@@ -17,10 +17,11 @@ describe('Web Server', function () {
 			http.get('http://localhost:8080', function (res) {
 				res.on('data', function () {});
 				res.on('end', function () {
-					assert.equal(200, res.statusCode, `code returned: ${res.statusCode}`);
+					expect(res.statusCode).to.equal(200, `expected 200, instead received ${res.statusCode}`);
+					
 					done();
 				});
-			}).end();
+			});
 		});
 	})
 });
@@ -123,6 +124,7 @@ describe('API Server', function () {
 		it('JSON should contain Movie details', function () {
 			getData.forEach(function (data) {
 				if (data.data !== null) {
+					// If we get this data, we're good
 					expect(data.data.Rated).to.be.a('string');
 					expect(data.data.Runtime).to.be.a('string');
 					expect(data.data.Genre).to.be.a('string');
