@@ -3,7 +3,10 @@ var movie = require('./models/movie');
 var http = require('http');
 var extend = require('node.extend');
 
-var apiTimeout = 3000; // 3 second response time allowed, if the API fails, we use the cache
+// Reduced to 100 ms, to improve responsiveness and maintain proof of concept
+// even though the endpoint has been disconnected (application was built for coding test)
+var apiTimeout = 100;
+
 
 // A generic table of endpoints, allows for trivial extension for APIs in the same format
 var apiEndpoints = [
