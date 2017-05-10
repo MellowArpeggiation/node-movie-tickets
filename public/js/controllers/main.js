@@ -157,7 +157,7 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
                             $scope.focusMovie.Price = [{
                                 location: item.name,
                                 price: item.data.Price
-							}];
+                            }];
 
                             // Chop off the first two letters of ID, so all match
                             $scope.focusMovie.ID = $scope.focusMovie.ID.slice(2);
@@ -250,4 +250,4 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 
         // Setup all polyfills on page
         $scope.polyfill();
-	}]);
+    }]);
