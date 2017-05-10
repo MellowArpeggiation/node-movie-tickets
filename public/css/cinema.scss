@@ -4,247 +4,244 @@
 @import "bootstrap-overrides";
 
 
-
 // Variables ================
 $title-bg-img: url("/img/title-background.jpg");
 $title-bg-img-invert: url("/img/title-background-invert.jpg");
 
 
-
 // Element overrides ================
 // In the case of an old browser freaking out, lets ensure no horizontal scroll bars ever appear
 body {
-	overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 // Thin fonts for headers
 h2, .h2,
 h3, .h3,
 h4, .h4 {
-	font-weight: 300;
-	
-	.mj-footer & {
-		font-weight: 500;
-	}
+    font-weight: 300;
+    
+    .mj-footer & {
+        font-weight: 500;
+    }
 }
-
-
 
 // Custom Classes ================
 // Reduce font-size of description list labels, to emphasize content
 .mj-description-list {
-	dt {
-		font-size: 0.8rem;
-	}
+    dt {
+        font-size: 0.8rem;
+    }
 }
+
 
 /**
  * Metascore look and feel
  */
+
 .mj-metascore {
-	width: 3rem;
-	height: 3rem;
-	text-align: center;
-	padding: auto;
-	font-size: 1.8rem;
-	font-weight: bold;
-	color: white;
-	
-	/* These colours are taken directly from Metacritic */
-	&.score-outstanding {
-		background-color: #6c3;
-	}
-	
-	&.score-average {
-		background-color: #fc3;
-	}
-	
-	&.score-unfavorable {
-		background-color: #f00;
-	}
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    padding: auto;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    
+    /* These colours are taken directly from Metacritic */
+    &.score-outstanding {
+        background-color: #6c3;
+    }
+    &.score-average {
+        background-color: #fc3;
+    }
+    &.score-unfavorable {
+        background-color: #f00;
+    }
 }
 
 // Utility class to ensure clickable objects have a pointer
 .u-pointer {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 // Custom block class which doesn't interfere with clicky feel buttons
 .mj-btn-block {
-	width: 100%;
+    width: 100%;
 }
 
 // Callout applied to first price (always lowest)
 .mj-best-price {
-	position: relative;
-	&:after {
-		position: absolute;
-		color: $brand-danger;
-		font-weight: bold;
-		content: 'Best Value!';
-		transform: rotate(30deg);
-		right: 0;
-	}
+    position: relative;
+    
+    &:after {
+        position: absolute;
+        color: $brand-danger;
+        font-weight: bold;
+        content: 'Best Value!';
+        transform: rotate(30deg);
+        right: 0;
+    }
 }
 
 // Affix, has polyfill attached in main.js
 .mj-affix {
-	position: -webkit-sticky;
-	position: sticky;
-	top: 1rem;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1rem;
 }
 
 // Ensure the cards don't exceed screen height when in an affix
 @include media-breakpoint-up(lg) {
-	.mj-card-block {
-		overflow-y: auto;
-		max-height: calc(100vh - 10rem);
-	}
+    .mj-card-block {
+        overflow-y: auto;
+        max-height: calc(100vh - 10rem);
+    }
 }
 
 .mj-footer {
-	padding: 4rem 0;
+    padding: 4rem 0;
     margin-top: 4rem;
     background-color: #f7f7f7;
-	background-image: $title-bg-img-invert;
+    background-image: $title-bg-img-invert;
 }
 
 // Loading spinner
 .mj-loader {
-	// Pop the loader in the bottom right corner
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	
-	-webkit-transform: translate(-50%, -50%);
-	        transform: translate(-50%, -50%);
-	
-	background-color: fade-out($gray-light, 0.5);
-	border-radius: 50%;
-	
-	padding: 1rem;
-	
-	// Fix layering
-	z-index: 1050;
-	
-	
-	
-	.mj-spinner {
-		border: 0.2rem solid $gray-lighter;
-		border-top: 0.2rem solid $brand-primary;
-		
-		border-radius: 50%;
-		width: 4rem;
-		height: 4rem;
-		
-		-webkit-animation: spin 0.5s linear infinite;
-		        animation: spin 0.5s linear infinite;
-	}
+    // Pop the loader in the bottom right corner
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: fade-out($gray-light, 0.5);
+    
+    border-radius: 50%;
+    padding: 1rem;
+    
+    // Fix layering
+    z-index: 1050;
+    
+    .mj-spinner {
+        border: 0.2rem solid $gray-lighter;
+        border-top: 0.2rem solid $brand-primary;
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        
+        -webkit-animation: spin 0.5s linear infinite;
+        animation: spin 0.5s linear infinite;
+    }
 }
 
 // Pretty looking header, uses background-clip (Experimental! Has fallback)
 .mj-header {
-	position: relative;
-	background-color: transparent;
-	z-index: -3;
-	margin-bottom: 3rem;
-	
-	.mj-header-title {
-		position: relative;
-		padding: 6rem 0;
-		
-		font-family: 'Philosopher', cursive;
-		
-		// Default is XS
-		font-size: 3rem;
-		
-		@include media-breakpoint-up(sm) {
-			font-size: 5rem;
-		}
-		
-		@include media-breakpoint-up(md) {
-			font-size: 6.5rem;
-		}
-		
-		@include media-breakpoint-up(lg) {
-			font-size: 8rem;
-		}
-		
-		@include media-breakpoint-up(xl) {
-			font-size: 10rem;
-		}
-		
-		
-		// Clipping
-		-webkit-text-fill-color: rgba(0, 0, 255, 0);
-		-webkit-background-clip: text;
-
-		// what will show through the text
-		background-image: $title-bg-img;
-		background-attachment: fixed;
-		background-size: 100%;
-
-		// fallback text color
-		color: white;
-		
-		
-		&:before,
-		&:after {
-			position: absolute;
-			content: '';
-		}
-
-		// Background
-		&:before {
-			z-index: -2;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			background-image: inherit;
-			background-attachment: fixed;
-			background-size: 100%;
-		}
-
-		// Text Background
-		&:after {
-			z-index: -1;
-			top: 1rem;
-			right: 0;
-			bottom: 1rem;
-			left: 0;
-			background-image: $title-bg-img-invert;
-			background-attachment: fixed;
-			background-size: 100%;
-			background-color: $body-bg;
-		}
-	}
-	
-	// Sits in the container, and extends the background to the edges of the window
-	.mj-header-background {
-		position: absolute;
-		z-index: -3;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		
-		background-image: $title-bg-img;
-		background-attachment: fixed;
-		background-size: 100%;
-	}
+    position: relative;
+    background-color: transparent;
+    z-index: -3;
+    margin-bottom: 3rem;
+    
+    .mj-header-title {
+        position: relative;
+        padding: 6rem 0;
+        font-family: 'Philosopher', cursive;
+        
+        // Default is XS
+        font-size: 3rem;
+        
+        @include media-breakpoint-up(sm) {
+            font-size: 5rem;
+        }
+        @include media-breakpoint-up(md) {
+            font-size: 6.5rem;
+        }
+        @include media-breakpoint-up(lg) {
+            font-size: 8rem;
+        }
+        @include media-breakpoint-up(xl) {
+            font-size: 10rem;
+        }
+        
+        // Clipping
+        -webkit-text-fill-color: rgba(0, 0, 255, 0);
+        -webkit-background-clip: text;
+        
+        // what will show through the text
+        background-image: $title-bg-img;
+        background-attachment: fixed;
+        background-size: 100%;
+        
+        // fallback text color
+        color: white;
+        
+        &:before, &:after {
+            position: absolute;
+            content: '';
+        }
+        
+        // Background
+        &:before {
+            z-index: -2;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            
+            background-image: inherit;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        
+        // Text Background
+        &:after {
+            z-index: -1;
+            top: 1rem;
+            right: 0;
+            bottom: 1rem;
+            left: 0;
+            
+            background-image: $title-bg-img-invert;
+            background-attachment: fixed;
+            background-size: 100%;
+            background-color: $body-bg;
+        }
+    }
+    // Sits in the container, and extends the background to the edges of the window
+    .mj-header-background {
+        position: absolute;
+        z-index: -3;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        
+        background-image: $title-bg-img;
+        background-attachment: fixed;
+        background-size: 100%;
+    }
 }
-
-
 
 // Animations ================
 // Spins the loader
 @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }

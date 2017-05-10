@@ -2,87 +2,89 @@ $btn-depth: 4; // Multiplier of bottom border width
 
 // Set the button hover state color to match regular color (to emphasize movement over color)
 @mixin button-hover($color, $background, $border) {
-	$active-background: darken($background, 5%);
-	$active-border: darken($border, 5%);
-	
-	&:hover,
-	&.hover {
-		color: $color;
-		background-color: $background;
-		border-color: $border;
-	}
-	
-	&:active,
-	&.active,
-	.show > &.dropdown-toggle {
-		color: $color;
-		background-color: $active-background;
-		border-color: $active-border;
-	}
+    $active-background: darken($background, 5%);
+    $active-border: darken($border, 5%);
+    
+    &:hover, &.hover {
+        color: $color;
+        background-color: $background;
+        border-color: $border;
+    }
+    
+    &:active, &.active,
+    .show > &.dropdown-toggle {
+        color: $color;
+        background-color: $active-background;
+        border-color: $active-border;
+    }
 }
 
 .btn {
-	cursor: pointer;
-	
-	border-width: 0 $border-width ($border-width * $btn-depth) $border-width;
-	
-	&:hover {
-		// Depress the button a little
-		margin-top: ($btn-depth * 0.5px);
-		border-bottom-width: ($btn-depth * 0.5px);
-	}
-	
-	&:active {
-		// Depress all the way
-		margin-top: ($btn-depth * 1px);
-		border-bottom-width: 0;
-	}
-	
-	// Input group buttons need to be changed to work with the new super clickable buttons
-	.input-group-btn & {
-		margin-top: 0;
-		
-		&:hover {
-			padding-top: calc(#{$btn-padding-y} + #{($btn-depth * 0.5px)});
-		}
-		
-		&:active {
-			padding-top: calc(#{$btn-padding-y} + #{($btn-depth * 1px)});
-		}
-	}
+    cursor: pointer;
+    border-width: 0 $border-width ($border-width * $btn-depth) $border-width;
+    
+    &:hover {
+        // Depress the button a little
+        margin-top: ($btn-depth * 0.5px);
+        border-bottom-width: ($btn-depth * 0.5px);
+    }
+    
+    &:active {
+        // Depress all the way
+        margin-top: ($btn-depth * 1px);
+        border-bottom-width: 0;
+    }
+    
+    // Input group buttons need to be changed to work with the new super clickable buttons
+    .input-group-btn & {
+        margin-top: 0;
+        
+        &:hover {
+            padding-top: calc(#{$btn-padding-y} + #{($btn-depth * 0.5px)});
+        }
+        
+        &:active {
+            padding-top: calc(#{$btn-padding-y} + #{($btn-depth * 1px)});
+        }
+    }
 }
 
 .btn-primary {
-	@include button-hover($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+    @include button-hover($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
+
 .btn-secondary {
-	@include button-hover($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+    @include button-hover($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
 }
+
 .btn-info {
-	@include button-hover($btn-info-color, $btn-info-bg, $btn-info-border);
+    @include button-hover($btn-info-color, $btn-info-bg, $btn-info-border);
 }
+
 .btn-success {
-	@include button-hover($btn-success-color, $btn-success-bg, $btn-success-border);
+    @include button-hover($btn-success-color, $btn-success-bg, $btn-success-border);
 }
+
 .btn-warning {
-	@include button-hover($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+    @include button-hover($btn-warning-color, $btn-warning-bg, $btn-warning-border);
 }
+
 .btn-danger {
-	@include button-hover($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+    @include button-hover($btn-danger-color, $btn-danger-bg, $btn-danger-border);
 }
 
 .form-control {
-	border-width: 0 0 $border-width 0;
-	
-	&:focus {
-		border-bottom-width: ($btn-depth * 1px);
-		padding-bottom: calc(#{$input-padding-y} - #{($btn-depth * 1px) - $border-width});
-	}
+    border-width: 0 0 $border-width 0;
+    
+    &:focus {
+        border-bottom-width: ($btn-depth * 1px);
+        padding-bottom: calc(#{$input-padding-y} - #{($btn-depth * 1px) - $border-width});
+    }
 }
 
 
-
 /* Checkbox styling */
+
 input[type="checkbox"] {
     position: relative !important;
     border: none;
@@ -90,53 +92,52 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
-	
-	box-sizing: border-box;
+    box-sizing: border-box;
     padding: 0;
-	line-height: normal;
-	
-	&:checked {
-		-webkit-appearance: none;
-		appearance: none;
-		background: none;
-		
-		&:after {
-			background-color: $brand-primary;
-    		border-color: $brand-primary;
-		}
-		
-		&:before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 6px;
-			display: table;
-			width: 6px;
-			height: 12px;
-			border: 2px solid #fff;
-			border-top-width: 0;
-			border-left-width: 0;
-			-webkit-transform: rotate(45deg);
-			-ms-transform: rotate(45deg);
-			-o-transform: rotate(45deg);
-			transform: rotate(45deg);
-		}
-	}
-	
-	&:after {
-		content: "";
-		display: block;
-		width: 18px;
-		height: 18px;
-		margin-top: -2px;
-		margin-right: 8px;
-		border: 2px solid $gray-light;
-		-webkit-transition: 240ms;
-		-o-transition: 240ms;
-		transition: 240ms;
-	}
-	
-	&:focus {
-		outline: 0;
-	}
+    line-height: normal;
+    
+    &:checked {
+        -webkit-appearance: none;
+        appearance: none;
+        background: none;
+        
+        &:after {
+            background-color: $brand-primary;
+            border-color: $brand-primary;
+        }
+        
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 6px;
+            display: table;
+            width: 6px;
+            height: 12px;
+            border: 2px solid #fff;
+            border-top-width: 0;
+            border-left-width: 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+    
+    &:after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin-top: -2px;
+        margin-right: 8px;
+        border: 2px solid $gray-light;
+        -webkit-transition: 240ms;
+        -o-transition: 240ms;
+        transition: 240ms;
+    }
+    
+    &:focus {
+        outline: 0;
+    }
 }
