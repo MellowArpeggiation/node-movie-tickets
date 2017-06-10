@@ -9,6 +9,9 @@ var extend = require('node.extend');
 // even though the endpoint has been disconnected (application was built for coding test)
 var apiTimeout = 100;
 
+// Set this up, we allocate value later
+var devMode;
+
 
 // A generic table of endpoints, allows for trivial extension for APIs in the same format
 var apiEndpoints = [
@@ -44,7 +47,7 @@ var pugDefaults = {
  * @param {object} msg Anything that console.log can consume
  */
 function log(msg) {
-    if (process.env.NODE_ENV !== 'test') {
+    if (devMode) {
         console.log(msg);
     }
 }
@@ -216,6 +219,8 @@ function sendApiResponse(type, clientResponse, apiResponses) {
 
 module.exports = function (app) {
 
+    devMode = app.get('env') === 'development';
+
     /**
      * Application routes
      * JSON /api/movies     Get a list of all available movies from API, using cache if fails
@@ -286,8 +291,7 @@ module.exports = function (app) {
             });
 
             apiReq.on('error', function (err) {
-                log(`ERROR: API server ${endPoint.name} connection failed`);
-                log(`ERROR: ${err}`);
+                log(`Cache Handler: API server ${endPoint.name} connection failed, using cache`);
 
                 // If the socket closes (as is the case in a timeout), lets grab the cached version
                 getCache(res, apiResponses, endPoint);
@@ -354,8 +358,7 @@ module.exports = function (app) {
             });
 
             apiReq.on('error', function (err) {
-                log(`ERROR: API server ${endPoint.name} connection failed`);
-                log(`ERROR: ${err}`);
+                log(`Cache Handler: API server ${endPoint.name} connection failed, using cache`);
 
                 // If the socket closes (as is the case in a timeout), lets grab the cached version
                 getCache(res, apiResponses, endPoint, fullMovieID);

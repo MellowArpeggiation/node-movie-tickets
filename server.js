@@ -27,6 +27,7 @@ app.set('views', './app/views');    // Set Pug working directory
 app.use(sassMiddleware({           // Compile SASS
     src: './app/sass',
     dest: './public/css',
+    sourceMap: './public/sourcemap',
     debug: devMode,
     outputStyle: 'compressed',
     prefix: '/css',
