@@ -17,7 +17,7 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
                 friendlyName: "<i class='fa fa-fw fa-film'></i> Film World",
                 filtered: true
             }
-        }
+        };
 
         $scope.appName = "MovieJazz";
 
@@ -75,7 +75,7 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
 
                             $scope.movies.push(movie);
                         }
-                    })
+                    });
                 });
 
                 // Sort all movies alphabetically by Title
@@ -116,7 +116,7 @@ angular.module('movieController', ['ngSanitize', 'ngAnimate'])
             filter = filter.toLowerCase(); // Lets make everything case insensitive
 
             // Create a new array of filtered movies
-            var filteredMovies = []
+            var filteredMovies = [];
 
             $scope.movies.forEach(function (movie) {
                 if (movie.Title.toLowerCase().includes(filter)) {

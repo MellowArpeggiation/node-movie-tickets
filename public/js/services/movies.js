@@ -9,5 +9,5 @@ angular.module('movieService', []).factory('movies', ['$http', function ($http) 
         getIMDB: function (id) {
             return $http.get('http://www.omdbapi.com/?i=tt' + id);
         }
-    }
+    };
 }]);
