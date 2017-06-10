@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 var chai = require('chai'),
     http = require('http');
 
@@ -5,9 +7,9 @@ var assert = chai.assert,
     should = chai.should(),
     expect = chai.expect;
 
-process.env.DBTYPE = 'remoteUrl';
+//process.env.DBTYPE = 'remoteUrl';
 process.env.PORT = 8080;
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'production'; // Run on proper server build
 
 var server = require('../server');
 
@@ -23,7 +25,7 @@ describe('Web Server', function () {
                 });
             });
         });
-    })
+    });
 });
 
 describe('API Server', function () {
