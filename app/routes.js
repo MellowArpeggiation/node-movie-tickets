@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 var movie = require('./models/movie');
 
 var http = require('http');
@@ -137,7 +139,7 @@ function getCache(clientResponse, apiResponses, endPoint, movieID) {
                         cache: true,
                         data: null
                     });
-                } else if (movie == null) {
+                } else if (movie === null) {
                     // Handle an empty response (movie not present at this endpoint)
                     apiResponses.push({
                         name: endPoint.name,
@@ -148,7 +150,7 @@ function getCache(clientResponse, apiResponses, endPoint, movieID) {
                     // Use node.extend to join the subdictionary to its parent
                     var returnMovie = movie;
                     if (movie.DetailCached) {
-                        var returnMovie = extend(true, movie, movie.Detail).toObject();
+                        returnMovie = extend(true, movie, movie.Detail).toObject();
                         returnMovie.Detail = undefined;
                     }
 
@@ -189,7 +191,7 @@ function getCache(clientResponse, apiResponses, endPoint, movieID) {
                 sendApiResponse('list', clientResponse, apiResponses);
             });
     }
-};
+}
 
 /**
  * Checks whether all endpoints have returned data (whether from cache or not),
@@ -279,7 +281,7 @@ module.exports = function (app) {
 
             apiReq.on('error', function (err) {
                 log(`ERROR: API server ${endPoint.name} connection failed`);
-                log(`ERROR: ${err}`)
+                log(`ERROR: ${err}`);
 
                 // If the socket closes (as is the case in a timeout), lets grab the cached version
                 getCache(res, apiResponses, endPoint);
@@ -291,7 +293,7 @@ module.exports = function (app) {
 
     // Get movie by ID
     app.get('/api/movie/:movie_id', function (req, res) {
-        var apiResponses = []
+        var apiResponses = [];
 
         apiEndpoints.forEach(function (endPoint) {
             // Lets concatenate the api path with the ID
@@ -347,7 +349,7 @@ module.exports = function (app) {
 
             apiReq.on('error', function (err) {
                 log(`ERROR: API server ${endPoint.name} connection failed`);
-                log(`ERROR: ${err}`)
+                log(`ERROR: ${err}`);
 
                 // If the socket closes (as is the case in a timeout), lets grab the cached version
                 getCache(res, apiResponses, endPoint, fullMovieID);
@@ -365,13 +367,13 @@ module.exports = function (app) {
 
     app.get('/book/:provider_name/:movie_id', function (req, res) {
         res.sendFile(__dirname + '/html/book.html');
-    })
+    });
 
     app.get('/', function (req, res) {
         res.sendFile(__dirname + '/html/index.html');
     });
 
     app.get('/about', function (req, res) {
-        res.sendFile(__dirname + '/html/about.html')
+        res.sendFile(__dirname + '/html/about.html');
     });
 };
