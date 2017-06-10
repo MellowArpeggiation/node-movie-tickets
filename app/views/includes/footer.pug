@@ -1,0 +1,14 @@
+footer.mj-footer.text-muted
+    .container
+        .row
+            .col-sm-6
+                h4 #{appName}
+                p Find the movies you want at the lowest prices
+                p Developed by George Paton
+        .row
+            .col-sm-6
+                | #[a(ng-click="setPath('/')", href='/') Home] | #[a(ng-click="gotoPath('/about')", href='/about') About]
+            .col-sm-6.text-right
+                | Copyright © 
+                // Show the current year if not still 2017
+                a(href='http://arpeggi.at/') #{author} 2017#{year !== 2017 ? `-${year}` : ''}

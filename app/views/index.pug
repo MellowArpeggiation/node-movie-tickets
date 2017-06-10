@@ -2,15 +2,9 @@ doctype html
 // Setup the Angular module
 html(ng-app='nodeMovieTickets')
     head
-        base(href='/')
-        meta(charset='utf-8')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
+        include includes/header.pug
         title #{appName}
-        // Styling
-        link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
-        link(rel='stylesheet', href='css/cinema.css')
-        // Fonts
-        link(href='https://fonts.googleapis.com/css?family=Philosopher:700', rel='stylesheet')
+        
         // Scripts
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js')
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.min.js')
@@ -29,8 +23,7 @@ html(ng-app='nodeMovieTickets')
             .mj-header.text-center
                 span.mj-header-background
                 .container
-                    h1.mj-header-title
-                        | #{appName}
+                    h1.mj-header-title #{appName}
             .container
                 .row
                     .col-lg-4
@@ -39,13 +32,22 @@ html(ng-app='nodeMovieTickets')
                                 .form-group.row
                                     .col-12
                                         // Search bar, for live filtering movies
-                                        input.form-control(type='text', placeholder='Search', ng-model='filterText', ng-change='filterMovies(filterText)')
+                                        input.form-control(
+                                            type='text',
+                                            placeholder='Search Movies...',
+                                            ng-model='filterText',
+                                            ng-change='filterMovies(filterText)'
+                                        )
                                     .mb-1.hidden-sm-up  
                                 fieldset.form-group.row.u-slide-down(ng-show='filtered')
                                     .col-12
                                         .form-check(ng-repeat='api in apiDetails')
                                             label.form-check-label
-                                                input.form-check-input(type='checkbox', ng-model='api.filtered', ng-change='filterMovies(filterText)')
+                                                input.form-check-input(
+                                                    type='checkbox',
+                                                    ng-model='api.filtered'
+                                                    ng-change='filterMovies(filterText)'
+                                                )
                                                 span(ng-bind-html='api.friendlyName')
                             .card(ng-show='focused')
                                 .card-header
@@ -53,19 +55,38 @@ html(ng-app='nodeMovieTickets')
                                         span(aria-hidden='true') ×
                                     ul.nav.nav-tabs.card-header-tabs
                                         li.nav-item
-                                            a.nav-link.active(ng-class="openTab == 'prices' ? 'active' : ''", ng-click="setTab('prices')", href='') Prices
+                                            a.nav-link.active(
+                                                ng-class="openTab == 'prices' ? 'active' : ''",
+                                                ng-click="setTab('prices')",
+                                                href=''
+                                            ) Prices
                                         li.nav-item
-                                            a.nav-link(ng-class="openTab == 'details' ? 'active' : ''", ng-click="setTab('details')", href='') Details
+                                            a.nav-link(
+                                                ng-class="openTab == 'details' ? 'active' : ''",
+                                                ng-click="setTab('details')",
+                                                href=''
+                                            ) Details
                                         li.nav-item
-                                            a.nav-link(ng-class="openTab == 'plot' ? 'active' : ''", ng-click="setTab('plot')", href='') Plot
+                                            a.nav-link(
+                                                ng-class="openTab == 'plot' ? 'active' : ''",
+                                                ng-click="setTab('plot')",
+                                                href=''
+                                            ) Plot
                                 .card-block.mj-card-block(ng-class="openTab != 'prices' ? 'hidden-xs-up' : ''")
                                     h4.card-title {{focusMovie.Title}}
                                     table.table.table-hover
                                         tbody
-                                            tr.u-pointer(ng-repeat='price in focusMovie.Price', ng-class="{'mj-best-price': $first, 'table-info': selectedBooking == price.location}", ng-click='selectBooking(price.location)')
+                                            tr.u-pointer(
+                                                ng-repeat='price in focusMovie.Price',
+                                                ng-class="{'mj-best-price': $first, 'table-info': selectedBooking == price.location}",
+                                                ng-click='selectBooking(price.location)'
+                                            )
                                                 td(ng-bind-html='apiDetails[price.location].friendlyName')
                                                 td ${{price.price}}
-                                    button.btn.btn-primary.mj-btn-block(ng-click="gotoPath('/book/' + selectedBooking + '/' + focusMovie.ID)", ng-disabled='!selectedBooking') Book
+                                    button.btn.btn-primary.mj-btn-block(
+                                        ng-click="gotoPath('/book/' + selectedBooking + '/' + focusMovie.ID)",
+                                        ng-disabled='!selectedBooking'
+                                    ) Book
                                 .card-block.mj-card-block(ng-class="openTab != 'details' ? 'hidden-xs-up' : ''")
                                     h4.card-title {{focusMovie.Title}}
                                     dl.mj-description-list.card-text
@@ -107,13 +128,15 @@ html(ng-app='nodeMovieTickets')
                                     dl.mj-description-list.card-text
                                         dt.text-muted.mb-2 Metascore
                                         dd
-                                            .mj-metascore(ng-class='focusMovie.MetaColor')
-                                                | {{focusMovie.Metascore}}
+                                            .mj-metascore(ng-class='focusMovie.MetaColor') {{focusMovie.Metascore}}
                                     dl.mj-description-list.card-text
                                         dt.text-muted Rating
                                         dd {{focusMovie.Rating}}/10 from {{focusMovie.Votes}} votes
                     .col-lg-8(ng-class="focused ? 'hidden-md-down' : ''")
-                        .card.u-pointer.border-top-0.border-left-0.border-right-0(ng-repeat='movie in visibleMovies', ng-click="setPath('/movie/' + movie.ID)")
+                        .card.u-pointer.border-top-0.border-left-0.border-right-0(
+                            ng-repeat='movie in visibleMovies',
+                            ng-click="setPath('/movie/' + movie.ID)"
+                        )
                             .card-block
                                 .row
                                     .col-sm-4
@@ -128,21 +151,8 @@ html(ng-app='nodeMovieTickets')
                                         blockquote.blockquote
                                             div(ng-repeat='location in movie.fromSource')
                                                 span(ng-bind-html='apiDetails[location].friendlyName')
-            footer.mj-footer.text-muted
-                .container
-                    .row
-                        .col-sm-6
-                            h4 #{appName}
-                            p Find the movies you want at the lowest prices
-                            p Developed by George Paton
-                    .row
-                        .col-sm-6
-                            a#home(ng-click="setPath('/')", href='') Home
-                            |  | 
-                            a(ng-click="gotoPath('/about')", href='/about') About
-                        .col-sm-6.text-right
-                            | Copyright © 
-                            a(href='http://arpeggi.at/') #{author} 2017#{year !== 2017 ? `-${year}` : ''}
-                            // Show the current year if not still 2017
+
+            include includes/footer.pug
+
             .mj-loader(ng-show='loading')
                 .mj-spinner

@@ -1,46 +1,24 @@
 doctype html
 html
     head
-        base(href='/')
-        meta(charset='utf-8')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        title About #{appName}
-        // Styling
-        link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
-        link(rel='stylesheet', href='css/cinema.css')
-        // Fonts
-        link(href='https://fonts.googleapis.com/css?family=Philosopher:700', rel='stylesheet')
+        include includes/header.pug
+        title #{appName} | About
     body
         .mj-header.text-center
             span.mj-header-background
             .container
-                h1.mj-header-title
-                    | About
+                h1.mj-header-title About
         .container
-            p.lead
-                | MovieJazz will help you find the lowest prices on movies, at a range of different theatres
+            p.lead MovieJazz will help you find the lowest prices on movies, at a range of different theatres
+            p This application was developed in 2 weeks, collating data from two separate providers, which exposed a RESTful API.
             p
-                | This application was developed in 2 weeks, collating data from two separate providers, which exposed a RESTful API.
+                | This application was required to run smoothly, without too much delay,
+                | even when the providers fell over. With some caching magic,
+                | we achieved a great middle ground, showing live data when possible,
+                | and resorting to cache when the providers fail.
             p
-                | This application was required to run smoothly, without too much delay, even when the providers fell over. With some caching magic, we achieved a great middle ground, showing live data when possible, and resorting to cache when the providers fail.
-            p
-                | Please contact me at 
-                a(href='mailto:georgewpaton@me.com') georgewpaton@me.com
-                |  if what you see here is of interest to you, or your company
+                | Please contact me at #[a(href='mailto:georgewpaton@me.com') georgewpaton@me.com]
+                | if what you see here is of interest to you, or your company
             p Have a great day!
-        footer.mj-footer.text-muted
-            .container
-                .row
-                    .col-sm-6
-                        h4 #{appName}
-                        p Find the movies you want at the lowest prices
-                        p Developed by George Paton
-                .row
-                    .col-sm-6
-                        a#home(href='/') Home
-                        |  | 
-                        a(href='/about') About
-                    .col-sm-6.text-right
-                        | Copyright © 
-                        a(href='http://arpeggi.at/') George Paton 2017
-
+        
+        include includes/footer.pug
