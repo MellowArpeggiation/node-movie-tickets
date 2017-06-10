@@ -33,6 +33,12 @@ var apiEndpoints = [
 	}
 ];
 
+var pugDefaults = {
+    appName: 'MovieJazz',
+    author: 'George Paton',
+    year: new Date().getFullYear()
+};
+
 /**
  * Logs to console IF not in unit testing mode
  * @param {object} msg Anything that console.log can consume
@@ -362,18 +368,18 @@ module.exports = function (app) {
 
     // Application
     app.get('/movie/:movie_id', function (req, res) {
-        res.sendFile(__dirname + '/html/index.html');
+        res.render('index', pugDefaults);
     });
 
     app.get('/book/:provider_name/:movie_id', function (req, res) {
-        res.sendFile(__dirname + '/html/book.html');
+        res.render('book', pugDefaults);
     });
 
     app.get('/', function (req, res) {
-        res.sendFile(__dirname + '/html/index.html');
+        res.render('index', pugDefaults);
     });
 
     app.get('/about', function (req, res) {
-        res.sendFile(__dirname + '/html/about.html');
+        res.render('about', pugDefaults);
     });
 };

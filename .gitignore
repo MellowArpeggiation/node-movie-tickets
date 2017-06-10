@@ -13,3 +13,6 @@ results
 
 npm-debug.log
 node_modules
+
+# Let's not commit compiled CSS
+public/css

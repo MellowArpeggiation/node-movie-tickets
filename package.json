@@ -13,6 +13,7 @@
     "mongoose": "^4.4.12",
     "morgan": "^1.1.1",
     "node-sass": "^4.5.3",
+    "node-sass-middleware": "^0.11.0",
     "node.extend": "^1.1.6",
     "pug": "^2.0.0-rc.2"
   },
