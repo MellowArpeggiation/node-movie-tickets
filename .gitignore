@@ -16,3 +16,4 @@ node_modules
 
 # Let's not commit compiled CSS
 public/css
+public/sourcemap
