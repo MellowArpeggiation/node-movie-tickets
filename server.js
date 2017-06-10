@@ -29,6 +29,7 @@ app.use(sassMiddleware({           // Compile SASS
     dest: './public/css',
     sourceMap: './public/sourcemap',
     debug: devMode,
+    force: devMode,
     outputStyle: 'compressed',
     prefix: '/css',
 }));
