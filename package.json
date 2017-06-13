@@ -7,6 +7,7 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "chai": "^3.5.0",
+    "cross-env": "^5.0.1",
     "express": "^4.13.4",
     "method-override": "^2.1.3",
     "mocha": "^3.2.0",
@@ -18,6 +19,7 @@
     "pug": "^2.0.0-rc.2"
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "cross-env DBTYPE=remoteUrl mocha test",
+    "start": "cross-env DBTYPE=remoteUrl PORT=8080 node server.js"
   }
 }
