@@ -10,6 +10,6 @@ To run the application, please ensure node.js is installed, and clone this repos
 
 `npm install`
 
-Then, run the server with environment variables set (unless you have a MongoDB instance installed locally)
+Then, run the server with environment variables set (unless you have a MongoDB instance installed locally), this will run on port 8080
 
-`DBTYPE=remoteUrl PORT=8080 node server.js`
+`npm start`
